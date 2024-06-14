@@ -7,6 +7,7 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://VGVentures.github.io",
   integrations: [
     starlight({
       favicon: "./public/favicon.png",
