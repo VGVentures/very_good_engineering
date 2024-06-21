@@ -68,6 +68,12 @@ export default defineConfig({
             directory: "reference",
           },
         },
+        {
+          label: "Testing",
+          autogenerate: {
+            directory: "testing",
+          },
+        },
       ],
     }),
     react(),
