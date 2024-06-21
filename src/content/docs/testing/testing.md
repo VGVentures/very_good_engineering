@@ -119,8 +119,7 @@ expect(valid, isTrue);
 
 ## Descriptive test
 
-Don't be afraid of being verbose in your tests. Make sure everything is readable, which can make
-it easier to maintain over time.
+Don't be afraid of being verbose in your tests. Make sure everything is readable, which can make it easier to maintain over time.
 
 Bad ❗️
 
@@ -143,8 +142,7 @@ blocTest<YourBloc, RecipeGeneratorState>('emits StateA if ...',);
 
 ## Test with a single purpose
 
-Aim to test one scenario per test. You might end up with more tests in the codebase, but this is preferred to
-creating one single test to cover several cases. This helps with readability and debugging failing tests.
+Aim to test one scenario per test. You might end up with more tests in the codebase, but this is preferred over creating one single test to cover several cases. This helps with readability and debugging failing tests.
 
 Bad ❗️
 
@@ -163,9 +161,7 @@ testWidgets('renders widgetB', (tester) async {});
 
 ## Use keys carefully
 
-Although keys can be an easy way to look for a widget while testing, they tend to be harder to
-maintain, especially if we use hardcoded keys. Instead, we recommend finding a widget by its
-type.
+Although keys can be an easy way to look for a widget while testing, they tend to be harder to maintain, especially if we use hard-coded keys. Instead, we recommend finding a widget by its type.
 
 Bad ❗️
 
@@ -181,10 +177,7 @@ Good ✅
 
 ## Use private mocks
 
-Developers may reuse mocks across different test files. This could lead to
-undesired behaviors in tests. For example, if you change the default values of a mock in one class,
-it could effect your test results in another. In order to avoid this, it is better to create
-private mocks for each test file.
+Developers may reuse mocks across different test files. This could lead to undesired behaviors in tests. For example, if you change the default values of a mock in one class, it could effect your test results in another. In order to avoid this, it is better to create private mocks for each test file.
 
 Bad ❗️
 
@@ -201,8 +194,7 @@ class _MockYourClass extends Mock implements YourClass {}
 
 ## Split your tests by groups
 
-Having multiple tests in a class could cause problems with readability. It is better to split your
-tests into groups:
+Having multiple tests in a class could cause problems with readability. It is better to split your tests into groups:
 
 - Widget tests: you could potentially group by "renders", "navigation", etc.
 - Bloc tests: group by the name of the event.
@@ -214,8 +206,8 @@ tests into groups:
 ## Keep test setup inside a group
 
 When running tests through the `very_good` CLI's optimization, all test files become a single file.
-If test setup methods are outside a group, those setups may cause side effects and make tests fail
-due to issues that wouldn't happen when running without the optimization.
+
+If test setup methods are outside of a group, those setups may cause side effects and make tests fail due to issues that wouldn't happen when running without the optimization.
 
 In order to avoid such issues, refrain from adding `setUp` and `setUpAll` (as well as `tearDown`
 and `tearDownAll`) methods outside a group:
@@ -256,9 +248,7 @@ void main() {
 
 ## Shared mutable objects should be initialized per test
 
-We should ensure that shared mutable objects are initialized per test. This avoids the possibility
-of tests affecting each other, which can lead to flaky tests due to unexpected failures during test
-parallelization or random ordering.
+We should ensure that shared mutable objects are initialized per test. This avoids the possibility of tests affecting each other, which can lead to flaky tests due to unexpected failures during test parallelization or random ordering.
 
 Bad ❗️
 
