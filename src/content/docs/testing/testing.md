@@ -9,8 +9,7 @@ At Very Good Ventures, our goal is to achieve 100% test coverage on all projects
 
 Test files should be organized to match your project file structure.
 
-This `my_package` library contains `models` and `widgets`. The `test` folder should copy this
-structure:
+This `my_package` library contains `models` and `widgets`. The `test` folder should copy this structure:
 
 ```
 my_package/
@@ -52,9 +51,7 @@ test/
 
 ## Assert test results using expect or verify
 
-All tests should have one (and ideally only one) statement
-at the end of the test asserting the test result
-using either an [expect](https://api.flutter.dev/flutter/flutter_test/expect.html) or [verify](https://pub.dev/documentation/mocktail/latest/).
+All tests should have one or more statements at the end of the test asserting the test result using either an [expect](https://api.flutter.dev/flutter/flutter_test/expect.html) or [verify](https://pub.dev/documentation/mocktail/latest/).
 
 Bad ❗️
 
@@ -68,9 +65,7 @@ testWidgets('can tap widget', (tester) async {
 });
 ```
 
-The above test would pass coverage on `SomeTappableWidget`,
-and pass as long as no exception is thrown,
-but it doesn't really tell any valuable information about what the widget should do.
+The above test would pass coverage on `SomeTappableWidget`, and pass as long as no exception is thrown, but it doesn't really tell any valuable information about what the widget should do.
 
 Good ✅
 
@@ -91,15 +86,11 @@ testWidgets('calls [onTap] on tapping widget', (tester) async {
 });
 ```
 
-Now, we are explicitly testing that we have accessed the `onTap`
-property of `SomeTappableWidget`, which makes this test more valuable,
-because its behavior is also tested.
+Now, we are explicitly testing that we have accessed the `onTap` property of `SomeTappableWidget`, which makes this test more valuable, because its behavior is also tested.
 
 ## Use matchers and expectations
 
-[Matchers](https://api.flutter.dev/flutter/package-matcher_matcher/package-matcher_matcher-library.html)
-provides better messages in tests and should always be used in
-[expectations](https://api.flutter.dev/flutter/flutter_test/expect.html).
+[Matchers](https://api.flutter.dev/flutter/package-matcher_matcher/package-matcher_matcher-library.html) provides better messages in tests and should always be used in [expectations](https://api.flutter.dev/flutter/flutter_test/expect.html).
 
 Bad ❗️
 
@@ -155,8 +146,6 @@ Good ✅
 ```dart
 testWidgets('renders widgetA', (tester) async {});
 testWidgets('renders widgetB', (tester) async {});
-
-
 ```
 
 ## Use keys carefully
@@ -209,8 +198,7 @@ When running tests through the `very_good` CLI's optimization, all test files be
 
 If test setup methods are outside of a group, those setups may cause side effects and make tests fail due to issues that wouldn't happen when running without the optimization.
 
-In order to avoid such issues, refrain from adding `setUp` and `setUpAll` (as well as `tearDown`
-and `tearDownAll`) methods outside a group:
+In order to avoid such issues, refrain from adding `setUp` and `setUpAll` (as well as `tearDown` and `tearDownAll`) methods outside a group:
 
 Bad ❗️
 
