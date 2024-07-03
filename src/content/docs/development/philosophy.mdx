@@ -83,15 +83,15 @@ return Visualizer(
   // imperative coding
   // (saying what should happen)
 
-  final visualizer = Visualizer();
-  final text = VisualElement();
-  visualizer.add(text);
+final visualizer = Visualizer();
+final text = VisualElement();
+visualizer.add(text);
 
-  return visualizer;
+return visualizer;
 
-  ```
+````
 
-  </TabItem>
+</TabItem>
 </Tabs>
 
 We've found that most code quality-of-life improvements are the result of making code more declarative. After all, it's usually easier to reason about business logic than it is to reason about business logic **and** all the implementation details.
@@ -102,19 +102,19 @@ We use reactive programming techniques (where necessary) to manipulate streams o
 
 ```dart
 void main() {
-  // The stream does not run the underlying iterator until we
-  // add a listener.
-  final stream = Stream<int>.fromIterable([1, 2, 3, 4, 5]);
+// The stream does not run the underlying iterator until we
+// add a listener.
+final stream = Stream<int>.fromIterable([1, 2, 3, 4, 5]);
 
-   // 2, 3, 4, 5, 6
-  final mappedStream = stream.map((value) => value + 1);
+ // 2, 3, 4, 5, 6
+final mappedStream = stream.map((value) => value + 1);
 
-  mappedStream.listen((value) {
-    print(value);
-  });
+mappedStream.listen((value) {
+  print(value);
+});
 }
 
-```
+````
 
 <Aside type="caution">
 We introduce reactive code cautiously, typically only leveraging it at the domain layer to broadcast data changes to view-specific business logic. While reactive code is technically "declarative", it describes how the data is transformed, not necessarily the business logic itself: i.e., it should be the underlying plumbing of the business logic.
@@ -122,13 +122,14 @@ We introduce reactive code cautiously, typically only leveraging it at the domai
 Additionally, complex data transformations are known for being difficult to grasp. Because of their tremendous power and flexibility, reactive tools make it easy to accidentally introduce coupling between components in the same architecture layer. In our experience, unintended coupling is by far the most common architectural pain point.
 
 For this reason, we consider reactive programming to be like glue — it's extremely strong, but it's sticky and it gets everywhere if you're not careful.
+
 </Aside>
 
 ## 💪 Consistency
 
 We have strong opinions about tests, dependency injection, state management, and organizing business logic. While these opinions are based on our extensive experience, we are also continually striving to document best practices as they evolve over time — which is why this site exists.
 
-By adopting opinionated solutions, we ensure that each project follows a familiar structure with similar patterns and packages. Consistency reduces the learning curve for developers, enabling them to ramp up in a fraction of the time. 
+By adopting opinionated solutions, we ensure that each project follows a familiar structure with similar patterns and packages. Consistency reduces the learning curve for developers, enabling them to ramp up in a fraction of the time.
 
 ## 🧘‍♀️ Flexibility
 
