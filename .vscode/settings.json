@@ -1,4 +1,13 @@
 {
+  "[markdown]": {
+    "editor.tabSize": 2,
+    "editor.wordWrap": "wordWrapColumn"
+  },
+  "[mdx]": {
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2,
+    "editor.wordWrap": "wordWrapColumn"
+  },
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit"
   },

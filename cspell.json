@@ -1,5 +1,13 @@
 {
   "ignorePaths": ["node_modules/**", ".**/"],
   "files": ["**/*.md", "**/*.mdx", "**/*.tsx", "**/*.ts", "**/*.json"],
-  "words": ["astro", "astrojs", "tsconfigs"]
+  "words": [
+    "astro",
+    "astrojs",
+    "fontsource",
+    "incentivized",
+    "multiplatform",
+    "tailwindcss",
+    "tsconfigs"
+  ]
 }
