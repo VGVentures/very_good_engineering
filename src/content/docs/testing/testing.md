@@ -11,7 +11,7 @@ Test files should be organized to match your project file structure.
 
 This `my_package` library contains `models` and `widgets`. The `test` folder should copy this structure:
 
-```
+```txt
 my_package/
   |- lib/
   |   |- models/
@@ -28,7 +28,7 @@ my_package/
 
 Bad ❗️
 
-```
+```txt
 test/
   |- model_a_test.dart
   |- model_b_test.dart
@@ -37,7 +37,7 @@ test/
 
 Good ✅
 
-```
+```txt
 test/
   |- models/
   |   - model_a_test.dart
