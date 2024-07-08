@@ -74,6 +74,12 @@ export default defineConfig({
             directory: "testing",
           },
         },
+        {
+          label: "Development",
+          autogenerate: {
+            directory: "development",
+          },
+        },
       ],
     }),
     react(),
