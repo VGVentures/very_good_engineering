@@ -9,11 +9,13 @@ Layered architecture is used at VGV to build highly scalable, maintainable, and 
 
 ### Data layer
 
-This is the lowest layer of the stack. It is the layer that is closest to the retrieval of data, hence the name. The data layer should be free of any specific domain or business logic. Ideally, packages within the data layer could be plugged into unreleated projects that need to retrieve data from the same sources.
+This is the lowest layer of the stack. It is the layer that is closest to the retrieval of data, hence the name.
 
 #### Responsibility
 
-The data layer is responsible for retrieving raw data from external sources and making it available to the domain layer. Examples of these external sources include a SQLite database, local storage, Shared Preferences, GPS, battery data, file system, or a RESTful API.
+The data layer is responsible for retrieving raw data from external sources and making it available to the [domain layer](#domain-layer). Examples of these external sources include an SQLite database, local storage, Shared Preferences, GPS, battery data, file system, or a RESTful API.
+
+The data layer should be free of any specific domain or business logic. Ideally, packages within the data layer could be plugged into unreleated projects that need to retrieve data from the same sources.
 
 ### Domain layer
 
