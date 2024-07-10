@@ -70,6 +70,12 @@ export default defineConfig({
             directory: "testing",
           },
         },
+        {
+          label: "Theming",
+          autogenerate: {
+            directory: "theming",
+          },
+        },
       ],
     }),
     react(),
