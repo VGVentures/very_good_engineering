@@ -3,16 +3,16 @@ title: Backend Architecture
 description: Best practices for building backend APIs. 
 ---
 
-At VGV, the loose coupling and separation of concerns followed in frontend layered architecture are also applied to constructing backends for Flutter apps. The backend should separate route navigation from data access/processing, and offer data models that the frontend can consume. As in the frontend, different parts of the architecture should be able to be developed independently, and each section of the backend should be tested in isolation. 
+At VGV, the loose coupling and separation of concerns followed in frontend layered architecture are also applied to constructing backends for Flutter apps. The backend should separate route navigation from data access/processing, and offer data models that the frontend can consume. As with the frontend, different parts of the architecture should be able to be developed independently, and each section of the backend should be tested in isolation. 
 
-Because the frontend has a devoted layer to retrieve data from any source, backends can be written in whatever language/framework they need to be. As with frontend development, in backend it is important to choose tools and follow patterns that serve business needs and maximize developer efficiency. VGV built [Dart Frog](https://dartfrog.vgv.dev/) for this purpose. Dart Frog provides a number of advantages to developers writing Flutter apps:
+Because the frontend has a devoted layer to retrieve data from any source, backends can be written in whatever language/framework they need to be. It is important to choose tools and follow patterns that serve business needs and maximize developer efficiency. VGV built [Dart Frog](https://dartfrog.vgv.dev/) for this purpose. Dart Frog provides a number of advantages to developers writing Flutter apps:
 
-  *  Writing Dart code in both backend and frontend limits context switching and allows model reuse throughout the project
+  *  Writing Dart code in both backend and frontend limits developer context switching and allows model reuse throughout the project
   * Dart Frog's minimalistic design allows for flexibility and customization to suit individual app needs
   * [Providers](https://dartfrog.vgv.dev/docs/basics/dependency-injection) and [middleware](https://dartfrog.vgv.dev/docs/basics/middleware) allow for easy dependency injection
   * Convention-based [routing](https://dartfrog.vgv.dev/docs/basics/routes) makes endpoint creation simple
   * All backend code is [easily testable](https://dartfrog.vgv.dev/docs/basics/testing) using mocktail
-  * Access to features such as Dart dev tools, and hot reload speed development time
+  * Access to features such as Dart dev tools and hot reload speed development time
 
 Here are some additional best practices to follow when building a backend for a Flutter app. 
 
@@ -28,17 +28,17 @@ my_app/
   |  |- lib/
   |  |  |- src/
   |  |  |  |- middleware/
-  |  |  |  |  |- auth_provider.dart
+  |  |  |  |  |- user_provider.dart
   |  |  |  |  |- todos_data_source_provider.dart
   |  |- packages/
-  |  |  |- auth_repository/
+  |  |  |- user_repository/
   |  |  |  |- lib/
   |  |  |  |  |- src/
-  |  |  |  |  |  |- auth_repository.dart
-  |  |  |  |  |- auth_repository.dart
+  |  |  |  |  |  |- user_repository.dart
+  |  |  |  |  |- user_repository.dart
   |  |  |  |- test/
   |  |  |  |  |- src/
-  |  |  |  |  |  |- auth_repository_test.dart
+  |  |  |  |  |  |- user_repository_test.dart
   |  |  |- todo_models/
   |  |  |  |- lib/
   |  |  |  |  |- src/
@@ -87,7 +87,7 @@ my_app/
   |  |  |- test/
   |  |  |  |- src/
   |  |  |  |  |- middleware/  
-  |  |  |  |  |  |- auth_provider_test.dart
+  |  |  |  |  |  |- user_provider_test.dart
   |  |  |  |  |  |- todos_data_source_provider_test.dart
   |  |  |  |- routes/
   |  |  |  |  |- api/
