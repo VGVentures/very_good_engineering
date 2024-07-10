@@ -5,6 +5,17 @@ description: Theming best practices.
 
 The theme plays a crucial role in defining the visual properties of an app, such as colors, typography, and other styling attributes. Inconsistencies within the theme can result in poor user experiences and potentially distort the intended design. Fortunately, Flutter offers a great design system that enables us to develop reusable and structured code that ensures a consistent theme.
 
+:::note
+Flutter uses [Material Design](https://docs.flutter.dev/ui/design/material) with [Material 3](https://m3.material.io/develop/flutter) enabled by default as of the Flutter 3.16 release.
+:::
+
+:::tip[Did you know?]
+Not everyone in the community is happy about Material and Cupertino being baked into the framework. Check out these discussions:
+
+- https://github.com/flutter/flutter/issues/101479
+- https://github.com/flutter/flutter/issues/110195
+  :::
+
 ## Use ThemeData
 
 By using `ThemeData`, widgets will inherit their styles automatically which is especially important for managing light/dark themes as it allows referencing the same token in widgets and removes the need for conditional logic.

@@ -65,15 +65,15 @@ export default defineConfig({
           },
         },
         {
-          label: "Theming",
-          autogenerate: {
-            directory: "theming",
-          },
-        },
-        {
           label: "Testing",
           autogenerate: {
             directory: "testing",
+          },
+        },
+        {
+          label: "Theming",
+          autogenerate: {
+            directory: "theming",
           },
         },
       ],
