@@ -76,3 +76,109 @@ Now, we are using `ThemeData` to get the `ColorScheme` and `TextTheme` so that a
 ## Avoid Conditional Logic
 
 It's generally recommended to steer clear of using conditional logic in UI for theming. This approach can complicate testing and make the code less readable. By leveraging Flutter's built-in design system, your app can have cleaner, more maintainable code that ensures consistent styling.
+
+## Typography
+
+Not all fonts are created equal, so you'll likely need to use a custom font for your app. Implementing typography is generally straightforward, but it's also easy to make mistakes, such as forgetting to adjust `TextStyle` attributes like `height` or resorting to hardcoded values instead of utilizing `TextTheme`.
+
+Let's break down typography into three sections:
+
+1. [Importing Fonts](#importing-fonts)
+2. [Custom Text Styles](#custom-text-styles)
+3. [TextTheme](#text-theme)
+
+### Importing Fonts
+
+To keep things organzied, fonts are generally stored in an `assets` folder like so:
+
+```txt
+assets/
+  |- fonts/
+  |   - Inter-Bold.ttf
+  |   - Inter-Regular.ttf
+  |   - Inter-Light.ttf
+```
+
+Then declared in the `pubspec.yaml` file:
+
+```yaml
+flutter:
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Inter-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Inter-Light.ttf
+          weight: 300
+```
+
+At this point, the font is imported and ready to use. However, if you want to ensure type safety, we can use [flutter_gen](https://pub.dev/packages/flutter_gen) to generate code for our font. Here's an example what that generated code might look like:
+
+```dart
+/// GENERATED CODE - DO NOT MODIFY BY HAND
+/// *****************************************************
+///  FlutterGen
+/// *****************************************************
+
+// coverage:ignore-file
+// ignore_for_file: type=lint
+// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
+
+class FontFamily {
+  FontFamily._();
+
+  /// Font family: Inter
+  static const String inter = 'Inter';
+}
+```
+
+### Custom Text Styles
+
+Whether importing a custom font or using the default one, it's a good idea to create a custom class for your text styles to maintain consistency and simplify updates across your app. Let's take a look at this example:
+
+```dart
+abstract class AppTextStyle {
+  static const TextStyle titleLarge = TextStyle(
+    fontSize: 20,
+    height: 1.3,
+    fontWeight: FontWeight.w500,
+  );
+}
+```
+
+With this setup, any updates to the style are centralized which reduces the need to find it in multiple locations.
+
+### TextTheme
+
+The last step to implement typography is to update the [TextTheme](https://api.flutter.dev/flutter/material/TextTheme-class.html). Both `TextTheme` and [Custom Text Styles](#custom-text-styles) serve important roles but cater to different aspects of text styling. The benefit of using `TextTheme` is the seamless integration into `ThemeData` that allows for consistent application of text styles across widgets that use the current theme.
+
+Here's a basic example:
+
+```dart
+ThemeData(
+  textTheme: TextTheme(
+    titleLarge: AppTextStyle.titleLarge,
+  ),
+),
+```
+
+Widgets can now reference the text style through `ThemeData`:
+
+```dart
+class TitleWidget extends StatelessWidget {
+  const TitleWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
+
+    return Text(
+      'Title',
+      style: textTheme.titleLarge,
+    );
+  }
+}
+```
