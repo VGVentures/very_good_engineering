@@ -30,16 +30,6 @@ Putting the backend in the same repository as the frontend allows developers to 
 While providers, routes, and tests, can live in the root backend project, consider putting data models and data access into their own dedicated package(s). Ideally, these layers should be able to exist independently from the rest of the app. 
 
 
-Bad ❗️
-my_app/
-  |- api/
-  |  |- lib/
-  |  |  |- src/
-  |  |  |  |- routes/
-  |  |- test/
-
-Good ✅
-
 ```
 my_app/
   |- api/
@@ -125,13 +115,6 @@ Routes should follow common [best practices for REST API design](https://swagger
 
 Endpoints should be named for the collection of objects that they provide access to. Use plural nouns to specify the collection, not the individual entity. 
 
-Bad ❗️
-
-```
-my_api/v1/todo
-```
-
-Good ✅
 
 ```
 my_api/v1/todos
@@ -139,27 +122,11 @@ my_api/v1/todos
 
 Nested paths then provide specific data about an individual object within the collection. 
 
-Bad ❗️
-
-```
-my_api/v1/todos?id=1
-```
-
-Good ✅
-
 ```
 my_api/v1/todos/1
 ```
 
 When setting up a collection of objects that is nested under another collection, the endpoint path should reflect the relationship. 
-
-Bad ❗️
-
-```
-my_api/v1/todos/users/
-```
-
-Good ✅
 
 ```
 my_api/v1/users/123/todos
@@ -169,14 +136,6 @@ my_api/v1/users/123/todos
 #### Use Query Parameters to Filter Properties of GET results
 
 Query parameters serve as the standard way of filtering the results of a GET request. 
-
-Bad ❗️
-
-```
-my_api/v1/todos/completed
-```
-
-Good ✅
 
 ```
 my_api/v1/todos?completed=false
@@ -203,13 +162,6 @@ final body = CreateTodoRequest.fromJson(await context.request.map());
 
 For update requests, PATCH is more advisable than PUT because [PATCH requests the server to update an existing entity, while PUT requests the entity to be replaced](https://stackoverflow.com/questions/21660791/what-is-the-main-difference-between-patch-and-put-request?answertab=oldest#tab-top).
 
-Bad ❗️
-
-```
-PUT my_api/v1/todos/1
-```
-
-Good ✅
 
 ```
 PATCH my_api/v1/todos/1
@@ -219,13 +171,6 @@ PATCH my_api/v1/todos/1
 
 DELETE requests should require nothing more than an identifier of the object to be deleted. There is no need to send the entire object.
 
-Bad ❗️
-
-```
-DELETE my_api/v1/todos // don't send Todo in request body
-```
-
-Good ✅
 ```
 DELETE my_api/v1/todos/1 //Data source should only require the ID
 ```
@@ -234,19 +179,6 @@ DELETE my_api/v1/todos/1 //Data source should only require the ID
 
 Routes should also return proper status codes to the frontend based on the results of their operations. When an error occurs, sending a useful status and response to the client makes it clear what happened and allows the client to handle errors more smoothly. 
 
-Bad ❗️
-```
-final todo = context.read<TodosDataSource>().get(id);
-
-if (todo == null) {
-  return Response(statusCode: HttpStatus.ok, body: 'No todo exists with the given $id');
-}
-```
-
-In this example, we are returning a message to the client, but with a misleading successful status code. 
-
-Good ✅
-
 ```
 final todo = context.read<TodosDataSource>().get(id);
 
@@ -254,17 +186,6 @@ if (todo == null) {
   return Response(statusCode: HttpStatus.notFound, body: 'No todo exists with the given $id');
 }
 ```
-
-By contrast, this example offers both a relevant message and the correct status code.
-
-Bad ❗️
-```
-final requestBody = CreateTodoRequest.fromJson(jsonDecode(await context.request.body() as Map));
-```
-
-In this example, we are assuming that the request body will be properly mapped. A failure to parse the body from the request will return a vague 500 error. 
-
-Good ✅
 
 ```
 late final requestBody;
@@ -276,4 +197,10 @@ try {
 
 ```
 
-This example, however, catches failed JSON mapping from the request body, and notifies the client of the Bad Request. 
+```
+try {
+  await someServerSideProcess();
+} catch (e) {
+    return Response(statusCode: HttpStatus.internalServerError, body: 'Server error: $e');
+}
+```
