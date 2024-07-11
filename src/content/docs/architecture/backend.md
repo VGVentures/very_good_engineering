@@ -81,7 +81,7 @@ final class GetTodosResponse {
   final List<Todos> todos;
 }
 ```
-:::
+:::note
 It is also advisable to automate JSON serialization inside the models package. This can be achieved with the [json_serializable](https://pub.dev/packages/json_serializable) package, though experimental [macros](https://dart.dev/language/macros) in Dart offer a potentially cleaner way of doing this in the future. 
 :::
 
