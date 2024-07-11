@@ -79,7 +79,7 @@ my_app/
 A `models` package should clearly define the necessary data models that the backend will be sharing with the frontend. Defining endpoint models makes the data necessary to communicate between frontend and backend more explicit. It also creates a data structure that can communicate additional metadata about content received, such as the total count of items and pagination information.
 
 ```
-class GetTodosResponse {
+final class GetTodosResponse {
   const GetTodosResponse({
     int count = 0,
     int pageNumber = 0,
