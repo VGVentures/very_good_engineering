@@ -1,5 +1,5 @@
 ---
-title: Theming
+title: 🎨 Theming
 description: Theming best practices.
 ---
 
@@ -72,3 +72,7 @@ class GoodWidget extends StatelessWidget {
 ```
 
 Now, we are using `ThemeData` to get the `ColorScheme` and `TextTheme` so that any design update will automatically reference the correct value.
+
+## Avoid Conditional Logic
+
+It's generally recommended to steer clear of using conditional logic in UI for theming. This approach can complicate testing and make the code less readable. By leveraging Flutter's built-in design system, your app can have cleaner, more maintainable code that ensures consistent styling.
