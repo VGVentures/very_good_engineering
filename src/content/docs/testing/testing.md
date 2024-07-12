@@ -308,7 +308,7 @@ void main() {
 
 ```
 
-## Avoid using magic strings to tag test
+## Avoid using magic strings to tag tests
 
 When [tagging tests](https://github.com/dart-lang/test/blob/master/pkgs/test/doc/configuration.md#configuring-tags), avoid using magic strings. Instead, use constants to tag tests. This helps to avoid typos and makes it easier to refactor.
 

@@ -44,12 +44,12 @@ Good ✅
 ```
 
 :::tip
-[You should avoid using magic strings to tag test](../testing/#avoid-using-magic-strings-to-tag-test). Instead, use constants to tag tests. This helps to avoid typos and makes it easier to refactor.
+[You should avoid using magic strings to tag tests](../testing/#avoid-using-magic-strings-to-tag-test). Instead, use constants to tag tests. This helps to avoid typos and makes it easier to refactor.
 :::
 
 ### Configure your golden test tag
 
-To configure a golden test tag across multiple files or an entire package create a `dart_test.yaml` file and add the tag configuration:
+To configure a golden test tag across multiple files (or an entire package), create a `dart_test.yaml` file and add the tag configuration:
 
 ```
 tags:
