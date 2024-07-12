@@ -285,7 +285,7 @@ class _MySubject {
 }
 
 void main() {
-  group('$_MySubject', () {
+  group(_MySubject, () {
     final _MySubjectDependency myDependency = _MySubjectDependency();
 
     test('value starts at 0', () {
@@ -311,7 +311,7 @@ Good ✅
 ```dart
 
 void main() {
-  group('$_MySubject', () {
+  group(_MySubject, () {
     late _MySubjectDependency myDependency;
 
     setUp(() {
