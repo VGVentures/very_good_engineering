@@ -134,7 +134,7 @@ class ThoughtBloc extends Bloc<ThoughtEvent, ThoughtState> {
 If we want to avoid emitting the declaration that `${event.thought}` is my most recent thought when the bloc has received an even more recent thought, the `restartable` transformer will suspend `_onThought`'s processing of the outdated event if a more recent event is recieved during its execution.
 
 #### Testing Blocs
-When writing tests for a bloc, you may encounter an issue where a variable event handling order is acceptable in use, but the inconsistent sequence of event execution makes the determined order of states required by `blocTest`'s `expect` field result in failing and flaky tests:
+When writing tests for a bloc, you may encounter an issue where a variable event handling order is acceptable in use, but the inconsistent sequence of event execution makes the determined order of states required by `blocTest`'s `expect` field results in unpredictable test behavior:
 ```
 blocTest<MyBloc, MyState>(
   'change value',
