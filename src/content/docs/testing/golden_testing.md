@@ -16,13 +16,13 @@ Golden tests should be tagged to make it easier to run them separately from othe
 Bad ❗️
 
 ```dart
-
+// TODO: Provide example
 ```
 
 Good ✅
 
 ```dart
-
+// TODO: Provide example
 ```
 
 To configure a tag across multiple files or an entire package create a `dart_test.yaml` file.
