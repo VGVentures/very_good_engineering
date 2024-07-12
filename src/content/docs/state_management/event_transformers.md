@@ -108,7 +108,7 @@ In the above example, we'd like to avoid clogging up our API with unnecessary du
 Since events added during ongoing handling will be discarded by the `droppable` transformer, ensure that you're OK with any data stored in that event being lost.
 
 #### Restartable
-The `restartable` transformer inverts the behavior of `droppable`, and will stop ongoing execution of previous event handlers in order to process the most recently received event.
+The `restartable` transformer inverts the behavior of `droppable`, halting execution of previous event handlers in order to process the most recently received event.
 ```
 class ThoughtBloc extends Bloc<ThoughtEvent, ThoughtState> {
   ThoughtBloc() : super(ThoughtState()) {
