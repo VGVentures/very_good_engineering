@@ -110,7 +110,7 @@ expect(valid, isTrue);
 
 ## Use string expression with types
 
-Test names are [Strings](https://dart.dev/language/built-in-types#strings), if you're referencing a type, use a string expression to ease renaming the type.
+[Test descriptions](https://pub.dev/documentation/test/latest/test/test.html) are usually `String`s. If you're referencing a type, use a [string expression](https://dart.dev/language/built-in-types#string) to ease renaming the type.
 
 Bad ❗️
 
