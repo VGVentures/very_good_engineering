@@ -124,7 +124,7 @@ Good ✅
 testWidgets('renders $YourView', (tester) async {});
 ```
 
-If your (https://pub.dev/documentation/test/latest/test/group.html) description only contains a type, you can omit the string expression:
+If your [group](https://pub.dev/documentation/test/latest/test/group.html) description only contains a type, you can omit the string expression:
 
 Bad ❗️
 
