@@ -6,7 +6,7 @@ description: Best practices for building backend APIs.
 Loose coupling, separation of concerns and layered architecture should not only be applied to frontend development. These principles can also be applied during backend development. For example, concepts such as route navigation, data access, data processing and data models can be separated and tested in isolation.
 
 :::note
-There is large offering of languages and frameworks to write backends in. It is important to choose tools and follow patterns that serve business needs and maximize developer efficiency. VGV built [Dart Frog](https://dartfrog.vgv.dev/) for this purpose. Dart Frog provides a number of advantages to developers writing Flutter apps:
+There are many languages and frameworks to write backends in. It is important to choose tools and follow patterns that serve business needs and maximize developer efficiency. VGV built [Dart Frog](https://dartfrog.vgv.dev/) for this purpose. Dart Frog provides a number of advantages to developers writing Flutter apps:
 
   *  Writing Dart code in both backend and frontend limits developer context switching and allows model reuse throughout the project
   * Dart Frog's minimalistic design allows for flexibility and customization to suit individual app needs
