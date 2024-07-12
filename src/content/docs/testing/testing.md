@@ -110,7 +110,7 @@ expect(valid, isTrue);
 
 ## Use string expression with types
 
-[Test descriptions](https://pub.dev/documentation/test/latest/test/test.html) are usually `String`s. If you're referencing a type, use a [string expression](https://dart.dev/language/built-in-types#string) to ease renaming the type.
+[Test](https://pub.dev/documentation/test/latest/test/test.html) and [group](https://pub.dev/documentation/test/latest/test/group.html) descriptions are converted to a string. If you're referencing a type, use a [string expression](https://dart.dev/language/built-in-types#string) to ease renaming the type.
 
 Bad ❗️
 
@@ -122,6 +122,20 @@ Good ✅
 
 ```dart
 testWidgets('renders $YourView', (tester) async {});
+```
+
+If your (https://pub.dev/documentation/test/latest/test/group.html) description only contains a type, you can omit the string expression:
+
+Bad ❗️
+
+```dart
+group('$YourView', () {});
+```
+
+Good ✅
+
+```dart
+group(YourView, () {});
 ```
 
 ## Descriptive test
