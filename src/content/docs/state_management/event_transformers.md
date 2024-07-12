@@ -6,7 +6,7 @@ Since [Bloc v.7.2.0](https://bloclibrary.dev/migration/#v720), events are handle
 
 Concurrent event handling is often desirable, but issues ranging from performance degradation to serious data and behavior defects can emerge if your specified event transformer diverges from the needs of your state management system.
 
-In particular, [race conditions](https://en.wikipedia.org/wiki/Race_condition), when the result of operations varies with their order of execution, can produce bugs when events are handled in an indeterminate sequence.
+In particular, [race conditions](https://en.wikipedia.org/wiki/Race_condition) can produce bugs when the result of operations varies with their order of execution.
 
 #### Registering Event Transformers
 Event transformers are specified in the `transformer` field of the event registration functions in the `Bloc` constructor:
