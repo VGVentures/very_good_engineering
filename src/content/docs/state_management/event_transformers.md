@@ -27,7 +27,9 @@ class MyBloc extends Bloc<MyEvent, MyState> {
 ```
 Each `on<E>`  statement creates a bucket for handling events of type `E`. 
 
+:::note
 Note that event transformers are only applied within the bucket they are specified in. In the above example, only events of the same type (two  of `MyEvent` or two  `MySecondEvent`) would be processed sequentially, while a `MyEvent` and a `MySecondEvent` would be processed concurrently. 
+:::
 
 If you would like to enforce a global transformer scheme across event types, Joanna May's article ["How to Use Bloc With Streams and Concurrency"](https://verygood.ventures/blog/how-to-use-bloc-with-streams-and-concurrency) provides a concise guide.
 
