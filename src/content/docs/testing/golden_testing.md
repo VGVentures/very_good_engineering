@@ -16,16 +16,40 @@ Golden tests should be tagged to make it easier to run them separately from othe
 Bad ❗️
 
 ```dart
-// TODO: Provide example
+testWidgets('render matches golden file', (WidgetTester tester) async {
+  await tester.pumpWidget(MyWidget());
+
+  await expectLater(
+    find.byType(MyWidget),
+    matchesGoldenFile('my_widget.png'),
+  );
+});
 ```
 
 Good ✅
 
 ```dart
-// TODO: Provide example
+  testWidgets(
+    'render matches golden file',
+    tags: TestTag.golden,
+    (WidgetTester tester) async {
+      await tester.pumpWidget(MyWidget());
+
+      await expectLater(
+        find.byType(MyWidget),
+        matchesGoldenFile('my_widget.png'),
+      );
+    },
+  );
 ```
 
-To configure a tag across multiple files or an entire package create a `dart_test.yaml` file and add the tag configuration:
+:::tip
+[You should avoid using magic strings to tag test](../testing/#avoid-using-magic-strings-to-tag-test). Instead, use constants to tag tests. This helps to avoid typos and makes it easier to refactor.
+:::
+
+### Configure your golden test tag
+
+To configure a golden test tag across multiple files or an entire package create a `dart_test.yaml` file and add the tag configuration:
 
 ```
 tags:
