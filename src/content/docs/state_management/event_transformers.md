@@ -56,7 +56,7 @@ class MyBloc extends Bloc<MyEvent, MyState> {
 }
 ```
 
-To illustrate the utility of sequential event handling, suppose I'm building a money-tracking app. The `_onChangeBalance` handler first calls an API to read my current account balance, and then sends a call to update my balance to its new value:
+To illustrate the utility of sequential event handling, suppose we're building a money-tracking app. The `_onChangeBalance` handler first calls an API to read our current account balance, and then sends a call to update the balance to its new value:
 
 ```
 class MoneyBloc extends Bloc<MoneyEvent, MoneyState> {
@@ -74,13 +74,13 @@ class MoneyBloc extends Bloc<MoneyEvent, MoneyState> {
 }
 ```
 
-I then quickly add two events `ChangeBalance(add: 20)` and `ChangeBalance(add: 40)`, which will be handled concurrently. A possible sequence of events is:
+We then quickly add two events `ChangeBalance(add: 20)` and `ChangeBalance(add: 40)`, which will be handled concurrently. A possible sequence of events is:
 
- - The first `ChangeBalance` handler instance will read a balance of `$100`, and send a not-yet-received request to the API to update my balance to `$120`.
- -  Before the first handler finishes its execution, the second handler executes, reads the old account value of `$100`, and completes an API request to update my balance to `$140`.
+ - The first `ChangeBalance` handler instance will read a balance of `$100`, and send a not-yet-received request to the API to update the balance to `$120`.
+ -  Before the first handler finishes its execution, the second handler executes, reads the old account value of `$100`, and completes an API request to update the balance to `$140`.
  - Finally, the first handler's call to update the balance reaches the API, and the balance is now overwritten to `$120`.
 
-This example illustrates the issues that can arise from concurrent handling of operations. Had I used a `sequential` transformer for my `ChangeBalance` event handler and ensured that the first addition of $20 had completed before processing the next event, I wouldn't have lost $40.
+This example illustrates the issues that can arise from concurrent handling of operations. Had we used a `sequential` transformer for the `ChangeBalance` event handler and ensured that the first addition of $20 had completed before processing the next event, we wouldn't have lost $40.
 
 Note that when operations are safe to execute concurrently, using a `sequential` transformer can introduce unnecessary latency into event handling.
 
@@ -103,7 +103,7 @@ class SayHiBloc extends Bloc<SayHiEvent, SayHiState> {
   }
 }
 ```
-In the above example, I'd like to avoid clogging up my API with unnecessary duplicate greetings. The `droppable` transformer will ensure that additional `SayHello` events added while the first `_onSayHello` instance is executing will be discarded and never executed. 
+In the above example, we'd like to avoid clogging up our API with unnecessary duplicate greetings. The `droppable` transformer will ensure that additional `SayHello` events added while the first `_onSayHello` instance is executing will be discarded and never executed. 
 
 Since events added during ongoing handling will be discarded by the `droppable` transformer, ensure that you're OK with any data stored in that event being lost.
 
@@ -131,7 +131,7 @@ class ThoughtBloc extends Bloc<ThoughtEvent, ThoughtState> {
   }
 }
 ```
-If I want to avoid emitting the declaration that `${event.thought}` is my most recent thought when the bloc has received an even more recent thought, the `droppable` transformer will suspend `_onThought`'s processing of the outdated event if a more recent event is recieved during its execution.
+If we want to avoid emitting the declaration that `${event.thought}` is my most recent thought when the bloc has received an even more recent thought, the `droppable` transformer will suspend `_onThought`'s processing of the outdated event if a more recent event is recieved during its execution.
 
 #### Testing Blocs
 When writing tests for a bloc, you may encounter an issue where a variable event handling order is acceptable in use, but the inconsistent sequence of event execution makes the determined order of states required by `blocTest`'s `expect` field result in failing and flaky tests:
