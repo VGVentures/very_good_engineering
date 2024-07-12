@@ -58,7 +58,7 @@ tags:
 ```
 
 :::note
-Learn more about the all the `dart_test.yaml` configuration options in the [Dart Test Configuration documentation](https://github.com/dart-lang/test/blob/master/pkgs/test/doc/configuration.md).
+Learn more about all the `dart_test.yaml` configuration options in the [Dart Test Configuration documentation](https://github.com/dart-lang/test/blob/master/pkgs/test/doc/configuration.md).
 :::
 
 You can then run the tests with the tag `golden` in isolation, or quickly update
