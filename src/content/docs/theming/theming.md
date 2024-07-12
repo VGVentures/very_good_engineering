@@ -114,7 +114,7 @@ flutter:
           weight: 300
 ```
 
-At this point, the font is imported and ready to use. However, if you want to ensure type safety, we can use [flutter_gen](https://pub.dev/packages/flutter_gen) to generate code for our font. Here's an example what that generated code might look like:
+At this point, the font is imported and ready to use. However, to ensure type safety, we recommend using [flutter_gen](https://pub.dev/packages/flutter_gen) to generate code for our font. Here's an example what that generated code might look like:
 
 ```dart
 /// GENERATED CODE - DO NOT MODIFY BY HAND
