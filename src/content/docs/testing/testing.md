@@ -50,7 +50,7 @@ test/
 > Note: `models.dart` and `widgets.dart` are barrel files and do not need to be tested.
 
 :::tip
-You can automatically create or find a test file when using the [Flutter VS Code Extension](https://docs.flutter.dev/tools/vs-code) by right-clicking on the file within the [explorer view](https://code.visualstudio.com/docs/getstarted/userinterface#_explorer-view) and selecting "Go to test" or using the ["Go to test"](https://github.com/Dart-Code/Dart-Code/blob/09cb9828b7b315d667ee5dc97e9287a6c6c8655a/package.json#L323) command within the [command palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette).
+You can automatically create or find a test file when using the [Flutter VS Code Extension](https://docs.flutter.dev/tools/vs-code) by right-clicking on the file within the [explorer view](https://code.visualstudio.com/docs/getstarted/userinterface#_explorer-view) and selecting "Go to Tests" or using the ["Go to Test/Implementation File"](https://github.com/Dart-Code/Dart-Code/blob/09cb9828b7b315d667ee5dc97e9287a6c6c8655a/package.json#L323) command within the [command palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette).
 :::
 
 :::note
