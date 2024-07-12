@@ -239,7 +239,7 @@ void main() {
     // mock api client methods...
   });
 
-  group('$UserRepository', () {
+  group(UserRepository, () {
     // Tests...
   });
 }
@@ -249,7 +249,7 @@ Good ✅
 
 ```dart
 void main() {
-  group('$UserRepository', () {
+  group(UserRepository, () {
     late ApiClient apiClient;
 
     setUp(() {
