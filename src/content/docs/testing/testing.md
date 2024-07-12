@@ -183,7 +183,7 @@ class _MockYourClass extends Mock implements YourClass {}
 
 > Tip: If you configure [Very Good Analysis](https://github.com/VeryGoodOpenSource/very_good_analysis) or have the [`unused_element` diagnostic message](https://dart.dev/tools/diagnostic-messages?utm_source=dartdev&utm_medium=redir&utm_id=diagcode&utm_content=unused_element#unused_element) configured the analyzer will warn you about unused private mocks (but not if they're public!).
 
-> Tip: If you have the [Bloc VS Code extension](https://github.com/felangel/bloc/tree/master/extensions/vscode) installed, you can use [`_mock` snippet](https://github.com/felangel/bloc/tree/master/extensions/vscode#bloc) to quickly create a private mock.
+> Tip: If you have the [Bloc VS Code extension](https://github.com/felangel/bloc/tree/master/extensions/vscode) installed, you can use the [`_mock` snippet](https://github.com/felangel/bloc/tree/master/extensions/vscode#bloc) to quickly create a private mock.
 
 ## Split your tests by groups
 
