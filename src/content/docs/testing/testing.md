@@ -181,6 +181,8 @@ Good ✅
 class _MockYourClass extends Mock implements YourClass {}
 ```
 
+> Tip: If you configure [Very Good Analysis](https://github.com/VeryGoodOpenSource/very_good_analysis) or have the [`unused_element` diagnostic message](https://dart.dev/tools/diagnostic-messages?utm_source=dartdev&utm_medium=redir&utm_id=diagcode&utm_content=unused_element#unused_element) configured the analyzer will warn you about unused private mocks (but not if they're public!).
+
 ## Split your tests by groups
 
 Having multiple tests in a class could cause problems with readability. It is better to split your tests into groups:
