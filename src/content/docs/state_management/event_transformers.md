@@ -55,7 +55,6 @@ class MyBloc extends Bloc<MyEvent, MyState> {
   }
 }
 ```
-This is particularly useful in the previously mentioned case of avoiding bugs arising from race conditions. 
 
 To illustrate the utility of sequential event handling, suppose I'm building a money-tracking app. The `_onChangeBalance` handler first calls an API to read my current account balance, and then sends a call to update my balance to its new value:
 
