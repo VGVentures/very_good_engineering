@@ -44,7 +44,7 @@ The [Bloc Event Transformer API](https://bloclibrary.dev/bloc-concepts/#advanced
  Let's investigate the `sequential`, `droppable`, and `restartable` transformers and look at how they're used.
 
 #### Sequential
-The `sequential` transformer ensures that events are handled one at a time, and that every event is processed in a first in, first out order from when it is received.
+The `sequential` transformer ensures that events are handled one at a time, in a first in, first out order from when they are received.
 ```
 class MyBloc extends Bloc<MyEvent, MyState> {
   MyBloc() : super(MyState()) {
