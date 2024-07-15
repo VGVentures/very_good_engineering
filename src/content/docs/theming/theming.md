@@ -79,7 +79,7 @@ It's generally recommended to steer clear of using conditional logic in UI for t
 
 ## Typography
 
-Not all fonts are created equal, so you'll likely need to use a custom font for your app. Implementing typography is generally straightforward, but it's also easy to make mistakes, such as forgetting to adjust `TextStyle` attributes like `height` or resorting to hardcoded values instead of utilizing `TextTheme`.
+Implementing typography is generally straightforward, but it's also easy to make mistakes, such as forgetting to adjust `TextStyle` attributes like `height` or resorting to hardcoded values instead of utilizing `TextTheme`.
 
 Let's break down typography into three sections:
 
@@ -89,7 +89,7 @@ Let's break down typography into three sections:
 
 ### Importing Fonts
 
-To keep things organzied, fonts are generally stored in an `assets` folder like so:
+To keep things organzied, fonts are generally stored in an `assets` folder:
 
 ```txt
 assets/
