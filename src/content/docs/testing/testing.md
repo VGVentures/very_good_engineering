@@ -323,3 +323,56 @@ void main() {
 }
 
 ```
+
+## Avoid using magic strings to tag tests
+
+When [tagging tests](https://github.com/dart-lang/test/blob/master/pkgs/test/doc/configuration.md#configuring-tags), avoid using magic strings. Instead, use constants to tag tests. This helps to avoid typos and makes it easier to refactor.
+
+Bad ❗️
+
+```dart
+testWidgets(
+  'render matches golden file',
+  tags: 'golden',
+  (WidgetTester tester) async {
+    // ...
+  },
+);
+```
+
+Good ✅
+
+```dart
+testWidgets(
+  'render matches golden file',
+  tags: TestTag.golden,
+  (WidgetTester tester) async {
+    // ...
+  },
+);
+```
+
+:::caution
+
+[Dart 2.17](https://dart.dev/guides/whats-new#may-11-2022-2-17-release) introduced [enhanced enumerations](https://dart.dev/language/enums)
+and [Dart 3.3](https://dart.dev/guides/whats-new#february-15-2024-3-3-release) introduced [extension types](https://dart.dev/language/extension-types). These could be used to declare the tags within arguments, however you will not be able to use the tags within the [`@Tags` annotation](https://pub.dev/documentation/test/latest/test/Tags-class.html).
+
+Instead, define an abstract class to hold your tags:
+
+```dart
+/// Defined tags for tests.
+///
+/// Use these tags to group tests and run them separately.
+///
+/// Tags are defined within the `dart_test.yaml` file.
+///
+/// See also:
+///
+/// * [Dart Test Configuration documentation](https://github.com/dart-lang/test/blob/master/pkgs/test/doc/configuration.md)
+abstract class TestTag {
+  /// Tests that compare golden files.
+  static const golden = 'golden';
+}
+```
+
+:::
