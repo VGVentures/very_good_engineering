@@ -65,6 +65,12 @@ export default defineConfig({
           },
         },
         {
+          label: "Routing",
+          autogenerate: {
+            directory: "routing",
+          },
+        },
+        {
           label: "Testing",
           autogenerate: {
             directory: "testing",
