@@ -71,6 +71,12 @@ export default defineConfig({
           },
         },
         {
+          label: "State Management",
+          autogenerate: {
+            directory: "state_management",
+          },
+        },
+        {
           label: "Testing",
           autogenerate: {
             directory: "testing",
