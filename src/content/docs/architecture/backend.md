@@ -30,7 +30,7 @@ Putting the backend in the same repository as the frontend allows developers to 
 While providers, routes, and tests, can live in the root backend project, consider putting data models and data access into their own dedicated package(s). Ideally, these layers should be able to exist independently from the rest of the app. 
 
 
-```
+```txt
 my_app/
   |- api/
   |  |- lib/
@@ -68,7 +68,7 @@ my_app/
 
 A `models` package should clearly define the necessary data models that the backend will be sharing with the frontend. Defining endpoint models makes the data necessary to communicate between frontend and backend more explicit. It also creates a data structure that can communicate additional metadata about content received, such as the total count of items and pagination information.
 
-```
+```dart
 final class GetTodosResponse {
   const GetTodosResponse({
     int count = 0,
@@ -91,7 +91,7 @@ A data source package should allow developers to fetch data from different sourc
 
 The best way to achieve this is by making an abstract data source with the necessary CRUD methods, and implementing this data source as needed based on where the data is coming from.
 
-```
+```dart
 abstract class TodosDataSource {
   Future<Todo> create({
     required String name,
@@ -116,19 +116,19 @@ Routes should follow common [best practices for REST API design](https://swagger
 Endpoints should be named for the collection of objects that they provide access to. Use plural nouns to specify the collection, not the individual entity. 
 
 
-```
+```txt
 my_api/v1/todos
 ```
 
 Nested paths then provide specific data about an individual object within the collection. 
 
-```
+```txt
 my_api/v1/todos/1
 ```
 
 When setting up a collection of objects that is nested under another collection, the endpoint path should reflect the relationship. 
 
-```
+```txt
 my_api/v1/users/123/todos
 ```
 
@@ -137,7 +137,7 @@ my_api/v1/users/123/todos
 
 Query parameters serve as the standard way of filtering the results of a GET request. 
 
-```
+```txt
 my_api/v1/todos?completed=false
 ```
 
@@ -145,7 +145,7 @@ my_api/v1/todos?completed=false
 
 On requests to the server to create or update items, endpoints should take a stringified JSON body and decode it into a map so that the appropriate entity in the data source is changed. Since this is a common process for all create/update requests, consider adding a utility to map the request body.
 
-```
+```dart
 extension RequestBodyDecoder on Request {
   Future<Map<String, dynamic>> map() async =>
       Map<String, dynamic>.from(jsonDecode(await body()) as Map);
@@ -154,7 +154,7 @@ extension RequestBodyDecoder on Request {
 
 The request body can then be converted into the correct data model like in the endpoint code.
 
-```  
+```dart  
 final body = CreateTodoRequest.fromJson(await context.request.map());
 ```
 
@@ -163,7 +163,7 @@ final body = CreateTodoRequest.fromJson(await context.request.map());
 For update requests, PATCH is more advisable than PUT because [PATCH requests the server to update an existing entity, while PUT requests the entity to be replaced](https://stackoverflow.com/questions/21660791/what-is-the-main-difference-between-patch-and-put-request?answertab=oldest#tab-top).
 
 
-```
+```txt
 PATCH my_api/v1/todos/1
 ```
 
@@ -171,7 +171,7 @@ PATCH my_api/v1/todos/1
 
 DELETE requests should require nothing more than an identifier of the object to be deleted. There is no need to send the entire object.
 
-```
+```txt
 DELETE my_api/v1/todos/1 //Data source should only require the ID
 ```
 
@@ -179,7 +179,7 @@ DELETE my_api/v1/todos/1 //Data source should only require the ID
 
 Routes should also return proper status codes to the frontend based on the results of their operations. When an error occurs, sending a useful status and response to the client makes it clear what happened and allows the client to handle errors more smoothly. 
 
-```
+```dart
 final todo = context.read<TodosDataSource>().get(id);
 
 if (todo == null) {
@@ -187,7 +187,7 @@ if (todo == null) {
 }
 ```
 
-```
+```dart
 late final requestBody;
 try {
   requestBody = CreateTodoRequest.fromJson(jsonDecode(await context.request.body() as Map));
@@ -197,7 +197,7 @@ try {
 
 ```
 
-```
+```dart
 try {
   await someServerSideProcess();
 } catch (e) {

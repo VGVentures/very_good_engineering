@@ -53,7 +53,7 @@ The presentation layer and state management live in the project's `lib` folder. 
 
 Good ✅
 
-```
+```txt
 my_app/
   |- lib/
   |   |- login/
