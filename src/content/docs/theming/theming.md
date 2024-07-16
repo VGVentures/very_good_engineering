@@ -185,7 +185,7 @@ class TitleWidget extends StatelessWidget {
 
 ## Colors
 
-Based on the [Material 3 color system](https://m3.material.io/styles/color/system/overview), Flutter offers a [`ColorScheme`](https://m3.material.io/styles/color/system/overview) class that includes a set of 45 colors, which can be utilized to configure the color properties of most components. Instead of using an absolute color such as `Colors.blue` or `Color(0xFF42A5F5)`, we recommend using [`Theme.of`](https://api.flutter.dev/flutter/material/Theme/of.html) to access the local `ColorScheme`. This `ColorScheme` can be configured within [`ThemeData`](#use-themedata) using a custom colors class such as `AppColors`.
+Based on the [Material 3 color system](https://m3.material.io/styles/color/system/overview), Flutter offers a [`ColorScheme`](https://api.flutter.dev/flutter/material/ColorScheme-class.html) class that includes a set of 45 colors, which can be utilized to configure the color properties of most components. Instead of using an absolute color such as `Colors.blue` or `Color(0xFF42A5F5)`, we recommend using [`Theme.of`](https://api.flutter.dev/flutter/material/Theme/of.html) to access the local `ColorScheme`. This `ColorScheme` can be configured within [`ThemeData`](#use-themedata) using a custom colors class such as `AppColors`.
 
 ### Custom Colors
 
