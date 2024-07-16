@@ -65,6 +65,12 @@ export default defineConfig({
           },
         },
         {
+          label: "Internationalization",
+          autogenerate: {
+            directory: "internationalization",
+          },
+        },
+        {
           label: "State Management",
           autogenerate: {
             directory: "state_management",
@@ -80,12 +86,6 @@ export default defineConfig({
           label: "Theming",
           autogenerate: {
             directory: "theming",
-          },
-        },
-        {
-          label: "Internationalization",
-          autogenerate: {
-            directory: "internationalization",
           },
         },
       ],
