@@ -1,0 +1,125 @@
+---
+title: 🌐 Localization
+description: Recommended practices to localize software and make it accessible in multiple languages.
+sidebar:
+  order: 0
+---
+
+In the modern and global world, it is likely that your app will be used by people that speak another language. With internationalization, you will write your app in a way that allows you to easily change texts and layouts based on the user language.
+
+At Very Good Ventures, we recommend using internationalization even if you are not planning to support other languages in your first version. The overhead is small and the advantages in the long run are big, making your project scalable and setting it up for success.
+
+## Definitions
+
+Before we start with the recommendations, let's define some terminology:
+
+- Locale: Set of properties that define the user region, language and other user preferences like the currency, time or number formats.[^1]
+- Localization: Process of adapting software for a specific language by translating text and adding region specific layouts and components.[^1]
+- Internationalization: Process of designing software in a way that can be adapted (localized) to different languages without engineering changes.[^1]
+
+[^1]: Richard Ishida, W3C, Susan K. Miller, Boeing. [Localization vs Internationalization][i18n_l10n_locale_definitions]
+
+:::note
+Internationalization is often referred as i18n and localization as l10n. Did you know that the 18 and 10 in both acronyms refer to the number of characters between the first and the last letters of each term?
+:::
+
+## Frontend
+
+Our frontend framework of choice, Flutter, supports localization in an easy way, but all the concepts here can be extrapolated to any other UI framework.
+
+1. Start by setting up internationalization. In Flutter, you will have to install the `fluter_localizations` and `intl` packages. Also, enable the `generate` flag in the `flutter` section of the pubspec file:
+
+```yaml
+flutter:
+  generate: true
+```
+
+2. Add a localization configuration file in the root directory of your project, called `l10n.yaml` with the following content:
+
+```yaml
+arb-dir: lib/l10n/arb
+template-arb-file: app_en.arb
+output-localization-file: app_localizations.dart
+```
+
+3. Create your template localization file inside `<PROJECT>/lib/l10n/arb/` called `app_en.arb`.
+
+```json
+{
+  "helloWorld": "Hello World!",
+}
+```
+
+4. Add other languages by creating new App Resource Bundle (.arb) files in the same folder. For example let's create the Spanish translation in `app_es.arb`.
+
+```json
+{
+  "helloWorld": "¡Hola Mundo!"
+}
+```
+
+5. Generate the localization files to be used across the app by running `flutter gen-l10n`.
+
+6. Add the localizations delegates and supported locales to your app widget:
+
+```dart
+import 'package:flutter_localizations/flutter_localizations.dart';
+
+const MaterialApp(
+  title: 'Localizations Sample App',
+  localizationsDelegates: AppLocalizations.localizationsDelegates,
+  supportedLocales: AppLocalizations.supportedLocales,
+);
+```
+
+7. Finally, you can use your localized messages across the app.
+
+```dart
+Text(
+  AppLocalizations.of(context).helloWorld,
+  style: Theme.of(context).textTheme.bodyMedium,
+)
+```
+
+:::tip
+If you find yourself repeating `AppLocalizations.of(context)` many times and find it cumbersome, you can create an extension to make it easier to access the localized strings:
+
+```dart
+extension AppLocalizationsX on BuildContext {
+  AppLocalizations get l10n => AppLocalizations.of(this);
+}
+```
+
+:::
+
+Check out the [Flutter documentation][flutter_i18n_docs] on this topic to have more details about the implementation.
+
+:::tip
+You can save time configuring the localizations when creating a new project by using the Very Good CLI and running `very_good create flutter_app <app_name>`. This template will create the english template file and all the configuration to start using it, as well as a readme section explaining how to add new strings.
+:::
+
+### UI libraries
+
+It's common to create components in a different package that does not have access to the localized strings. The easiest solution to support localization is allow these components to receive the required strings as a parameter and pass them from the main app.
+
+## Backend
+
+Some applications don't require the backend to send any user-facing strings to the frontend. However, there are cases where this is needed, like a recipes app where you won't be storing all recipes in the device. To internationalize your app, you can follow a similar approach as we did for the frontend:
+
+- Create as many databases as languages you want to support, with the translated content.
+- Get user locale by receiving it in the API call.
+- Decide which string should be returned based on the user locale.
+
+### Error messages
+
+One kind of messages that will always be sent from the backend are error messages. When dealing with errors we can have multiple strategies: silently fail, retry, show a message... Here we will not discuss what approach might be better, however, every time a message is shown, it has to be localized.
+
+Our recommendation is that the API returns the appropriate [HTTP status codes][http_status_codes] and the frontend can map those codes to localization keys and custom messages.
+
+If the error is not coming from an API call and therefore we're not using HTTP status codes, we can use a similar approach by defining our error constants, like `user_not_found` or `connection_unavailable` to then map them to a localized string.
+
+---
+
+[i18n_l10n_locale_definitions]: https://www.w3.org/International/questions/qa-i18n
+[flutter_i18n_docs]: https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization
+[http_status_codes]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status

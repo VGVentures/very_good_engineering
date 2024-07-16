@@ -82,6 +82,12 @@ export default defineConfig({
             directory: "theming",
           },
         },
+        {
+          label: "Internationalization",
+          autogenerate: {
+            directory: "internationalization",
+          },
+        },
       ],
     }),
     react(),
