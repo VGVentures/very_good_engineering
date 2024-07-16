@@ -182,3 +182,33 @@ class TitleWidget extends StatelessWidget {
   }
 }
 ```
+
+## Colors
+
+Based on the [Material 3 color system](https://m3.material.io/styles/color/system/overview), Flutter offers a [`ColorScheme`](https://m3.material.io/styles/color/system/overview) class that includes a set of 45 colors, which can be utilized to configure the color properties of most components. Instead of using an absolute color such as `Colors.blue` or `Color(0xFF42A5F5)`, we recommend using [`Theme.of`](https://api.flutter.dev/flutter/material/Theme/of.html) to access the local `ColorScheme`. This `ColorScheme` can be configured within [`ThemeData`](#use-themedata) using a custom colors class such as `AppColors`.
+
+### Custom Colors
+
+Whether using default [Material Colors](https://api.flutter.dev/flutter/material/Colors-class.html) or custom ones, we recommend creating a custom class for your colors for easy access and consistency.
+
+```dart
+abstract class AppColors {
+  static const primaryColor = Color(0xFF4F46E5);
+  static const secondaryColor = Color(0xFF9C27B0);
+}
+```
+
+### ColorScheme
+
+Once we have a custom class for colors, update the `ColorScheme`:
+
+```dart
+ThemeData(
+  colorScheme: ColorScheme(
+    primary: AppColors.primaryColor,
+    secondary: AppColors.secondaryColor,
+  ),
+),
+```
+
+Now widgets referencing those tokens will use the colors defined in `AppColors`, ensuring consistency across the app.
