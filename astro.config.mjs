@@ -82,6 +82,12 @@ export default defineConfig({
             directory: "theming",
           },
         },
+        {
+          label: "Widgets",
+          autogenerate: {
+            directory: "widgets",
+          },
+        },
       ],
     }),
     react(),
