@@ -110,7 +110,7 @@ expect(valid, isTrue);
 
 ## Use string expression with types
 
-[Test](https://pub.dev/documentation/test/latest/test/test.html) and [group](https://pub.dev/documentation/test/latest/test/group.html) descriptions are converted [to a String](https://api.flutter.dev/flutter/dart-core/Object/toString.html). If you're referencing a type, use a [string expression](https://dart.dev/language/built-in-types#string) to ease renaming the type.
+If you're referencing a type within a test description, use a [string expression](https://dart.dev/language/built-in-types#string) to ease renaming the type:
 
 Bad ❗️
 
