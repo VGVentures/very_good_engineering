@@ -51,7 +51,7 @@ Good ✅
 
 To configure a golden test tag across multiple files (or an entire package), create a `dart_test.yaml` file and add the tag configuration:
 
-```
+```yaml
 tags:
   golden:
     description: "Tests that compare golden files."
