@@ -40,7 +40,15 @@ flutter:
 arb-dir: lib/l10n/arb
 template-arb-file: app_en.arb
 output-localization-file: app_localizations.dart
+nullable-getter: false
+preferred-supported-locales: [en]
 ```
+
+Make sure to update these values based on your needs. We recommend setting up the preferred locale manually to avoid Flutter selecting it from a list in alphabetical order.
+
+:::note
+Check out the [documentation][l10n_file_documentation] regarding the configuration values supported by the `l10n.yaml` file to know more.
+:::
 
 3. Create your template localization file inside `<PROJECT>/lib/l10n/arb/` called `app_en.arb`.
 
@@ -121,5 +129,6 @@ If the error is not coming from an API call and therefore we're not using HTTP s
 ---
 
 [i18n_l10n_locale_definitions]: https://www.w3.org/International/questions/qa-i18n
+[l10n_file_documentation]: https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization#configuring-the-l10n-yaml-file
 [flutter_i18n_docs]: https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization
 [http_status_codes]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
