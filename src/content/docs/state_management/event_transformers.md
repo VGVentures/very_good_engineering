@@ -11,7 +11,7 @@ In particular, [race conditions](https://en.wikipedia.org/wiki/Race_condition) c
 #### Registering Event Transformers
 Event transformers are specified in the `transformer` field of the event registration functions in the `Bloc` constructor:
 
-```
+```dart
 class MyBloc extends Bloc<MyEvent, MyState> {
   MyBloc() : super(MyState()) {
     on<MyEvent>(
@@ -45,7 +45,7 @@ Let's investigate the `sequential`, `droppable`, and `restartable` transformers 
 
 #### Sequential
 The `sequential` transformer ensures that events are handled one at a time, in a first in, first out order from when they are received.
-```
+```dart
 class MyBloc extends Bloc<MyEvent, MyState> {
   MyBloc() : super(MyState()) {
     on<MyEvent>(
@@ -58,7 +58,7 @@ class MyBloc extends Bloc<MyEvent, MyState> {
 
 To illustrate the utility of sequential event handling, suppose we're building a money-tracking app. The `_onChangeBalance` handler first calls an API to read our current account balance, and then sends a call to update the balance to its new value:
 
-```
+```dart
 class MoneyBloc extends Bloc<MoneyEvent, MoneyState> {
   MoneyBloc() : super(MoneyState()) {
     on<ChangeBalance>(_onChangeBalance, transformer: concurrent());
@@ -86,7 +86,7 @@ Note that when operations are safe to execute concurrently, using a `sequential`
 
 #### Droppable
 The `droppable` transformer will discard any events that are added while an event in that bucket is already being processed. 
-```
+```dart
 class SayHiBloc extends Bloc<SayHiEvent, SayHiState> {
   SayHiBloc() : super(SayHiState()) {
     on<SayHello>(
@@ -109,7 +109,7 @@ Since events added during ongoing handling will be discarded by the `droppable` 
 
 #### Restartable
 The `restartable` transformer inverts the behavior of `droppable`, halting execution of previous event handlers in order to process the most recently received event.
-```
+```dart
 class ThoughtBloc extends Bloc<ThoughtEvent, ThoughtState> {
   ThoughtBloc() : super(ThoughtState()) {
     on<ThoughtEvent>(
@@ -135,13 +135,13 @@ If we want to avoid emitting the declaration that `${event.thought}` is my most 
 
 #### Testing Blocs
 When writing tests for a bloc, you may encounter an issue where a variable event handling order is acceptable in use, but the inconsistent sequence of event execution makes the determined order of states required by `blocTest`'s `expect` field results in unpredictable test behavior:
-```
+```dart
 blocTest<MyBloc, MyState>(
   'change value',
   build: () => MyBloc(),
   act: (bloc) {
     bloc.add(ChangeValue(add: 1));
-    bloc.add(ChangeValue(remove: 1);
+    bloc.add(ChangeValue(remove: 1));
   },
   expect: () => const [
     MyState(value: 1),
@@ -152,14 +152,14 @@ blocTest<MyBloc, MyState>(
 If the `ChangeValue(remove: 1)` event completes execution before `ChangeValue(add: 1)` has finished, the resultant states will instead be `MyState(value: -1),MyState(value: 0)`, causing the test to fail.
 
 Utilizing a `await Future<void>.delayed(Duration.zero)` statement in the `act` function will ensure that the task queue is empty before additional events are added:
-```
+```dart
 blocTest<MyBloc, MyState>(
   'change value',
   build: () => MyBloc(),
   act: (bloc) {
     bloc.add(ChangeValue(add: 1));
     await Future<void>.delayed(Duration.zero);
-    bloc.add(ChangeValue(remove: 1);
+    bloc.add(ChangeValue(remove: 1));
   },
   expect: () => const [
     MyState(value: 1),
