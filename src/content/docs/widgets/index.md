@@ -3,7 +3,7 @@ title: 🧩 Widgets
 description: Widget best practices.
 ---
 
-Widgets are the reusable building blocks of your app's user interface. It is important to design them to be readable, maintainable, performant, and testable.By following these principles, you can ensure a smooth development process and a high-quality user experience.
+Widgets are the reusable building blocks of your app's user interface. It is important to design them to be readable, maintainable, performant, and testable. By following these principles, you can ensure a smooth development process and a high-quality user experience.
 
 # Page/Views
 
