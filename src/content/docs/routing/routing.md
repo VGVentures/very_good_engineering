@@ -283,7 +283,6 @@ class AppRouter {
     required AppBloc appBloc,
     required GlobalKey<NavigatorState> navigatorKey,
   }) {
-    _currentStatus = appBloc.state.status;
     _goRouter = _routes(
       appBloc,
       navigatorKey,
@@ -291,7 +290,6 @@ class AppRouter {
   }
 
   late final GoRouter _goRouter;
-  late AppStatus _currentStatus;
 
   GoRouter get routes => _goRouter;
 
