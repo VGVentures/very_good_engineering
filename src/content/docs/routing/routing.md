@@ -143,7 +143,7 @@ GoRoute(
 If the app was relying on the `path` to navigate the user to the `FlutterNewsPage` and the older path (`/flutter-news`) was used in an external deep link (or if the newer path (`/technology/flutter/news`) was used but the user hasn't updated to the latest version of the app), the route would not be found. However, when relying on the route `name`, navigation would work in either situation.
 
 :::note
-The route's `name` and `path` values should live as `const` values within the page's widget class. Hard coded strings are used in these examples for readability.
+The route's `name` and `path` values should live as `const` values within the page's widget class. Hard coded strings are used in these examples for readability. However, the `GoRoute`'s `name` and `path` should not reference the same value.
 :::
 
 #### Extension methods
