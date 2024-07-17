@@ -3,6 +3,8 @@ title: 🧩 Widgets
 description: Widget best practices.
 ---
 
+Widgets are the reusable building blocks of your app's user interface. It is important to design them to be readable, maintainable, performant, and testable.By following these principles, you can ensure a smooth development process and a high-quality user experience.
+
 # Page/Views
 
 Each page should be composed of two classes: a `Page`, which is responsible for defining the page's route and gathering all the dependencies needed from the context; and a `View`, where the "real" implementation of the page resides.
@@ -41,7 +43,9 @@ class LoginView extends StatelessWidget {
 
 With this approach, testing `LoginView` is made easy, since now the `LoginBloc` can be mocked and provided directly on the test.
 
-Note how the constructor of the `LoginView` is marked as `visibleForTesting`. This is necessary so that we can ensure that the view will not be used except via its page. This way, we ensure that developers will not accidentally import and use the view without the injected dependencies provided by the page.
+:::note
+The constructor of the `LoginView` is marked as `visibleForTesting`. This is necessary so that we can ensure that the view will not be used except via its page. This way, developers will not accidentally import and use the view without the injected dependencies provided by the page.
+:::
 
 ```dart
 class _MockLoginBloc extends MockBloc<LoginBloc, LoginState>
