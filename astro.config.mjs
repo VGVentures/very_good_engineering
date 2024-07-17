@@ -59,6 +59,12 @@ export default defineConfig({
           },
         },
         {
+          label: "Automation",
+          autogenerate: {
+            directory: "automation",
+          },
+        },
+        {
           label: "Development",
           autogenerate: {
             directory: "development",
