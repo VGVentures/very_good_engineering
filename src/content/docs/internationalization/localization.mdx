@@ -124,7 +124,7 @@ One kind of message that will always be sent from the backend is an error messag
 
 Our recommendation is that the API returns the appropriate [HTTP status codes][http_status_codes] and the frontend can map those codes to localization keys and custom messages.
 
-However, there are times where the HTTP status code does not give enough information and we want to be more specific to the user. In this cases we should return an error constant and map it to the localized string in the app. For example, if we have a shopping cart where we can use a promo code, when we validate it, the server could return a 400 (bad request) with a custom error code in the body: `invalid_code`, `expired_code`, `limit_reached`, `unqualified_item`, `already_used`.
+However, there are times where the HTTP status code does not give enough information and we want to be more specific to the user. In these cases, we should return an error constant and map it to the localized string in the app. For example, if we have a shopping cart where we can use a promo code, when we validate it, the server could return a 400 (bad request) with a custom error code in the body: `invalid_code`, `expired_code`, `limit_reached`, `unqualified_item`, `already_used`.
 
 ---
 
