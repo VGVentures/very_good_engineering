@@ -212,3 +212,22 @@ ThemeData(
 ```
 
 Now widgets referencing those tokens will use the colors defined in `AppColors`, ensuring consistency across the app.
+
+## Component Theming
+
+Flutter provides a variety of [Material component widgets](https://docs.flutter.dev/ui/widgets/material) that implement the Material 3 design specification.
+Material components primarily rely on the [`colorScheme`](https://api.flutter.dev/flutter/material/ThemeData/colorScheme.html) and [`textTheme`](https://api.flutter.dev/flutter/material/ThemeData/textTheme.html) for their styling, but each widget also has its own customizable theme as part of [`ThemeData`](https://api.flutter.dev/flutter/material/ThemeData-class.html).
+
+For instance, if we want all [`FilledButton`](https://api.flutter.dev/flutter/material/FilledButton-class.html) widgets to have a minimum width of `72`, we can use [`FilledButtonThemeData`](https://api.flutter.dev/flutter/material/FilledButtonThemeData-class.html):
+
+```dart
+ThemeData(
+  filledButtonTheme: FilledButtonThemeData(
+    style: FilledButton.styleFrom(
+      minimumSize: const Size(72, 0),
+    ),
+  ),
+),
+```
+
+We recommend leveraging component theming to customize widgets whenever possible, rather than applying customizations directly within each widget's code. Centralizing these customizations in `ThemeData` will help your widgets [avoid conditional logic](#avoid-conditional-logic) and ensure theming consistency in your app.
