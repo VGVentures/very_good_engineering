@@ -103,12 +103,12 @@ extension AppLocalizationsX on BuildContext {
 Check out the [Flutter documentation][flutter_i18n_docs] on this topic to have more details about the implementation.
 
 :::tip
-You can save time configuring the localizations when creating a new project by using the Very Good CLI and running `very_good create flutter_app <app_name>`. This template will create the english template file and all the configuration to start using it, as well as a readme section explaining how to add new strings.
+You can save time configuring the localizations when creating a new project by using the Very Good CLI and running `very_good create flutter_app <app_name>`. This command will create the demo counter app with the English template file and all the internationalization configuration to start using it, as well as a readme section explaining how to add new strings.
 :::
 
 ### UI libraries
 
-It's common to create components in a different package that does not have access to the localized strings. The easiest solution to support localization is allow these components to receive the required strings as a parameter and pass them from the main app.
+It's common to create components in a different package that do not have access to the localized strings. The easiest solution to support localization is to allow these components to receive the required strings as parameters, passing them from the main app.
 
 ## Backend
 
@@ -120,7 +120,7 @@ Some applications don't require the backend to send any user-facing strings to t
 
 ### Error messages
 
-One kind of messages that will always be sent from the backend are error messages. When dealing with errors we can have multiple strategies: silently fail, retry, show a message... Here we will not discuss what approach might be better, however, every time a message is shown, it has to be localized.
+One kind of message that will always be sent from the backend is an error message. When dealing with errors we can have multiple strategies: silently fail, retry, show a message... Here we will not discuss what approach might be better, however, every time a message is shown, it has to be localized.
 
 Our recommendation is that the API returns the appropriate [HTTP status codes][http_status_codes] and the frontend can map those codes to localization keys and custom messages.
 
