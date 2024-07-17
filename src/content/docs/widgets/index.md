@@ -5,7 +5,7 @@ description: Widget best practices.
 
 Widgets are the reusable building blocks of your app's user interface. It is important to design them to be readable, maintainable, performant, and testable. By following these principles, you can ensure a smooth development process and a high-quality user experience.
 
-# Page/Views
+## Page/Views
 
 Each page should be composed of two classes: a `Page`, which is responsible for defining the page's route and gathering all the dependencies needed from the context; and a `View`, where the "real" implementation of the page resides.
 
