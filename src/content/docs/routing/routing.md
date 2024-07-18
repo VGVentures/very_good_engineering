@@ -55,7 +55,7 @@ When possible, use GoRouter's `go` methods for navigation. Using `go` will push 
 /flutter/news
 ```
 
-Use the `push` method for navigation if you are expecting to return data from a pushed route when popped. A common scenario for this is when pushing a dialog onto the stack and expecting input from the user. You don't want the address bar to update with the path to the dialog, and you will never be expcted to route the user directly to the dialog, like from a deep link.
+Use the `push` method for navigation if you are expecting to return data from a pushed route when popped. A common scenario for this is when pushing a dialog onto the stack and expecting input from the user. You don't want the address bar to update with the path to the dialog, and you will never be expected to route the user directly to the dialog, like from a deep link.
 
 :::note
 Though it is possible to update the path in the URL address bar by adding
@@ -80,7 +80,7 @@ Mobile app users will likely never see your route's path, while web app users ca
 Good ✅
 
 ```txt
-/user/update_address
+/user/update-address
 ```
 
 Bad ❗️
