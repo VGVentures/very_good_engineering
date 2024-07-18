@@ -148,7 +148,7 @@ The route's `name` and `path` values should live as `const` values within the pa
 
 #### Extension methods
 
-GoRouter provides extension methods on the `BuildContext` to simplify navigation. For consistency, use the extension method over the longer `GoRouter` methods.
+GoRouter provides extension methods on `BuildContext` to simplify navigation. These extension methods map to their fully-specified counterparts, so functionality is the same. For consistency, use the extension method over the longer `GoRouter` methods.
 
 Good ✅
 
