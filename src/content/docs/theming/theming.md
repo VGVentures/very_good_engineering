@@ -231,3 +231,21 @@ ThemeData(
 ```
 
 We recommend leveraging component theming to customize widgets whenever possible, rather than applying customizations directly within each widget's code. Centralizing these customizations in `ThemeData` will help your widgets [avoid conditional logic](#avoid-conditional-logic) and ensure theming consistency in your app.
+
+## Spacing
+
+Spacing is one of the most important aspects of theming and design. If the UI is created without intentional spacing, users are likely to have a bad experience as the content of the app may be overwhelming and hard to navigate. Good designs will generally follow a spacing system using a base unit to simplify the creation of page layouts and UI.
+
+Just as [custom text styles](#custom-text-styles) and [custom colors](#custom-colors) can be centralized in a class, spacing can also follow this setup:
+
+```dart
+abstract class AppSpacing {
+  static const double spaceUnit = 16;
+  static const double xs = 0.375 * spaceUnit;
+  static const double sm = 0.5 * spaceUnit;
+  static const double md = 0.75 * spaceUnit;
+  static const double lg = spaceUnit;
+}
+```
+
+Now, anytime spacing needs to be added to a widget, you can reference this class to ensure consistency and avoid hardcoded values.
