@@ -49,12 +49,6 @@ GoRouter offers multiple ways to navigate to a route, such as pushing every rout
 
 When possible, use GoRouter's `go` methods for navigation. Using `go` will push a new route onto the navigation stack according to your route's path. Using `go` will also update the path in your browser's URL address bar.
 
-```txt
-/
-/flutter/
-/flutter/news
-```
-
 Use the `push` method for navigation if you are expecting to return data from a pushed route when popped. A common scenario for this is when pushing a dialog onto the stack and expecting input from the user. You don't want the address bar to update with the path to the dialog, and you will never be expected to route the user directly to the dialog, like from a deep link.
 
 :::note
@@ -68,6 +62,8 @@ to your code, it is not recommended unless you are in the process of [migrating]
 :::
 
 The `go` and `push` methods will both add the new page to the navigation stack, but `push` only adds the page to the stack. Using `go` will push the entire route to the stack. For example: The user is on the home page (`/`) and `go` is used to navigate the user directly to the `/flutter/news` route. If the user navigates backwards, the current route would be `/flutter`. If the user was `push`ed to the `/flutter/news` route instead, the back button would take the user to the `/` route.
+
+Using `go` will also ensure that the back button in your app's `AppBar` will function as expected. The parent `GoRoute`s in your `GoRouter`, meaning that the route's `path` starts with a `/`, will not display a back button in their `AppBar`. Using sub-routes correctly removes the need to manually handle the back button functionality.
 
 :::note
 In a Flutter web app, the browser's back button will still function as usual regardless of the navigation method that is used.
