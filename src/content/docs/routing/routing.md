@@ -7,11 +7,11 @@ Routing is a crucial component of any app. A declarative routing structure is es
 
 ### GoRouter
 
-[GoRouter](https://pub.dev/packages/go_router) is a popular routing package that is maintained by the Flutter team. It is built on top of the Navigator 2.0 API and reduces much of the boilerplate code that is required for even simple navigation. It is a declarative routing package with a URL-based API that supports parsing path and query parameters, redirection, sub-routes, and multiple navigators. GoRouter works great wheather your app is running as a mobile app or a web app.
+[GoRouter](https://pub.dev/packages/go_router) is a popular routing package that is maintained by the Flutter team. It is built on top of the Navigator 2.0 API and reduces much of the boilerplate code that is required for even simple navigation. It is a declarative routing package with a URL-based API that supports parsing path and query parameters, redirection, sub-routes, and multiple navigators. Additionally, GoRouter works well for both mobile and web apps.
 
 ### Configuration
 
-Configuring your routes correctly is a must to be able to deep link to the correct page or to navigate to pages based on your app's state, like redirecting the user to the login page if the user is not authenticated.
+To enable deep linking in your app (such as redirecting to a login page or other feature), routing must be carefully configured to properly support backwards navigation. 
 
 Structure your routes in a way that makes logical sense. Avoid placing all of your routes on the root path:
 
@@ -47,18 +47,18 @@ Not only does using sub-routes make the path more readable, it also ensures that
 
 GoRouter offers multiple ways to navigate to a route, such as pushing every route onto the stack and navigating to a route's path.
 
-When possible, use GoRouter's `go` methods for navigation. Using `go` will push a new route onto the navigation stack according to your route's path. Using `go` will also update the path in your browser's URL address bar.
+When possible, use GoRouter's `go` methods for navigation. Calling `go` pushes a new route onto the navigation stack according to your route's path and updates the path in your browser's URL address bar (if on web).
 
-Use the `push` method for navigation if you are expecting to return data from a pushed route when popped. A common scenario for this is when pushing a dialog onto the stack and expecting input from the user. You don't want the address bar to update with the path to the dialog, and you will never be expected to route the user directly to the dialog, like from a deep link.
+Use the `push` method for navigation when you are expecting to receive data from a route when it is popped. Popping with data is a common scenario when pushing a dialog onto the stack which collects input from the user. Since you will never be expected to route the user directly to the dialog from a deep link, using `push` prevents the address bar from updating the route.
 
 :::note
-Though it is possible to update the path in the URL address bar by adding
+It is possible, however, to update the path in the URL address bar when using `push` by adding the following:
 
 ```dart
 GoRouter.optionURLReflectsImperativeAPIs = true;
 ```
 
-to your code, it is not recommended unless you are in the process of [migrating](https://docs.google.com/document/d/1VCuB85D5kYxPR3qYOjVmw8boAGKb7k62heFyfFHTOvw/edit) to GoRouter 8.0.0.
+Note that we do not recommended modifying the behavior of `push` in this way unless you are in the process of [migrating](https://docs.google.com/document/d/1VCuB85D5kYxPR3qYOjVmw8boAGKb7k62heFyfFHTOvw/edit) to GoRouter 8.0.0.
 :::
 
 The `go` and `push` methods will both add the new page to the navigation stack, but `push` only adds the page to the stack. Using `go` will push the entire route to the stack. For example: The user is on the home page (`/`) and `go` is used to navigate the user directly to the `/flutter/news` route. If the user navigates backwards, the current route would be `/flutter`. If the user was `push`ed to the `/flutter/news` route instead, the back button would take the user to the `/` route.
@@ -66,12 +66,12 @@ The `go` and `push` methods will both add the new page to the navigation stack, 
 Using `go` will also ensure that the back button in your app's `AppBar` will function as expected. The parent `GoRoute`s in your `GoRouter`, meaning that the route's `path` starts with a `/`, will not display a back button in their `AppBar`. Using sub-routes correctly removes the need to manually handle the back button functionality.
 
 :::note
-In a Flutter web app, the browser's back button will still function as usual regardless of the navigation method that is used.
+In a Flutter web app, the browser's back button will still function as usual, regardless of the navigation method that is used.
 :::
 
-#### Use hyphens for separting words in a URL
+#### Use hyphens for separating words in a URL
 
-Mobile app users will likely never see your route's path, while web app users can easily view it in the browser's URL address bar. Your routing structure should be consistent and defined with the web in mind. Not only does this make your paths easier to read, but if you later decide to deploy your mobile app to the web, no changes regarding the path would be required.
+Mobile app users will likely never see your route's path, but web app users can easily view it in the browser's URL address bar. Your routing structure should be consistent and defined with the web in mind. Not only does this make your paths easier to read, it allows you the option of deploying your mobile app to the web without any routing changes needed.
 
 Good ✅
 
@@ -92,7 +92,7 @@ For a full list of URL structure best practices, take a look at this [document](
 
 #### Prefer navigating by name over path
 
-GoRouter offers two different options when navigation to a route, either by path or by name.
+GoRouter allows you to navigate to a route by its name or by its path.
 
 Because your app's structure and paths can change over time, we recommend routing by name to avoid potential issues of a route's path getting out of sync.
 
@@ -144,7 +144,7 @@ The route's `name` and `path` values should live as `const` values within the pa
 
 #### Extension methods
 
-GoRouter provides extension methods on `BuildContext` to simplify navigation. These extension methods map to their fully-specified counterparts, so functionality is the same. For consistency, use the extension method over the longer `GoRouter` methods.
+GoRouter provides extension methods on `BuildContext` to simplify navigation. For consistency, use the extension method over the longer `GoRouter` methods since they are functionally equivalent.
 
 Good ✅
 
