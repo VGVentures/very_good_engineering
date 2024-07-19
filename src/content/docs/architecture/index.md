@@ -19,7 +19,7 @@ The data layer should be free of any specific domain or business logic. Ideally,
 
 ### Repository layer
 
-This compositional layer composes one or more data clients and applies "business rules" to the data. This layer is also known as the "repository" layer because each component in this layer acts as a repository. A separate repository is created for each domain, such as a user repository or a weather repository. Packages in this layer should not import any Flutter dependencies and not be dependent on other repositories.
+This compositional layer composes one or more data clients and applies "business rules" to the data. A separate repository is created for each domain, such as a user repository or a weather repository. Packages in this layer should not import any Flutter dependencies and not be dependent on other repositories.
 
 #### Responsibility
 
