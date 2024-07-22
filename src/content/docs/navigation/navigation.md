@@ -1,9 +1,9 @@
 ---
-title: 🚗 Routing
-description: Routing best practices.
+title: 🚗 Navigation
+description: Navigation best practices.
 ---
 
-Routing is a crucial component of any app. A declarative routing structure is essential for building scalable apps that function seamlessly on both mobile and web platforms. At VGV, we recommend using the [GoRouter](https://pub.dev/packages/go_router) package for handling navigation needs, as it provides a robust and flexible solution for managing routes.
+Navigation is a crucial component of any app. A declarative routing structure is essential for building scalable apps that function seamlessly on both mobile and web platforms. At VGV, we recommend using the [GoRouter](https://pub.dev/packages/go_router) package for handling navigation needs, as it provides a robust and flexible solution for managing routes.
 
 ### GoRouter
 
@@ -11,23 +11,9 @@ Routing is a crucial component of any app. A declarative routing structure is es
 
 ### Configuration
 
-To enable deep linking in your app (such as redirecting to a login page or other feature), routing must be carefully configured to properly support backwards navigation. 
+To enable deep linking in your app (such as redirecting to a login page or other feature), routing must be carefully configured to properly support backwards navigation.
 
-Structure your routes in a way that makes logical sense. Avoid placing all of your routes on the root path:
-
-Bad ❗️
-
-```txt
-/
-/flutter
-/flutter-news
-/flutter-chat
-/android
-/android-news
-/android-chat
-```
-
-Instead, use sub-routes.
+Structure your routes in a way that makes logical sense. Avoid placing all of your routes on the root path. Instead, use sub-routes.
 
 Good ✅
 
@@ -39,6 +25,18 @@ Good ✅
 /android
 /android/news
 /android/chat
+```
+
+Bad ❗️
+
+```txt
+/
+/flutter
+/flutter-news
+/flutter-chat
+/android
+/android-news
+/android-chat
 ```
 
 Not only does using sub-routes make the path more readable, it also ensures that the app can navigate backwards correctly from the `news` page.
@@ -58,7 +56,7 @@ It is possible, however, to update the path in the URL address bar when using `p
 GoRouter.optionURLReflectsImperativeAPIs = true;
 ```
 
-Note that we do not recommended modifying the behavior of `push` in this way unless you are in the process of [migrating](https://docs.google.com/document/d/1VCuB85D5kYxPR3qYOjVmw8boAGKb7k62heFyfFHTOvw/edit) to GoRouter 8.0.0.
+Note that we do not recommend modifying the behavior of `push` in this way unless you are in the process of [migrating](https://docs.google.com/document/d/1VCuB85D5kYxPR3qYOjVmw8boAGKb7k62heFyfFHTOvw/edit) to GoRouter 8.0.0.
 :::
 
 The `go` and `push` methods will both add the new page to the navigation stack, but `push` only adds the page to the stack. Using `go` will push the entire route to the stack. For example: The user is on the home page (`/`) and `go` is used to navigate the user directly to the `/flutter/news` route. If the user navigates backwards, the current route would be `/flutter`. If the user was `push`ed to the `/flutter/news` route instead, the back button would take the user to the `/` route.
