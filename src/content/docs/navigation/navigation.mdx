@@ -3,11 +3,13 @@ title: 🚗 Navigation
 description: Navigation best practices.
 ---
 
+import { TabItem, Tabs } from "@astrojs/starlight/components";
+
 Navigation is a crucial component of any app. A declarative routing structure is essential for building scalable apps that function seamlessly on both mobile and web platforms. At VGV, we recommend using the [GoRouter](https://pub.dev/packages/go_router) package for handling navigation needs, as it provides a robust and flexible solution for managing routes.
 
 ### GoRouter
 
-[GoRouter](https://pub.dev/packages/go_router) is a popular routing package that is maintained by the Flutter team. It is built on top of the Navigator 2.0 API and reduces much of the boilerplate code that is required for even simple navigation. It is a declarative routing package with a URL-based API that supports parsing path and query parameters, redirection, sub-routes, and multiple navigators. Additionally, GoRouter works well for both mobile and web apps.
+[GoRouter](https://pub.dev/packages/go_router) is a popular routing package that is maintained by the Flutter team. It is built on top of the [Navigator 2.0](https://docs.flutter.dev/ui/navigation#using-router-and-navigator-together) API and reduces much of the boilerplate code that is required for even simple navigation. It is a declarative routing package with a URL-based API that supports parsing path and query parameters, redirection, sub-routes, and multiple navigators. Additionally, GoRouter works well for both mobile and web apps.
 
 ### Configuration
 
@@ -15,31 +17,34 @@ To enable deep linking in your app (such as redirecting to a login page or other
 
 Structure your routes in a way that makes logical sense. Avoid placing all of your routes on the root path. Instead, use sub-routes.
 
-Good ✅
+<Tabs>
+  <TabItem label="Good ✅">
+    ```txt
+    /
+    /flutter
+    /flutter/news
+    /flutter/chat
+    /android
+    /android/news
+    /android/chat
+    ```
+  </TabItem>
+  <TabItem label="Bad ❗️">
+    ```txt
+    /
+    /flutter
+    /flutter-news
+    /flutter-chat
+    /android
+    /android-news
+    /android-chat
+    ```
+  </TabItem>
+</Tabs>
 
-```txt
-/
-/flutter
-/flutter/news
-/flutter/chat
-/android
-/android/news
-/android/chat
-```
-
-Bad ❗️
-
-```txt
-/
-/flutter
-/flutter-news
-/flutter-chat
-/android
-/android-news
-/android-chat
-```
-
+:::note
 Not only does using sub-routes make the path more readable, it also ensures that the app can navigate backwards correctly from the `news` page.
+:::
 
 ### Prefer `go` over `push` methods
 
@@ -61,7 +66,7 @@ Note that we do not recommend modifying the behavior of `push` in this way unles
 
 The `go` and `push` methods will both add the new page to the navigation stack, but `push` only adds the page to the stack. Using `go` will push the entire route to the stack. For example: The user is on the home page (`/`) and `go` is used to navigate the user directly to the `/flutter/news` route. If the user navigates backwards, the current route would be `/flutter`. If the user was `push`ed to the `/flutter/news` route instead, the back button would take the user to the `/` route.
 
-Using `go` will also ensure that the back button in your app's `AppBar` will function as expected. The parent `GoRoute`s in your `GoRouter`, meaning that the route's `path` starts with a `/`, will not display a back button in their `AppBar`. Using sub-routes correctly removes the need to manually handle the back button functionality.
+Using `go` will also ensure that the back button in your app's `AppBar` will display when the current route has a parent that it can navigate backwards to. Root paths will not display a back button in their `AppBar`. For example, `/flutter/news` would navigate back to `/flutter`, but `/flutter` would not not display a back button. Using sub-routes correctly removes the need to manually handle the back button functionality.
 
 :::note
 In a Flutter web app, the browser's back button will still function as usual, regardless of the navigation method that is used.
@@ -71,18 +76,19 @@ In a Flutter web app, the browser's back button will still function as usual, re
 
 Mobile app users will likely never see your route's path, but web app users can easily view it in the browser's URL address bar. Your routing structure should be consistent and defined with the web in mind. Not only does this make your paths easier to read, it allows you the option of deploying your mobile app to the web without any routing changes needed.
 
-Good ✅
-
-```txt
-/user/update-address
-```
-
-Bad ❗️
-
-```txt
-/user/update_address
-/user/updateAddress
-```
+<Tabs>
+  <TabItem label="Good ✅">
+    ```txt
+    /user/update-address
+    ```
+  </TabItem>
+  <TabItem label="Bad ❗️">
+    ```txt
+    /user/update_address
+    /user/updateAddress
+    ```
+  </TabItem>
+</Tabs>
 
 :::note
 For a full list of URL structure best practices, take a look at this [document](https://developers.google.com/search/docs/crawling-indexing/url-structure) from Google.
@@ -144,17 +150,18 @@ The route's `name` and `path` values should live as `const` values within the pa
 
 GoRouter provides extension methods on `BuildContext` to simplify navigation. For consistency, use the extension method over the longer `GoRouter` methods since they are functionally equivalent.
 
-Good ✅
-
-```dart
-context.goNamed('flutterNews');
-```
-
-Bad ❗️
-
-```dart
-GoRouter.of(context).goNamed('flutterNews');
-```
+<Tabs>
+  <TabItem label="Good ✅">
+    ```dart
+    context.goNamed('flutterNews');
+    ```
+  </TabItem>
+  <TabItem label="Bad ❗️">
+    ```dart
+    GoRouter.of(context).goNamed('flutterNews');
+    ```
+  </TabItem>
+</Tabs>
 
 ### Navigating with parameters
 
@@ -225,7 +232,11 @@ context.goNamed('flutterArticles', queryParameters: {'date': state.date, 'catego
 
 #### Extra parameter
 
-GoRouter has the ability to pass objects from one page to another. Most of the time, however, we avoid using the `extra` object when navigating to a new route. This value does not work on web and it cannot be used in deep linking.
+GoRouter has the ability to pass objects from one page to another. Most of the time, however, we avoid using the `extra` object when navigating to a new route.
+
+:::caution
+The `extra` option used during navigation does not work on the web and cannot be used for deep linking, so we do not recommend using it.
+:::
 
 Bad ❗️
 
@@ -321,7 +332,9 @@ class AppRouter {
 }
 ```
 
+:::note
 Redirects on the parent routes are executed first. This is another reason why it is important to organize your URL hierarchy in a way where one redirect on a parent route can apply to all of the sub-routes.
+:::
 
 In this example, the user is redirected to the `restricted` page if the user's status isn't `premium` and tries to access `/premium`, `/premium/show`, or `/premium/merch`. Having `shows` and `merch` as sub-routes avoids having to add redirect logic to each `GoRoute`.
 
