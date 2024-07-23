@@ -3,7 +3,7 @@ title: ✨ Code Style
 description: Best practices for general code styling that goes beyond linter rules. 
 ---
 
-In general, the best guides for code style are the [effective Dart](https://dart.dev/effective-dart) guidelines and the linter rules set up in [very_good_analysis](https://pub.dev/packages/very_good_analysis). However, there are certain practices we've learned outside of these two places that will make code more maintainable.
+In general, the best guides for code style are the [Effective Dart](https://dart.dev/effective-dart) guidelines and the linter rules set up in [very_good_analysis](https://pub.dev/packages/very_good_analysis). However, there are certain practices we've learned outside of these two places that will make code more maintainable.
 
 ## Record Types
 
