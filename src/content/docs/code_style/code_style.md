@@ -1,0 +1,46 @@
+---
+title: ✨ Code Style
+description: Best practices for general code styling that goes beyond linter rules. 
+---
+
+In general, the best guides for code style are the [Effective Dart](https://dart.dev/effective-dart) guidelines and the linter rules set up in [very_good_analysis](https://pub.dev/packages/very_good_analysis). However, there are certain practices we've learned outside of these two places that will make code more maintainable.
+
+## Record Types
+
+Among other things, the release of Dart 3.0 introduced [record types](https://dart.dev/language/records), a way to store two different but related pieces of data without creating a separate data class. When using record types, be sure to choose expressive names for positional values.
+
+Bad ❗️
+
+```dart
+Future<(String, String)> getUserNameAndEmail() async => return _someApiFetchMethod();
+
+final userData = await getUserNameAndEmail();  
+
+// a bunch of other code...
+
+if (userData.$1.isValid) {
+  // do stuff
+}
+```
+
+The above example will compile, but it is not immediately obvious what value `userData.$1` refers to here. The name of the function gives the reader the impression that the second value in the record is the email, but it is not clear. Particularly in a large codebase, where there could be more processing in between the call to `getUserNameAndEmail()` and the check on `userData.$1`, reviewers will not be able to tell immediately what is going on here. 
+
+Good ✅
+
+```dart
+Future<(String, String)> getUserNameAndEmail() async => return _someApiFetchMethod();
+
+final (username, email) = await getUserNameAndEmail();  
+
+// a bunch of other code...
+
+if (email.isValid) {
+  // do stuff
+}
+```
+
+Now, we are expressly naming the values that we are getting from our record type. Any reviewer or future maintainer of this code will know what value is being validated.
+
+:::tip
+While this is our recommended practice for dealing with record types, you might want to consider whether you actually need a record type. Particularly in larger projects where you are using values across multiple files, dedicated data models may be easier to read and maintain.
+:::
