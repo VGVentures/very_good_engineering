@@ -13,7 +13,7 @@ Navigation is a crucial component of any app. A declarative routing structure is
 
 ### Configuration
 
-To enable deep linking in your app (such as redirecting to a login page or other feature), routing must be carefully configured to properly support backwards navigation.
+To enable deep linking in your app (such as redirecting to a login page or other features), routing must be carefully configured to properly support backwards navigation.
 
 Structure your routes in a way that makes logical sense. Avoid placing all of your routes on the root path. Instead, use sub-routes.
 
@@ -43,8 +43,81 @@ Structure your routes in a way that makes logical sense. Avoid placing all of yo
 </Tabs>
 
 :::note
-Not only does using sub-routes make the path more readable, it also ensures that the app can navigate backwards correctly from the `news` page.
+Not only does using sub-routes make the path more readable, it also ensures that the app can navigate backwards correctly from the child pages.
 :::
+
+### Use type-safe routes
+
+GoRouter allows you to define [type-safe routes](https://pub.dev/documentation/go_router/latest/topics/Type-safe%20routes-topic.html). When routes are type-safe, you no longer have to worry about typos and casting your route's path and query parameters to the correct type.
+
+<Tabs>
+  <TabItem label="Good ✅">
+    ```dart
+    @TypedGoRoute<CategoriesPageRoute>(
+      name: 'categories',
+      path: '/categories',
+    )
+    @immutable
+    class CategoriesPageRoute extends GoRouteData {
+      const CategoriesPageRoute({
+        this.size,
+        this.color,
+      });
+
+      final String? size;
+      final String? color;
+
+      @override
+      Widget build(context, state) {
+        return CategoriesPage(
+          size: size,
+          color: color,
+        );
+      }
+    }
+    ```
+  </TabItem>
+  <TabItem label="Bad ❗️">
+    ```dart
+    GoRoute(
+      name: 'categories',
+      path: '/categories',
+      builder: (context, state) {
+        final size = state.uri.queryParameters['size'];
+        final color = state.uri.queryParameters['category'];
+        return CategoriesPage(size: size, color: color);
+      }
+    )
+    ```
+  </TabItem>
+</Tabs>
+
+Navigating to the `categories` page using the type-safe route is as simple as calling:
+
+```dart
+const CategoriesPageRoute(size: 'small', color: 'blue').go(context);
+```
+
+:::note
+When needing to route to a page from a deep link, it is still possible to use the route's name/path and query parameters. However, using type-safe routes is recommended for navigating within the app. If your deep links are coming from an external source, choose the method that best fits your needs.
+
+For reasons listed in the [Prefer navigating by name over path](#prefer-navigating-by-name-over-path) section below, navigating by name is preferred over navigating by path.
+
+<Tabs>
+  <TabItem label="Navigating by name">
+```dart
+context.goNamed('categories', queryParameters: {'size': 'small', 'color': 'blue'})
+```
+  </TabItem>
+  <TabItem label="Navigating by path">
+Navigating by path:
+```dart
+context.go('/categories?size=small&color=blue');
+```
+  </TabItem>
+</Tabs>
+:::
+
 
 ### Prefer `go` over `push` methods
 
@@ -62,14 +135,14 @@ GoRouter.optionURLReflectsImperativeAPIs = true;
 ```
 
 Note that we do not recommend modifying the behavior of `push` in this way unless you are in the process of [migrating](https://docs.google.com/document/d/1VCuB85D5kYxPR3qYOjVmw8boAGKb7k62heFyfFHTOvw/edit) to GoRouter 8.0.0.
+
+For more information on the differences between `go` and `push`, read this [Code with Andrea article](https://codewithandrea.com/articles/flutter-navigation-gorouter-go-vs-push/).
 :::
 
-The `go` and `push` methods will both add the new page to the navigation stack, but `push` only adds the page to the stack. Using `go` will push the entire route to the stack. For example: The user is on the home page (`/`) and `go` is used to navigate the user directly to the `/flutter/news` route. If the user navigates backwards, the current route would be `/flutter`. If the user was `push`ed to the `/flutter/news` route instead, the back button would take the user to the `/` route.
-
-Using `go` will also ensure that the back button in your app's `AppBar` will display when the current route has a parent that it can navigate backwards to. Root paths will not display a back button in their `AppBar`. For example, `/flutter/news` would navigate back to `/flutter`, but `/flutter` would not not display a back button. Using sub-routes correctly removes the need to manually handle the back button functionality.
+Using `go` will ensure that the back button in your app's `AppBar` will display when the current route has a parent that it can navigate backwards to. Root paths will not display a back button in their `AppBar`. For example, `/flutter/news` would display a back arrow in the `AppBar` to navigate back to `/flutter`, but `/flutter` would not not display a back button. Using sub-routes correctly removes the need to manually handle the back button functionality.
 
 :::note
-In a Flutter web app, the browser's back button will still function as usual, regardless of the navigation method that is used.
+In a Flutter web app, the browser's back button will still be enabled as long as there are pages on the navigation stack, regardless of the navigation method that is used. Using redirects correctly will help ensure that the back button functions according to your app's navigation structure.
 :::
 
 #### Use hyphens for separating words in a URL
@@ -96,43 +169,46 @@ For a full list of URL structure best practices, take a look at this [document](
 
 #### Prefer navigating by name over path
 
-GoRouter allows you to navigate to a route by its name or by its path.
+If you're using GoRoute's type-safe routes, navigate using the `go` extension method that was generated for your route.
+
+```dart
+FlutterNewsPageRoute().go(context);
+```
+
+If a route to a page is given to you from an external source, such as a push notification, to deep link to a specific page within your app, GoRouter allows you to navigate to a route by its name or by its path.
 
 Because your app's structure and paths can change over time, we recommend routing by name to avoid potential issues of a route's path getting out of sync.
 
-Good ✅
+Consider this situation: An app has a route defined with the path `/flutter-news` for the `FlutterNewsPage`.
 
 ```dart
-context.goNamed(routeName);
-```
-
-Consider this situation: An app has a `GoRoute` defined with the path `/flutter-news` for the `FlutterNewsPage`.
-
-```dart
-GoRoute(
+@TypedGoRoute<FlutterNewsPageRoute>(
   name: 'flutterNews',
   path: '/flutter-news',
-  builder: (context, state) => return FlutterNewsPage();
 )
+@immutable
+class FlutterNewsPageRoute extends GoRouteData {
+  @override
+  Widget build(context, state) {
+    return const FlutterNewsPage();
+  }
+}
 ```
 
 Later, the pages in the app were reorganized and the path to the `FlutterNewsPage` has changed.
 
 ```dart
-GoRoute(
+@TypedGoRoute<TechnologyPageRoute>(
   name: 'technology',
   path: '/technology',
-  builder: (context, state) => return TechnologyPage();
   routes: [
-    GoRoute(
+    TypedGoRoute<FlutterPageRoute>(
       name: 'flutter',
       path: 'flutter',
-      builder: (context, state) => return FlutterPage();
       routes: [
-        GoRoute(
+        TypedGoRoute<FlutterNewsPageRoute>(
           name: 'flutterNews',
           path: 'news',
-          builder: (context, state) => return FlutterNewsPage();
         ),
       ],
     ),
@@ -140,11 +216,7 @@ GoRoute(
 )
 ```
 
-If the app was relying on the `path` to navigate the user to the `FlutterNewsPage` and the older path (`/flutter-news`) was used in an external deep link (or if the newer path (`/technology/flutter/news`) was used but the user hasn't updated to the latest version of the app), the route would not be found. However, when relying on the route `name`, navigation would work in either situation.
-
-:::note
-The route's `name` and `path` values should live as `const` values within the page's widget class. Hard coded strings are used in these examples for readability. However, the `GoRoute`'s `name` and `path` should not reference the same value.
-:::
+If the app was relying on the `path` to navigate the user to the `FlutterNewsPage` and the deep link path from the external source didn't match the route's path, the route would not be found. However, when relying on the route `name`, navigation would work in either situation.
 
 #### Extension methods
 
@@ -179,21 +251,30 @@ To navigate to the details page of a particular article, the `GoRoute` would loo
 
 ```dart
 // ...
-GoRoute(
+@TypedGoRoute<FlutterArticlePageRoute>(
   name: 'flutterArticle',
   path: 'article/:id',
-  builder: (context, state) {
-    final id = state.pathParameters['id'];
+)
+@immutable
+class FlutterArticlePageRoute extends GoRouteData {
+  const FlutterArticlePageRoute({
+    required this.id,
+  });
+
+  final String id;
+
+  @override
+  Widget build(context, state) {
     return FlutterArticlePage(id: id);
   }
-)
+}
 // ...
 ```
 
-Navigating to that page with the article id is as simple as adding the `pathParameters` parameter with a `Map` containing the article `id`.
+Navigating to that page with the article id is as simple as providing the article id to the `FlutterArticlePageRoute`'s constructor:
 
 ```dart
-context.goNamed('flutterArticle', pathParameters: {'id': article.id});
+FlutterArticlePageRoute(id: article.id).go(context);
 ```
 
 #### Query parameters
@@ -208,15 +289,28 @@ To navigate to a page of filtered articles, the `GoRoute` would look like this:
 
 ```dart
 // ...
-GoRoute(
+@TypedGoRoute<FlutterArticlesPageRoute>(
   name: 'flutterArticles',
   path: 'articles',
-  builder: (context, state) {
-    final date = state.uri.queryParameters['date'];
-    final category = state.uri.queryParameters['category'];
-    return FlutterArticlesPage(date: date, category: category);
-  }
 )
+@immutable
+class FlutterArticlesPageRoute extends GoRouteData {
+  const FlutterArticlesPageRoute({
+    this.date,
+    this.category,
+  });
+
+  final String? date;
+  final String? category;
+
+  @override
+  Widget build(context, state) {
+    return FlutterArticlesPage(
+      date: date,
+      category: category,
+    );
+  }
+}
 // ...
 ```
 
@@ -227,7 +321,7 @@ Unlike path parameters, query parameters do not have to be defined in your route
 To navigate to the list of filtered articles:
 
 ```dart
-context.goNamed('flutterArticles', queryParameters: {'date': state.date, 'category': state.category});
+FlutterArticlesPageRoute(date: state.date, category: state.category).go(context);
 ```
 
 #### Extra parameter
@@ -241,18 +335,27 @@ The `extra` option used during navigation does not work on the web and cannot be
 Bad ❗️
 
 ```dart
-context.goNamed('flutterArticles', extra: state.article);
+@TypedGoRoute<FlutterArticlePageRoute>(
+  name: 'flutterArticle',
+  path: 'article',
+)
+@immutable
+class FlutterArticlePageRoute extends GoRouteData {
+  const FlutterArticlePageRoute({
+    required this.article,
+  });
+
+  final Article article;
+
+  @override
+  Widget build(context, state) {
+    return FlutterArticlePage(article: article);
+  }
+}
 ```
 
 ```dart
-GoRoute(
-  name: 'flutterArticle',
-  path: 'article',
-  builder: (context, state) {
-    final article = state.article;
-    return FlutterArticlePage(article: article);
-  }
-)
+FlutterArticlePageRoute(article: article).go(context);
 ```
 
 In this example, we are passing the `article` object to the article details page. If your app is designed to only work on mobile and there are no plans of deep linking to the articles details page, then this is fine. But, if the requirements change and now you want to support the web or deep link users directly to the details of a particular article, changes will need to be made. Instead, pass the identifier of the article as a path parameter and fetch the article information from inside of your article details page.
@@ -260,18 +363,27 @@ In this example, we are passing the `article` object to the article details page
 Good ✅
 
 ```dart
-context.goNamed('flutterArticle', pathParameters: {'id': state.article.id});
+FlutterArticlePageRoute(id: state.article.id).go(context);
 ```
 
 ```dart
-GoRoute(
+@TypedGoRoute<FlutterArticlePageRoute>(
   name: 'flutterArticle',
   path: 'article/:id',
-  builder: (context, state) {
-    final id = state.pathParameters['id'];
+)
+@immutable
+class FlutterArticlePageRoute extends GoRouteData {
+  const CategoriesPageRoute({
+    required this.id,
+  });
+
+  final String id;
+
+  @override
+  Widget build(context, state) {
     return FlutterArticlePage(id: id);
   }
-)
+}
 ```
 
 :::note
@@ -285,11 +397,9 @@ Sometimes you need to redirect users to a different location in the app. For exa
 ```dart
 class AppRouter {
   AppRouter({
-    required AppBloc appBloc,
     required GlobalKey<NavigatorState> navigatorKey,
   }) {
     _goRouter = _routes(
-      appBloc,
       navigatorKey,
     );
   }
@@ -299,35 +409,52 @@ class AppRouter {
   GoRouter get routes => _goRouter;
 
   GoRouter _routes(
-    AppBloc appBloc,
     GlobalKey<NavigatorState> navigatorKey,
   ) {
     return GoRouter(
       initialLocation: '/',
-      refreshListenable: GoRouterRefreshStream(appBloc.stream),
       navigatorKey: navigatorKey,
-      routes: [
-        GoRoute(
-          name: 'home',
-          path: '/',
-          builder: (context, state) => HomePage(),
-        ),
-        GoRoute(
-          name: 'signIn',
-          path: '/sign-in',
-          builder: (context, state) => SignInPage(),
-        ),
-      ],
       redirect: (context, state) {
-        final status == appBloc.state.status;
+        final status == context.read<AppBloc>().state.status;
 
         if (status == AppStatus.unauthenticated) {
-          return '/sign-in';
+          return SignInPageRoute().location;
         }
 
         return null;
-      }
+      },
+      routes: $appRoutes,
     )
+  }
+}
+```
+
+```dart
+@TypedGoRoute<HomePageRoute>(
+  name: 'home',
+  path: '/',
+)
+@immutable
+class HomePageRoute extends GoRouteData {
+  const HomePageRoute();
+
+  @override
+  Widget build(context, state) {
+    return HomePage();
+  }
+}
+
+@TypedGoRoute<SignInPageRoute>(
+  name: 'signIn',
+  path: '/sign-in',
+)
+@immutable
+class SignInPageRoute extends GoRouteData {
+  const SignInPageRoute();
+
+  @override
+  Widget build(context, state) {
+    return SignInPage();
   }
 }
 ```
@@ -336,38 +463,75 @@ class AppRouter {
 Redirects on the parent routes are executed first. This is another reason why it is important to organize your URL hierarchy in a way where one redirect on a parent route can apply to all of the sub-routes.
 :::
 
-In this example, the user is redirected to the `restricted` page if the user's status isn't `premium` and tries to access `/premium`, `/premium/show`, or `/premium/merch`. Having `shows` and `merch` as sub-routes avoids having to add redirect logic to each `GoRoute`.
+In this example, the user is redirected to the `restricted` page if the user's status isn't `premium` and tries to access `/premium`, `/premium/show`, or `/premium/merch`. Having `shows` and `merch` as sub-routes avoids having to add redirect logic to each route.
 
 ```dart
-GoRoute(
+@TypedGoRoute<PremiumPageRoute>(
   name: 'premium',
   path: '/premium',
-  builder: (context, state) => PremiumPage(),
   routes: [
-    GoRoute(
+    TypedGoRoute<PremiumShowsPageRoute>(
       name: 'premiumShows',
       path: 'shows',
-      builder: (context, state) => PremiumShowsPage(),
     ),
-    GoRoute(
+    TypedGoRoute<PremiumMerchPageRoute>(
       name: 'premiumMerch',
       path: 'merch',
-      builder: (context, state) => PremiumMerchPage(),
     ),
   ],
-  redirect: (context, state) {
-    final status == appBloc.state.user.status;
+)
+@immutable
+class PremiumPageRoute extends GoRouteData {
+  const PremiumPageRoute();
+
+  @override
+  Widget build(context, state) {
+    return PremiumPage();
+  }
+
+  @override
+  String? redirect(context, state) {
+    final status == context.read<AppBloc>().state.user.status;
 
     if (status != UserStatus.premium) {
-      return '/restricted';
+      return RestrictedPageRoute().location;
     }
 
     return null;
   }
-  GoRoute(
-    name: 'restricted',
-    path: '/restriced',
-    builder: (context, state) => RestrictedPage(),
-  ),
+}
+
+@immutable
+class PremiumShowsPageRoute extends GoRouteData {
+  const PremiumShowsPageRoute();
+
+  @override
+  Widget build(context, state) {
+    return PremiumShowsPage();
+  }
+}
+
+@immutable
+class PremiumMerchPageRoute extends GoRouteData {
+  const PremiumMerchPageRoute();
+
+  @override
+  Widget build(context, state) {
+    return PremiumMerchPage();
+  }
+}
+
+@TypedGoRoute<RestrictedPageRoute>(
+  name: 'restricted',
+  path: '/restricted',
 )
+@immutable
+class RestrictedPageRoute extends GoRouteData {
+  const RestrictedPageRoute();
+
+  @override
+  Widget build(context, state) {
+    return RestrictedPage();
+  }
+}
 ```
