@@ -111,13 +111,13 @@ export 'src/models/models.dart';
 export 'src/widgets/widgets.dart';
 ```
 
-:::note
-In this example we are exporting all files from the folder, but this is not always the case. If the `model_2.dart` uses the `model_1.dart` inside, but `model_1.dart` is not intended to be imported by the public, it should not be exported in the barrel file.
+:::caution
+In this example, we are exporting all files from the folder, but this is not always the case. If the `model_2.dart` uses the `model_1.dart` inside, but `model_1.dart` is not intended to be imported by the public, it should not be exported in the barrel file.
 :::
 
 ## Bloc and barrel files
 
-As shown in the examples, when using bloc, its folder contains three files:
+By convention, blocs are typically broken into separate files consisting of the events, states, and the bloc itself:
 
 ```text
 bloc/
