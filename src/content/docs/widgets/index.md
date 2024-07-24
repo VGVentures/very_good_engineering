@@ -7,7 +7,7 @@ Widgets are the reusable building blocks of your app's user interface. It is imp
 
 ## Page/Views
 
-Each page should be composed of two classes: a `Page`, which is responsible for defining the page's route and gathering all the dependencies needed from the context; and a `View`, where the "real" implementation of the page resides.
+Each page should be composed of two classes: a `Page`, which is responsible for defining the page's route and gathering all the dependencies needed from the context; and a `View`, where the "real" implementation of the UI resides.
 
 This allows easier separation of dependencies from the view itself, which makes it easier to test the views.
 
