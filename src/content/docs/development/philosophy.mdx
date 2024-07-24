@@ -119,7 +119,7 @@ mappedStream.listen((value) {
 ````
 
 :::caution
-We introduce reactive code cautiously, typically only leveraging it at the domain layer to broadcast data changes to view-specific business logic. While reactive code is technically "declarative", it describes how the data is transformed, not necessarily the business logic itself: i.e., it should be the underlying plumbing of the business logic.
+We introduce reactive code cautiously, typically only leveraging it at the repository layer to broadcast data changes to view-specific business logic. While reactive code is technically "declarative", it describes how the data is transformed, not necessarily the business logic itself: i.e., it should be the underlying plumbing of the business logic.
 
 Additionally, complex data transformations are known for being difficult to grasp. Because of their tremendous power and flexibility, reactive tools make it easy to accidentally introduce coupling between components in the same architecture layer. In our experience, unintended coupling is by far the most common architectural pain point.
 
