@@ -143,7 +143,7 @@ class ThoughtBloc extends Bloc<ThoughtEvent, ThoughtState> {
 }
 ```
 
-If we want to avoid emitting the declaration that `${event.thought}` is my most recent thought when the bloc has received an even more recent thought, the `restartable` transformer will suspend `_onThought`'s processing of the outdated event if a more recent event is recieved during its execution.
+If we want to avoid emitting the declaration that `${event.thought}` is my most recent thought when the bloc has received an even more recent thought, the `restartable` transformer will suspend `_onThought`'s processing of the outdated event if a more recent event is received during its execution.
 
 #### Testing Blocs
 

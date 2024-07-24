@@ -1,4 +1,6 @@
 {
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
   "ignorePaths": [
     "node_modules/**",
     ".**/"
@@ -15,12 +17,14 @@
     "astrojs",
     "Cupertino",
     "fontsource",
+    "goldens",
     "incentivized",
     "laboratoria",
     "mdlint",
     "multiplatform",
     "pubspec",
     "tailwindcss",
+    "Tappable",
     "todos",
     "tsconfigs"
   ]
