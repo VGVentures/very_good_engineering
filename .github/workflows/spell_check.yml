@@ -1,0 +1,15 @@
+name: 🐝 Spell Check
+
+on: pull_request
+
+jobs:
+  build:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1
+    with:
+      config: cspell.json
+      includes: |
+        **/*.{dart,md,mdxyaml,ts,tsx,js,jsx,json,yaml,yml}
+        !.dart_tool/**/*.{dart,yaml}
+        !node_modules/**/*
+        .*/**/*.yml
+      modified_files_only: false
