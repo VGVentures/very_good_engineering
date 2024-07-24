@@ -9,6 +9,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "type:check": "tsc",
+    "lint": "mdlint ./src/",
     "format": "prettier --write . --ext js,json,jsonc,ts,tsx,jsx,md,mdx",
     "format:check": "prettier --check ."
   },
@@ -30,6 +31,7 @@
     "typescript": "^5.4.5"
   },
   "devDependencies": {
+    "@laboratoria/mdlint": "^1.2.3",
     "eslint": "^9.3.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-astro": "^1.2.0",

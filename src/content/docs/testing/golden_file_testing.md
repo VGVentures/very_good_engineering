@@ -1,5 +1,5 @@
 ---
-title: Golden file testing
+title: 🏆 Golden File Testing
 description: Golden testing best practices.
 ---
 

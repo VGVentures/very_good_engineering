@@ -1,6 +1,8 @@
 ---
-title: Testing
+title: 🧪 Testing Overview
 description: Testing best practices.
+sidebar:
+  order: 1
 ---
 
 At Very Good Ventures, our goal is to achieve 100% test coverage on all projects. Writing tests not only helps to reduce the number of bugs, but also encourages code to be written in a very clean, consistent, and maintainable way. While testing can initially add some additional time to the project, the trade-off is fewer bugs, higher confidence when shipping, and less time spent in QA cycles.
