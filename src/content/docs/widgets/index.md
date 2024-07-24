@@ -9,7 +9,7 @@ Widgets are the reusable building blocks of your app's user interface. It is imp
 
 Each page should be composed of two classes: a `Page`, which is responsible for defining the page's route and gathering all the dependencies needed from the context; and a `View`, where the "real" implementation of the UI resides.
 
-This allows easier separation of dependencies from the view itself, which makes it easier to test the views.
+Distinguishing between a `Page` and its `View` allows the `Page` to provide dependencies to the `View`, enabling the view's dependencies to be mocked when testing.
 
 ```dart
 class LoginPage extends StatelessWidget {
@@ -41,7 +41,7 @@ class LoginView extends StatelessWidget {
 }
 ```
 
-With this approach, testing `LoginView` is made easy, since now the `LoginBloc` can be mocked and provided directly on the test.
+We can easily write tests for the `LoginView` by mocking the `LoginBloc` and providing it directly to the view.
 
 :::note
 The constructor of the `LoginView` is marked as `visibleForTesting`. This is necessary so that we can ensure that the view will not be used except via its page. This way, developers will not accidentally import and use the view without the injected dependencies provided by the page.
