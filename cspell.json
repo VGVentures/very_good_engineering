@@ -1,12 +1,25 @@
 {
-  "ignorePaths": ["node_modules/**", ".**/"],
-  "files": ["**/*.md", "**/*.mdx", "**/*.tsx", "**/*.ts", "**/*.json"],
+  "ignorePaths": [
+    "node_modules/**",
+    ".**/"
+  ],
+  "files": [
+    "**/*.md",
+    "**/*.mdx",
+    "**/*.tsx",
+    "**/*.ts",
+    "**/*.json"
+  ],
   "words": [
     "astro",
     "astrojs",
+    "Cupertino",
     "fontsource",
     "incentivized",
+    "laboratoria",
+    "mdlint",
     "multiplatform",
+    "pubspec",
     "tailwindcss",
     "todos",
     "tsconfigs"

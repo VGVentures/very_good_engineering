@@ -1,6 +1,6 @@
 ---
 title: ✨ Code Style
-description: Best practices for general code styling that goes beyond linter rules. 
+description: Best practices for general code styling that goes beyond linter rules.
 ---
 
 In general, the best guides for code style are the [Effective Dart](https://dart.dev/effective-dart) guidelines and the linter rules set up in [very_good_analysis](https://pub.dev/packages/very_good_analysis). However, there are certain practices we've learned outside of these two places that will make code more maintainable.
@@ -14,7 +14,7 @@ Bad ❗️
 ```dart
 Future<(String, String)> getUserNameAndEmail() async => return _someApiFetchMethod();
 
-final userData = await getUserNameAndEmail();  
+final userData = await getUserNameAndEmail();
 
 // a bunch of other code...
 
@@ -23,14 +23,14 @@ if (userData.$1.isValid) {
 }
 ```
 
-The above example will compile, but it is not immediately obvious what value `userData.$1` refers to here. The name of the function gives the reader the impression that the second value in the record is the email, but it is not clear. Particularly in a large codebase, where there could be more processing in between the call to `getUserNameAndEmail()` and the check on `userData.$1`, reviewers will not be able to tell immediately what is going on here. 
+The above example will compile, but it is not immediately obvious what value `userData.$1` refers to here. The name of the function gives the reader the impression that the second value in the record is the email, but it is not clear. Particularly in a large codebase, where there could be more processing in between the call to `getUserNameAndEmail()` and the check on `userData.$1`, reviewers will not be able to tell immediately what is going on here.
 
 Good ✅
 
 ```dart
 Future<(String, String)> getUserNameAndEmail() async => return _someApiFetchMethod();
 
-final (username, email) = await getUserNameAndEmail();  
+final (username, email) = await getUserNameAndEmail();
 
 // a bunch of other code...
 

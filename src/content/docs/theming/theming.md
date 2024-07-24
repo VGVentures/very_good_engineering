@@ -12,9 +12,10 @@ Flutter uses [Material Design](https://docs.flutter.dev/ui/design/material) with
 :::tip[Did you know?]
 Not everyone in the community is happy about Material and Cupertino being baked into the framework. Check out these discussions:
 
-- https://github.com/flutter/flutter/issues/101479
-- https://github.com/flutter/flutter/issues/110195
-  :::
+- <https://github.com/flutter/flutter/issues/101479>
+- <https://github.com/flutter/flutter/issues/110195>
+
+:::
 
 ## Use ThemeData
 
@@ -85,11 +86,11 @@ Let's break down typography into three sections:
 
 1. [Importing Fonts](#importing-fonts)
 2. [Custom Text Styles](#custom-text-styles)
-3. [TextTheme](#text-theme)
+3. [TextTheme](#texttheme)
 
 ### Importing Fonts
 
-To keep things organzied, fonts are generally stored in an `assets` folder:
+To keep things organized, fonts are generally stored in an `assets` folder:
 
 ```txt
 assets/

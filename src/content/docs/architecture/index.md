@@ -7,7 +7,7 @@ Layered architecture is used at VGV to build highly scalable, maintainable, and 
 
 ## Layers
 
-### Data layer
+### Data Layer
 
 This is the lowest layer of the stack. It is the layer that is closest to the retrieval of data, hence the name.
 
@@ -15,9 +15,9 @@ This is the lowest layer of the stack. It is the layer that is closest to the re
 
 The data layer is responsible for retrieving raw data from external sources and making it available to the [repository layer](#repository-layer). Examples of these external sources include an SQLite database, local storage, Shared Preferences, GPS, battery data, file system, or a RESTful API.
 
-The data layer should be free of any specific domain or business logic. Ideally, packages within the data layer could be plugged into unreleated projects that need to retrieve data from the same sources.
+The data layer should be free of any specific domain or business logic. Ideally, packages within the data layer could be plugged into unrelated projects that need to retrieve data from the same sources.
 
-### Repository layer
+### Repository Layer
 
 This compositional layer composes one or more data clients and applies "business rules" to the data. A separate repository is created for each domain, such as a user repository or a weather repository. Packages in this layer should not import any Flutter dependencies and not be dependent on other repositories.
 
@@ -27,7 +27,7 @@ The repository layer is responsible for fetching data from one or more data sour
 
 > This layer can be considered the "product" layer. The business/product owner will determine the rules/acceptance criteria for how to combine data from one or more data providers into a unit that brings value to the customer.
 
-### Business logic layer
+### Business Logic Layer
 
 This layer composes one or more repositories and contains logic for how to surface the business rules via a specific feature or use-case. The business logic layer should have no dependency on the Flutter SDK and should not have direct dependencies on other business logic components.
 
