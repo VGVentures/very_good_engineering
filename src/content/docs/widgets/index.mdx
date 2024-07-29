@@ -88,8 +88,7 @@ void main() {
 
 ## Widgets vs helper methods
 
-When you're creating a widget, sometimes you want to split the widget up into smaller pieces to make
-the widget reusable or improve readability.
+When you're creating a widget, sometimes you want to split the widget up into smaller pieces to make the widget reusable or improve readability.
 
 ```dart
 class MyWidget extends StatelessWidget {
@@ -152,23 +151,14 @@ class MyWidget extends StatelessWidget {
 
 ### Creating a new widget provides several benefits over using a helper method
 
-- Testability: You can write widget tests for the `MyText` widget without worrying about `MyWidget`
-  or any of the dependencies that it might require.
-- Maintainability: Smaller widgets are easier to maintain and aren't coupled to their parent
-  widget. These widgets will also have their own BuildContext, so you don't have to worry about using
-  the wrong or an invalid context.
+- Testability: You can write widget tests for the `MyText` widget without worrying about `MyWidget` or any of the dependencies that it might require.
+- Maintainability: Smaller widgets are easier to maintain and aren't coupled to their parent widget. These widgets will also have their own BuildContext, so you don't have to worry about using the wrong or an invalid context.
 - Reusability: Creating new widgets allows you to easily reuse the widget to compose larger widgets.
-- Performance: Using a helper method to return a widget that could update the state could cause
-  unnecessary rebuilds of the entire widget. Imagine that the `Text` widget triggered an animation
-  when tapped. We would need to call `setState()`, which would rebuild `MyWidget` and all of its
-  children. If this functionality were encapsulated in the `MyText` widget, only the `MyText`
-  widget would be rebuilt when the `Text` is tapped.
+- Performance: Using a helper method to return a widget that could update the state could cause unnecessary rebuilds of the entire widget. Imagine that the `Text` widget triggered an animation when tapped. We would need to call `setState()`, which would rebuild `MyWidget` and all of its children. If this functionality were encapsulated in the `MyText` widget, only the `MyText` widget would be rebuilt when the `Text` is tapped.
 
-The Flutter team has released a great [YouTube video](https://www.youtube.com/watch?v=IOyq-eTRhvo)
-about this topic.
+The Flutter team has released a great [YouTube video](https://www.youtube.com/watch?v=IOyq-eTRhvo) about this topic.
 
 Here are some more great resources on this subject:
 
-- [Why should I ever use stateless widgets instead of functional widgets?](flutter/flutter#19269)
 - [Controlling build cost](https://flutter.dev/docs/perf/rendering/best-practices#controlling-build-cost)
 - [Splitting widgets to methods is a performance anti-pattern](https://medium.com/flutter-community/splitting-widgets-to-methods-is-a-performance-antipattern-16aa3fb4026c)
