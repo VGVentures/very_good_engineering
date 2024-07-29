@@ -86,7 +86,7 @@ void main() {
 }
 ```
 
-## Widgets vs helper methods
+## Widgets vs Helper Methods
 
 When you're creating a widget, sometimes you want to split the widget up into smaller pieces to make the widget reusable or improve readability.
 
@@ -149,7 +149,9 @@ class MyWidget extends StatelessWidget {
   </TabItem>
 </Tabs>
 
-### Creating a new widget provides several benefits over using a helper method
+### Why Create a New Widget?
+
+Creating a new widget provides several benefits over using a helper method:
 
 - Testability: You can write widget tests for the `MyText` widget without worrying about `MyWidget` or any of the dependencies that it might require.
 - Maintainability: Smaller widgets are easier to maintain and aren't coupled to their parent widget. These widgets will also have their own BuildContext, so you don't have to worry about using the wrong or an invalid context.
