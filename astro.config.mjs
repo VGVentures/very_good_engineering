@@ -76,6 +76,11 @@ export default defineConfig({
           },
         },
         {
+          label: "Internationalization",
+          autogenerate: {
+            directory: "internationalization",
+          },
+        }, {
           label: "Navigation",
           autogenerate: {
             directory: "navigation",
