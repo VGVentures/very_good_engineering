@@ -3,31 +3,31 @@ title: 🏛️ Architecture
 description: Architecture best practices.
 ---
 
-Layered architecture is used at VGV to build highly scalable, maintainable, and testable apps. The architecture consists of four layers: the data layer, the domain layer, the business logic layer, and the presentation layer. Each layer has a single responsibility and there are clear boundaries between each one. We've discovered that a layered architecture significantly enhances the developer experience. Each layer can be developed independently by different teams without impacting other layers. Testing is simplified since only one layer needs to be mocked. Additionally, a structured approach clarifies component ownership, streamlining development and code reviews.
+Layered architecture is used at VGV to build highly scalable, maintainable, and testable apps. The architecture consists of four layers: the data layer, the repository layer, the business logic layer, and the presentation layer. Each layer has a single responsibility and there are clear boundaries between each one. We've discovered that a layered architecture significantly enhances the developer experience. Each layer can be developed independently by different teams without impacting other layers. Testing is simplified since only one layer needs to be mocked. Additionally, a structured approach clarifies component ownership, streamlining development and code reviews.
 
 ## Layers
 
-### Data layer
+### Data Layer
 
 This is the lowest layer of the stack. It is the layer that is closest to the retrieval of data, hence the name.
 
 #### Responsibility
 
-The data layer is responsible for retrieving raw data from external sources and making it available to the [domain layer](#domain-layer). Examples of these external sources include an SQLite database, local storage, Shared Preferences, GPS, battery data, file system, or a RESTful API.
+The data layer is responsible for retrieving raw data from external sources and making it available to the [repository layer](#repository-layer). Examples of these external sources include an SQLite database, local storage, Shared Preferences, GPS, battery data, file system, or a RESTful API.
 
-The data layer should be free of any specific domain or business logic. Ideally, packages within the data layer could be plugged into unreleated projects that need to retrieve data from the same sources.
+The data layer should be free of any specific domain or business logic. Ideally, packages within the data layer could be plugged into unrelated projects that need to retrieve data from the same sources.
 
-### Domain layer
+### Repository Layer
 
-This compositional layer composes one or more data clients and applies "business rules" to the data. This layer is also known as the "repository" layer because each component in this layer acts as a repository. A separate repository is created for each domain, such as a user repository or a weather repository. Packages in this layer should not import any Flutter dependencies and not be dependent on other repositories.
+This compositional layer composes one or more data clients and applies "business rules" to the data. A separate repository is created for each domain, such as a user repository or a weather repository. Packages in this layer should not import any Flutter dependencies and not be dependent on other repositories.
 
 #### Responsibility
 
-The domain layer is responsible for fetching data from one or more data sources from the data layer, applying domain specific logic to that raw data, and providing it to the business logic layer.
+The repository layer is responsible for fetching data from one or more data sources from the data layer, applying domain specific logic to that raw data, and providing it to the business logic layer.
 
 > This layer can be considered the "product" layer. The business/product owner will determine the rules/acceptance criteria for how to combine data from one or more data providers into a unit that brings value to the customer.
 
-### Business logic layer
+### Business Logic Layer
 
 This layer composes one or more repositories and contains logic for how to surface the business rules via a specific feature or use-case. The business logic layer should have no dependency on the Flutter SDK and should not have direct dependencies on other business logic components.
 
@@ -49,7 +49,7 @@ The presentation layer is the layer that includes the Flutter UI dependencies. I
 
 ## Project organization
 
-The presentation layer and state management live in the project's `lib` folder. The data and domain layers will live as separate packages within the project's `packages` folder.
+The presentation layer and state management live in the project's `lib` folder. The data and repository layers will live as separate packages within the project's `packages` folder.
 
 Good ✅
 
@@ -94,7 +94,7 @@ my_app/
   |   |   |   - login_page_test.test
 ```
 
-Each layer abstracts the underlying layers' implementation details. Avoid indirect dependencies between layers. For example, the domain layer shouldn't need to know how the data is fetched in the data layer, and the presentation layer shouldn't directly access values from Shared Preferences. In other words, the implementation details should not leak between the layers. Using layered architecture ensures flexibility, reusability, and testability as the codebase grows.
+Each layer abstracts the underlying layers' implementation details. Avoid indirect dependencies between layers. For example, the repository layer shouldn't need to know how the data is fetched in the data layer, and the presentation layer shouldn't directly access values from Shared Preferences. In other words, the implementation details should not leak between the layers. Using layered architecture ensures flexibility, reusability, and testability as the codebase grows.
 
 ## Dependency graph
 

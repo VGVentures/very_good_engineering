@@ -36,6 +36,9 @@
     "**/*.tsx",
     "**/*.json"
   ],
+  "markdownlint.config": {
+    "MD024": false
+  },
   "tailwindCSS.includeLanguages": {
     "plaintext": "html"
   }

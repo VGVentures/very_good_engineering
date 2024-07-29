@@ -1,6 +1,8 @@
 ---
-title: Testing
+title: 🧪 Testing Overview
 description: Testing best practices.
+sidebar:
+  order: 1
 ---
 
 At Very Good Ventures, our goal is to achieve 100% test coverage on all projects. Writing tests not only helps to reduce the number of bugs, but also encourages code to be written in a very clean, consistent, and maintainable way. While testing can initially add some additional time to the project, the trade-off is fewer bugs, higher confidence when shipping, and less time spent in QA cycles.
@@ -116,6 +118,36 @@ expect(people, hasLength(3));
 expect(valid, isTrue);
 ```
 
+## Use string expression with types
+
+If you're referencing a type within a test description, use a [string expression](https://dart.dev/language/built-in-types#string) to ease renaming the type:
+
+Bad ❗️
+
+```dart
+testWidgets('renders YourView', (tester) async {});
+```
+
+Good ✅
+
+```dart
+testWidgets('renders $YourView', (tester) async {});
+```
+
+If your [test](https://pub.dev/documentation/test/latest/test/test.html) or [group](https://pub.dev/documentation/test/latest/test/group.html) description only contains a type, consider omitting the string expression:
+
+Bad ❗️
+
+```dart
+group('$YourView', () {});
+```
+
+Good ✅
+
+```dart
+group(YourView, () {});
+```
+
 ## Descriptive test
 
 Don't be afraid of being verbose in your tests. Make sure everything is readable, which can make it easier to maintain over time.
@@ -131,12 +163,10 @@ blocTest<YourBloc, RecipeGeneratorState>('emits',);
 Good ✅
 
 ```dart
-testWidgets('renders YourView', (tester) async {});
-testWidgets('renders YourView for YourState', (tester) async {});
+testWidgets('renders $YourView', (tester) async {});
+testWidgets('renders $YourView for $YourState', (tester) async {});
 test('given an [input] is returning the [output] expected', () async {});
-blocTest<YourBloc, RecipeGeneratorState>('emits StateA if ...',);
-
-
+blocTest<YourBloc, RecipeGeneratorState>('emits $StateA if ...',);
 ```
 
 ## Test with a single purpose
@@ -146,14 +176,14 @@ Aim to test one scenario per test. You might end up with more tests in the codeb
 Bad ❗️
 
 ```dart
-testWidgets('renders widgetA and widgetB', (tester) async {});
+testWidgets('renders $WidgetA and $WidgetB', (tester) async {});
 ```
 
 Good ✅
 
 ```dart
-testWidgets('renders widgetA', (tester) async {});
-testWidgets('renders widgetB', (tester) async {});
+testWidgets('renders $WidgetA', (tester) async {});
+testWidgets('renders $WidgetB', (tester) async {});
 ```
 
 ## Use keys carefully
@@ -227,7 +257,7 @@ void main() {
     // mock api client methods...
   });
 
-  group('UserRepository', () {
+  group(UserRepository, () {
     // Tests...
   });
 }
@@ -237,7 +267,7 @@ Good ✅
 
 ```dart
 void main() {
-  group('UserRepository', () {
+  group(UserRepository, () {
     late ApiClient apiClient;
 
     setUp(() {
@@ -273,7 +303,7 @@ class _MySubject {
 }
 
 void main() {
-  group('$_MySubject', () {
+  group(_MySubject, () {
     final _MySubjectDependency myDependency = _MySubjectDependency();
 
     test('value starts at 0', () {
@@ -299,7 +329,7 @@ Good ✅
 ```dart
 
 void main() {
-  group('$_MySubject', () {
+  group(_MySubject, () {
     late _MySubjectDependency myDependency;
 
     setUp(() {

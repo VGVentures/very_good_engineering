@@ -12,9 +12,10 @@ Flutter uses [Material Design](https://docs.flutter.dev/ui/design/material) with
 :::tip[Did you know?]
 Not everyone in the community is happy about Material and Cupertino being baked into the framework. Check out these discussions:
 
-- https://github.com/flutter/flutter/issues/101479
-- https://github.com/flutter/flutter/issues/110195
-  :::
+- <https://github.com/flutter/flutter/issues/101479>
+- <https://github.com/flutter/flutter/issues/110195>
+
+:::
 
 ## Use ThemeData
 
@@ -85,11 +86,11 @@ Let's break down typography into three sections:
 
 1. [Importing Fonts](#importing-fonts)
 2. [Custom Text Styles](#custom-text-styles)
-3. [TextTheme](#text-theme)
+3. [TextTheme](#texttheme)
 
 ### Importing Fonts
 
-To keep things organzied, fonts are generally stored in an `assets` folder:
+To keep things organized, fonts are generally stored in an `assets` folder:
 
 ```txt
 assets/
@@ -182,3 +183,70 @@ class TitleWidget extends StatelessWidget {
   }
 }
 ```
+
+## Colors
+
+Based on the [Material 3 color system](https://m3.material.io/styles/color/system/overview), Flutter offers a [`ColorScheme`](https://api.flutter.dev/flutter/material/ColorScheme-class.html) class that includes a set of 45 colors, which can be utilized to configure the color properties of most components. Instead of using an absolute color such as `Colors.blue` or `Color(0xFF42A5F5)`, we recommend using [`Theme.of`](https://api.flutter.dev/flutter/material/Theme/of.html) to access the local `ColorScheme`. This `ColorScheme` can be configured within [`ThemeData`](#use-themedata) using a custom colors class such as `AppColors`.
+
+### Custom Colors
+
+Whether using default [Material Colors](https://api.flutter.dev/flutter/material/Colors-class.html) or custom ones, we recommend creating a custom class for your colors for easy access and consistency.
+
+```dart
+abstract class AppColors {
+  static const primaryColor = Color(0xFF4F46E5);
+  static const secondaryColor = Color(0xFF9C27B0);
+}
+```
+
+### ColorScheme
+
+Once we have a custom class for colors, update the `ColorScheme`:
+
+```dart
+ThemeData(
+  colorScheme: ColorScheme(
+    primary: AppColors.primaryColor,
+    secondary: AppColors.secondaryColor,
+  ),
+),
+```
+
+Now widgets referencing those tokens will use the colors defined in `AppColors`, ensuring consistency across the app.
+
+## Component Theming
+
+Flutter provides a variety of [Material component widgets](https://docs.flutter.dev/ui/widgets/material) that implement the Material 3 design specification.
+Material components primarily rely on the [`colorScheme`](https://api.flutter.dev/flutter/material/ThemeData/colorScheme.html) and [`textTheme`](https://api.flutter.dev/flutter/material/ThemeData/textTheme.html) for their styling, but each widget also has its own customizable theme as part of [`ThemeData`](https://api.flutter.dev/flutter/material/ThemeData-class.html).
+
+For instance, if we want all [`FilledButton`](https://api.flutter.dev/flutter/material/FilledButton-class.html) widgets to have a minimum width of `72`, we can use [`FilledButtonThemeData`](https://api.flutter.dev/flutter/material/FilledButtonThemeData-class.html):
+
+```dart
+ThemeData(
+  filledButtonTheme: FilledButtonThemeData(
+    style: FilledButton.styleFrom(
+      minimumSize: const Size(72, 0),
+    ),
+  ),
+),
+```
+
+We recommend leveraging component theming to customize widgets whenever possible, rather than applying customizations directly within each widget's code. Centralizing these customizations in `ThemeData` will help your widgets [avoid conditional logic](#avoid-conditional-logic) and ensure theming consistency in your app.
+
+## Spacing
+
+Spacing is one of the most important aspects of theming and design. If the UI is created without intentional spacing, users are likely to have a bad experience as the content of the app may be overwhelming and hard to navigate. Good designs will generally follow a spacing system using a base unit to simplify the creation of page layouts and UI.
+
+Just as [custom text styles](#custom-text-styles) and [custom colors](#custom-colors) can be centralized in a class, spacing can also follow this setup:
+
+```dart
+abstract class AppSpacing {
+  static const double spaceUnit = 16;
+  static const double xs = 0.375 * spaceUnit;
+  static const double sm = 0.5 * spaceUnit;
+  static const double md = 0.75 * spaceUnit;
+  static const double lg = spaceUnit;
+}
+```
+
+Now, anytime spacing needs to be added to a widget, you can reference this class to ensure consistency and avoid hardcoded values.
