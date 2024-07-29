@@ -63,11 +63,22 @@ export default defineConfig({
           autogenerate: {
             directory: "automation",
           },
+        }, {
+          label: "Code Style",
+          autogenerate: {
+            directory: "code_style",
+          },
         },
         {
           label: "Development",
           autogenerate: {
             directory: "development",
+          },
+        },
+        {
+          label: "Navigation",
+          autogenerate: {
+            directory: "navigation",
           },
         },
         {
