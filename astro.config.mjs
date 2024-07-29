@@ -59,6 +59,11 @@ export default defineConfig({
           },
         },
         {
+          label: "Automation",
+          autogenerate: {
+            directory: "automation",
+          },
+        }, {
           label: "Code Style",
           autogenerate: {
             directory: "code_style",
@@ -71,6 +76,11 @@ export default defineConfig({
           },
         },
         {
+          label: "Internationalization",
+          autogenerate: {
+            directory: "internationalization",
+          },
+        }, {
           label: "Navigation",
           autogenerate: {
             directory: "navigation",
