@@ -11,7 +11,7 @@ export default defineConfig({
   integrations: [
     starlight({
       favicon: "./public/favicon.png",
-      title: "Very Good Practices",
+      title: "Very Good Engineering",
       head: [
         {
           // Fix theme flickering on page load.
@@ -42,14 +42,14 @@ export default defineConfig({
       ],
       editLink: {
         baseUrl:
-          "https://github.com/verygoodopensource/very_good_practices/edit/main/docs/",
+          "https://github.com/vgventures/very_good_engineering/edit/main/docs/",
       },
       logo: {
         light: "./src/assets/logos/unicorn_light.png",
         dark: "./src/assets/logos/unicorn_dark.png",
       },
       social: {
-        github: "https://github.com/verygoodopensource/very_good_practices",
+        github: "https://github.com/vgventures/very_good_engineering",
       },
       sidebar: [
         {
@@ -63,7 +63,8 @@ export default defineConfig({
           autogenerate: {
             directory: "automation",
           },
-        }, {
+        },
+        {
           label: "Code Style",
           autogenerate: {
             directory: "code_style",
@@ -80,7 +81,8 @@ export default defineConfig({
           autogenerate: {
             directory: "internationalization",
           },
-        }, {
+        },
+        {
           label: "Navigation",
           autogenerate: {
             directory: "navigation",
