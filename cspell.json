@@ -1,17 +1,8 @@
 {
   "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
   "version": "0.2",
-  "ignorePaths": [
-    "node_modules/**",
-    ".**/"
-  ],
-  "files": [
-    "**/*.md",
-    "**/*.mdx",
-    "**/*.tsx",
-    "**/*.ts",
-    "**/*.json"
-  ],
+  "ignorePaths": ["node_modules/**", ".**/"],
+  "files": ["**/*.md", "**/*.mdx", "**/*.tsx", "**/*.ts", "**/*.json"],
   "words": [
     "astro",
     "astrojs",
@@ -26,6 +17,12 @@
     "tailwindcss",
     "Tappable",
     "todos",
-    "tsconfigs"
+    "tsconfigs",
+    "Codemagic",
+    "Diátaxis",
+    "Ishida",
+    "Hola",
+    "Mundo",
+    "merch"
   ]
 }

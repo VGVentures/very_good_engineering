@@ -133,4 +133,4 @@ When working with barrel files, it might be a bit tedious to export every file m
 :::
 
 [bloc_documentation]: https://bloclibrary.dev/#/flutterlogintutorial?id=authentication-bloc
-[vscode_extension]: https://marketplace.visualstudio.com/items?itemName=orestesgaolin.dart-export-index
+[vscode_extension]: https://github.com/orestesgaolin/dart-export-index
