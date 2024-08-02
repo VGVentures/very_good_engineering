@@ -3,6 +3,10 @@ title: 🏛️ Architecture
 description: Architecture best practices.
 ---
 
+import Diagram from "~/components/diagram.astro";
+import architectureDark from "./diagrams/layered_architecture_dark.png";
+import architectureLight from "./diagrams/layered_architecture_light.png";
+
 Layered architecture is used at VGV to build highly scalable, maintainable, and testable apps. The architecture consists of four layers: the data layer, the repository layer, the business logic layer, and the presentation layer. Each layer has a single responsibility and there are clear boundaries between each one. We've discovered that a layered architecture significantly enhances the developer experience. Each layer can be developed independently by different teams without impacting other layers. Testing is simplified since only one layer needs to be mocked. Additionally, a structured approach clarifies component ownership, streamlining development and code reviews.
 
 ## Layers
@@ -98,7 +102,11 @@ Each layer abstracts the underlying layers' implementation details. Avoid indire
 
 ## Dependency graph
 
-![Layered Architecture](../../../public/very_good_architecture.png)
+<Diagram
+  light={architectureLight}
+  dark={architectureDark}
+  alt="Good code is a product of competing constraints: minimal, correct, and descriptive."
+/>
 
 When using layered architecture, data should only flow from the bottom up, and a layer can only access the layer directly beneath it. For example, the `LoginPage` should never directly access the `ApiClient`, or the `ApiClient` should not be dependent on the `UserRepository`. With this approach, each layer has a specific responsibility and can be tested in isolation.
 
