@@ -168,7 +168,7 @@ As seen above, with this approach, the current status is get from the `status`
 
 Let's now check the other way to handle states.
 
-## Do I want to emit a *fresh* state everytime?
+## Do I want to emit a *fresh* state every time?
 
 The other side of the state management aims for clean state updates, isolating the properties of
 each state that's emitted. This is useful for when the data being fetched is not going to change,
