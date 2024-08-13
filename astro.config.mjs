@@ -77,6 +77,12 @@ export default defineConfig({
           },
         },
         {
+          label: "Examples",
+          autogenerate: {
+            directory: "examples",
+          },
+        },
+        {
           label: "Internationalization",
           autogenerate: {
             directory: "internationalization",
