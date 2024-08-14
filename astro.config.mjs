@@ -18,13 +18,12 @@ export default defineConfig({
           // See https://scottwillsey.com/theme-flicker/
           tag: "script",
           attrs: {
-            src: `
-            <script>
-              const theme = localStorage.getItem("theme") || "light";
-              document.documentElement.dataset.theme = theme;
-            </script>
-            `,
+            type: "text/javascript",
           },
+          content: `
+              theme = localStorage.getItem("theme") || "light";
+              document.documentElement.dataset.theme = theme;
+            `,
         },
       ],
       customCss: [
@@ -42,7 +41,7 @@ export default defineConfig({
       ],
       editLink: {
         baseUrl:
-          "https://github.com/vgventures/very_good_engineering/edit/main/docs/",
+          "https://github.com/vgventures/very_good_engineering/edit/main/",
       },
       logo: {
         light: "./src/assets/logos/unicorn_light.png",
