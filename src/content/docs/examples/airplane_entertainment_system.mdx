@@ -3,14 +3,17 @@ title: 🛫 Airplane Entertainment System
 description: A sample project that simulates an airplane entertainment system.
 ---
 
-import { Image, Picture } from 'astro:assets';
-import airplaneEntertainmentSystemScreenshot from './images/airplane_entertainment_system.png';
-import flightTrackers from './images/flight_tracker.png';
-import transitionAnimation from './images/transition_animation.gif';
+import { Image, Picture } from "astro:assets";
+import airplaneEntertainmentSystemScreenshot from "./images/airplane_entertainment_system.png";
+import flightTrackers from "./images/flight_tracker.png";
+import transitionAnimation from "./images/transition_animation.gif";
 
 The Airplane Entertainment System simulates an in-flight entertainment system that provides mock flight progress updates, weather, and an audio player.
 
-<Image src={airplaneEntertainmentSystemScreenshot} alt="Screenshot of the Airplane Entertainment FileSystem." />
+<Image
+  src={airplaneEntertainmentSystemScreenshot}
+  alt="Screenshot of the Airplane Entertainment FileSystem."
+/>
 
 The source code for this project is available on [GitHub](https://github.com/VGVentures/airplane_entertainment_system). To view the live demo, click [here](https://cuddly-doodle-kgvmnp1.pages.github.io/).
 
@@ -20,7 +23,11 @@ The Airplane Entertainment System was built using [layered architecture](../../a
 
 ### Flight Tracker
 
-<Image src={flightTrackers} alt="Screenshot of the flight tracker." width="500" />
+<Image
+  src={flightTrackers}
+  alt="Screenshot of the flight tracker."
+  width="500"
+/>
 
 The flight tracker simulates a flight between Newark and New York City, providing updates on the flight's progress every minute. The flight is scheduled to take off at 1:00 PM and is estimated to take 45 minutes, but the simulated delays can change the arrival time. For simplicity, a timestamp is included in the API response that begins at 1:00 PM and is incremented by one minute for each update.
 
@@ -47,7 +54,7 @@ The [Flight Information Repository](https://github.com/VGVentures/airplane_enter
 
     return _flightController!.stream;
   }
-  ```
+```
 
 :::tip
 Notice that we are using a [BehaviorSubject](https://pub.dev/documentation/rxdart/latest/rx/BehaviorSubject-class.html) here from the [rxdart](https://pub.dev/packages/rxdart) package as a stream controller. Since the repository could be used to cache the data, the BehaviorSubject is used to provide the last emitted value to any new listeners.
@@ -83,6 +90,7 @@ The Airplane Entertainment System uses bottom and side navigation bars to switch
   ],
 )
 ```
+
 The `HomeScreenRouteData` class is the route to our [AirplaneEntertainmentSystemScreen](https://github.com/VGVentures/airplane_entertainment_system/blob/main/lib/airplane_entertainment_system/view/airplane_entertainment_system_screen.dart) widget, which is the container for our navigation bars and content.
 
 ```dart
@@ -110,6 +118,7 @@ class HomeScreenRouteData extends StatefulShellRouteData {
   }
 }
 ```
+
 :::note
 The `routes.dart` file is used to create the generated routing code. Notice that the `static` `$navigatorContainerBuilder` function is added here so it can be provided to the `StatefulShellRoute` when the code is generated. More information about the `navigatorContainerBuilder` can be found in the [StatefulShellRoute Transition Animations](#statefulshellroute-transition-animations) section below.
 :::
@@ -148,7 +157,11 @@ class MusicPlayerPageRouteData extends GoRouteData {
 
 ### StatefulShellRoute Transition Animations
 
-<Image src={transitionAnimation} alt="Transition animation when switching between tabs." width="300" />
+<Image
+  src={transitionAnimation}
+  alt="Transition animation when switching between tabs."
+  width="300"
+/>
 
 To add custom transition animations to your routes that are in the same navigation stack, override the `GoRouteData`'s `pageBuilder` method. Your custom animation will then be used anytime you navigate to that route.
 
@@ -220,6 +233,7 @@ navigationShell.goBranch(
       index == navigationShell.currentIndex,
 );
 ```
+
 :::note
 Setting the `initialLocation` parameter to `true` will set the route to the initial location. This is sometimes the desired behavior when the user selects the tab that is already active.
 :::
