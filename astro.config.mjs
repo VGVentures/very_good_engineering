@@ -28,7 +28,8 @@ export default defineConfig({
       ],
       customCss: [
         // Add tailwind base styles:
-        "./src/assets/styles/tailwind.css",
+        "./src/styles/tailwind.css",
+        "./src/styles/vgv_brand.css",
         "@fontsource/poppins/100.css",
         "@fontsource/poppins/200.css",
         "@fontsource/poppins/300.css",

@@ -4,6 +4,7 @@ import { languageColors, type LanguageColor } from "./github_languages";
 export type GithubRepository = {
   name: string;
   organization: string;
+  url: string;
   fullName: string;
   description: string;
   stars: number;
@@ -14,8 +15,17 @@ export type GithubRepository = {
 
 export type GithubRepositories = { [key: string]: GithubRepository };
 
+export const organizationName = "VGVentures";
+
+// Personal access token environment variable name.
+// For locally building this project, make your own PAT and set it in your
+// environment under this name.
+//
+// This secret environment value is already provided for the repository so that
+// GitHub actions will run accordingly.
+export const VGVENTURES_GITHUB_PAT = "VGVENTURES_GITHUB_PAT";
+
 var repositoryCache: GithubRepositories | undefined;
-const organizationName = "VGVentures";
 
 export async function getRepositories(): Promise<GithubRepositories> {
   if (repositoryCache === undefined) {
@@ -30,7 +40,7 @@ export async function getRepositories(): Promise<GithubRepositories> {
 async function fetchOrganizationPublicRepositories(
   organizationName: string,
 ): Promise<GithubRepositories> {
-  const octokit = new Octokit({ auth: process.env["GH_BASIC"] });
+  const octokit = new Octokit({ auth: process.env[VGVENTURES_GITHUB_PAT] });
 
   // Get EVERY public repo in the organization.
   const response = await octokit.repos.listForOrg({
@@ -56,6 +66,7 @@ async function fetchOrganizationPublicRepositories(
     const repo: GithubRepository = {
       name: raw["name"],
       organization: organizationName,
+      url: raw["html_url"],
       fullName: raw["full_name"],
       description: raw["description"] ?? "",
       stars: raw["stargazers_count"] ?? 0,
@@ -64,7 +75,7 @@ async function fetchOrganizationPublicRepositories(
       languageColor: languageColor,
     };
     repos[repo.fullName] = repo;
-    console.log("GitHub Repository: " + repo.fullName);
+    console.log("GitHub Repository: " + JSON.stringify(repo, null, 2));
   }
 
   return repos;
