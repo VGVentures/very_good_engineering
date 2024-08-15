@@ -1,0 +1,60 @@
+---
+import { CardGrid } from "@astrojs/starlight/components";
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import GithubCard from "~/components/github_card/github-card.astro";
+---
+
+<StarlightPage
+  frontmatter={{
+    title: "Very Good Engineering",
+    template: "splash",
+    hero: {
+      title: "Very Good Engineering",
+      tagline: "A comprehensive guide to building better software, faster.",
+      image: {
+        dark: {
+          src: "/src/assets/logos/unicorn_dark.png",
+          width: 860,
+          height: 772,
+          format: "png",
+        },
+        light: {
+          src: "/src/assets/logos/unicorn_light.png",
+          width: 860,
+          height: 772,
+          format: "png",
+        },
+      },
+      actions: [
+        {
+          text: "Read the Best Practices",
+          link: "/architecture",
+          icon: "right-arrow",
+          variant: "primary",
+        },
+        {
+          text: "Learn more about Very Good Ventures",
+          link: "https://verygood.ventures",
+          icon: "external",
+        },
+      ],
+    },
+  }}
+>
+  <h2>What we're up to</h2>
+  <CardGrid>
+    <GithubCard organizationOrUser="VGVentures" repo="pinball" />
+    <GithubCard organizationOrUser="VGVentures" repo="slide_puzzle" />
+  </CardGrid>
+</StarlightPage>
+
+<!-- 
+  actions:
+    - text: Read the Best Practices
+      link: /architecture
+      icon: right-arrow
+      variant: primary
+    - text: Learn more about Very Good Ventures
+      link: https://verygood.ventures
+      icon: external
+-->
