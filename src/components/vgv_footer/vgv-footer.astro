@@ -1,0 +1,97 @@
+---
+import CallToAction from "@astrojs/starlight/components/CallToAction.astro";
+import { Image } from "astro:assets";
+import VGVWordmarkDark from "~/assets/logos/vgv_wordmark_dark.svg";
+import Pattern2 from "~/components/branding/pattern-2.astro";
+---
+
+<div class="background-container">
+  <div class="background">
+    <Pattern2 class="background-img" />
+  </div>
+</div>
+<section class="footer-contents">
+  <section class="main-contents">
+    <div>
+      <Image src={VGVWordmarkDark} alt="VGV Wordmark" class="logo" />
+      <div class="shrink">
+        <CallToAction
+          variant="primary"
+          link="https://verygood.ventures/contact"
+        >
+          Let's talk
+        </CallToAction>
+      </div>
+    </div>
+    <div class="links-container">
+      <a href="https://verygood.ventures/">Home</a>
+      <a href="https://verygood.ventures/our-team">About</a>
+      <a href="https://verygood.ventures/testimonials">Testimonials</a>
+      <a href="https://verygood.ventures/careers">Careers</a>
+      <a href="https://verygood.ventures/success-stories">Our Work</a>
+      <a href="/">Engineering</a>
+    </div>
+  </section>
+</section>
+
+<style>
+  .footer-contents {
+    padding: 2.5rem var(--sl-content-pad-x);
+    height: 100%;
+    z-index: 10;
+    position: relative;
+    display: block;
+  }
+  .logo {
+    display: inline-block;
+    margin-bottom: 2rem;
+  }
+  .main-contents {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .shrink {
+    max-width: fit-content;
+  }
+  .links-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .links-container a,
+  a:visited,
+  a:active {
+    color: var(--vgv-footer-text);
+    text-decoration: none;
+    font-size: 1rem;
+
+    background-color: var(--vgv-footer-bg);
+    border-radius: 16px;
+    padding: 2px 8px;
+    margin: 2px 0px;
+  }
+
+  .links-container a:hover {
+    background-color: var(--vgv-gray-70);
+    font-weight: bold;
+  }
+
+  .background-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .background {
+    position: absolute;
+    width: 600px;
+    height: auto;
+    top: 15px;
+    left: 420px;
+  }
+</style>
