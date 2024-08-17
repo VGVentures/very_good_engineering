@@ -28,7 +28,9 @@ export default defineConfig({
       ],
       customCss: [
         // Add tailwind base styles:
-        "./src/assets/styles/tailwind.css",
+        "./src/styles/tailwind.css",
+        "./src/styles/vgv_brand.css",
+        "./src/styles/theme.css",
         "@fontsource/poppins/100.css",
         "@fontsource/poppins/200.css",
         "@fontsource/poppins/300.css",
@@ -118,6 +120,10 @@ export default defineConfig({
           },
         },
       ],
+      components: {
+        TwoColumnContent:
+          "./src/components/vgv_footer/vgv-two-column-content.astro",
+      },
     }),
     react(),
     mdx(),
