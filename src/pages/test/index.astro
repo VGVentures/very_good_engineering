@@ -9,6 +9,7 @@ import VgvPage from "~/components/vgv_page/vgv-page.astro";
 // import GithubCard from "~/components/github_card/github-card.astro";
 export type Props = StarlightPageProps;
 
+import CallToAction from "@astrojs/starlight/components/CallToAction.astro";
 import Diagram from "~/components/diagram.astro";
 import mainHeroDark from "./hero_dark.png";
 import mainHeroLight from "./hero_light.png";
@@ -16,31 +17,69 @@ import mainHeroLight from "./hero_light.png";
 const props = await generateStarlightPageRouteData({
   props: {
     ...Astro.props,
-    frontmatter: { title: "Very Good Engineering", tableOfContents: false },
+    frontmatter: {
+      title: "Very Good Engineering",
+      tableOfContents: false,
+      hero: {
+        actions: [
+          {
+            text: "Read the Best Practices",
+            link: "/architecture",
+            icon: "right-arrow",
+            variant: "primary",
+          },
+          {
+            text: "Learn more about Very Good Ventures",
+            link: "https://verygood.ventures",
+            icon: "external",
+          },
+        ],
+      },
+    },
+
     hasSidebar: false,
   },
   url: Astro.url,
 });
+
+const actions = props.entry.data.hero?.actions ?? [];
 ---
 
 <VgvPage {...props}>
   <VgvHeroArea>
     <Fragment slot="content">
-      <h1
-        class="text-4xl lg:text-5xl xl:text-6xl font-bold [text-wrap:balance] text-center lg:text-start"
-      >
-        Very Good Engineering
-      </h1>
-      <p
-        class="text-lg mt-4 max-w-lg [text-wrap:balance] text-center lg:text-start"
-      >
-        A comprehensive guide to building better software, faster.
-      </p>
+      <div class="sl-flex stack">
+        <h1
+          class="title font-medium leading-[3rem] lg:leading-[4rem] text-4xl lg:text-5xl xl:text-6xl text-pretty text-center lg:text-start"
+        >
+          &#129412; Very Good<br />
+          <span
+            class="font-bold text-5xl lg:text-6xl xl:text-7xl text-balance text-center lg:text-start"
+          >
+            Engineering
+          </span>
+        </h1>
+        <p class="text-lg mt-4 max-w-lg text-pretty text-center lg:text-start">
+          A comprehensive guide to building better software, faster.
+        </p>
+      </div>
     </Fragment>
+    <div
+      slot="actions"
+      class="actions-container lg:min-w-[200%] justify-center lg:justify-start"
+    >
+      {
+        actions.map(({ text, ...attrs }) => (
+          <CallToAction {...attrs} set:html={text} />
+        ))
+      }
+    </div>
 
     <Diagram
       slot="graphic"
-      additionalProps={{ style: "max-width: 100%; height: auto" }}
+      additionalProps={{
+        style: "max-width: 100%; height: auto; display: content;",
+      }}
       light={mainHeroLight}
       dark={mainHeroDark}
       alt="Hero image."
@@ -48,4 +87,36 @@ const props = await generateStarlightPageRouteData({
   </VgvHeroArea>
 </VgvPage>
 
-<style></style>
+<style>
+  .actions-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .button {
+    max-width: max-content;
+    flex: 0 1 auto;
+  }
+</style>
+
+<style>
+  .title {
+    /* Don't ever truncate a single letter. */
+    min-width: max-content;
+  }
+
+  @media (min-width: 50rem) {
+    .stack {
+      text-align: start;
+    }
+  }
+
+  .stack {
+    flex-direction: column;
+    gap: clamp(1.5rem, calc(1.5rem + 1vw), 2rem);
+    text-align: center;
+  }
+</style>
