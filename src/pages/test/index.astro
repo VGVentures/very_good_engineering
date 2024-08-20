@@ -1,0 +1,51 @@
+---
+import {
+  generateStarlightPageRouteData,
+  type StarlightPageProps,
+} from "node_modules/@astrojs/starlight/utils/starlight-page";
+import VgvHeroArea from "~/components/vgv_hero_area/vgv-hero-area.astro";
+import VgvPage from "~/components/vgv_page/vgv-page.astro";
+// import Hero from "@astrojs/starlight/components/Hero.astro";
+// import GithubCard from "~/components/github_card/github-card.astro";
+export type Props = StarlightPageProps;
+
+import Diagram from "~/components/diagram.astro";
+import mainHeroDark from "./hero_dark.png";
+import mainHeroLight from "./hero_light.png";
+
+const props = await generateStarlightPageRouteData({
+  props: {
+    ...Astro.props,
+    frontmatter: { title: "Very Good Engineering", tableOfContents: false },
+    hasSidebar: false,
+  },
+  url: Astro.url,
+});
+---
+
+<VgvPage {...props}>
+  <VgvHeroArea>
+    <Fragment slot="content">
+      <h1
+        class="text-4xl lg:text-5xl xl:text-6xl font-bold [text-wrap:balance] text-center lg:text-start"
+      >
+        Very Good Engineering
+      </h1>
+      <p
+        class="text-lg mt-4 max-w-lg [text-wrap:balance] text-center lg:text-start"
+      >
+        A comprehensive guide to building better software, faster.
+      </p>
+    </Fragment>
+
+    <Diagram
+      slot="graphic"
+      additionalProps={{ style: "max-width: 100%; height: auto" }}
+      light={mainHeroLight}
+      dark={mainHeroDark}
+      alt="Hero image."
+    />
+  </VgvHeroArea>
+</VgvPage>
+
+<style></style>

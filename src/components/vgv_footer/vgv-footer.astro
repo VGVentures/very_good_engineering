@@ -5,36 +5,41 @@ import VGVWordmarkDark from "~/assets/logos/vgv_wordmark_dark.svg";
 import Pattern2 from "~/components/branding/pattern-2.astro";
 ---
 
-<div class="background-container">
-  <div class="background">
-    <Pattern2 class="background-img" />
+<div class="footer-area">
+  <div class="background-container">
+    <div class="background">
+      <Pattern2 class="background-img" />
+    </div>
   </div>
-</div>
-<section class="footer-contents">
-  <section class="main-contents">
-    <div>
-      <Image src={VGVWordmarkDark} alt="VGV Wordmark" class="logo" />
-      <div class="shrink">
-        <CallToAction
-          variant="primary"
-          link="https://verygood.ventures/contact"
-        >
-          Let's talk
-        </CallToAction>
+  <section class="footer-contents">
+    <section class="main-contents">
+      <div>
+        <Image src={VGVWordmarkDark} alt="VGV Wordmark" class="logo" />
+        <div class="shrink">
+          <CallToAction
+            variant="primary"
+            link="https://verygood.ventures/contact"
+          >
+            Let's talk
+          </CallToAction>
+        </div>
       </div>
-    </div>
-    <div class="links-container">
-      <a href="https://verygood.ventures/">Home</a>
-      <a href="https://verygood.ventures/our-team">About</a>
-      <a href="https://verygood.ventures/testimonials">Testimonials</a>
-      <a href="https://verygood.ventures/careers">Careers</a>
-      <a href="https://verygood.ventures/success-stories">Our Work</a>
-      <a href="/">Engineering</a>
-    </div>
+      <div class="links-container">
+        <a href="https://verygood.ventures/">Home</a>
+        <a href="https://verygood.ventures/our-team">About</a>
+        <a href="https://verygood.ventures/testimonials">Testimonials</a>
+        <a href="https://verygood.ventures/careers">Careers</a>
+        <a href="https://verygood.ventures/success-stories">Our Work</a>
+        <a href="/">Engineering</a>
+      </div>
+    </section>
   </section>
-</section>
+</div>
 
 <style>
+  .footer-area {
+    min-height: 24rem;
+  }
   .footer-contents {
     padding: 2.5rem var(--sl-content-pad-x);
     height: 100%;
@@ -58,6 +63,7 @@ import Pattern2 from "~/components/branding/pattern-2.astro";
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    margin-left: 8rem;
   }
 
   .links-container a,
@@ -85,11 +91,12 @@ import Pattern2 from "~/components/branding/pattern-2.astro";
     z-index: 0;
     pointer-events: none;
     overflow: hidden;
+    background-color: var(--vgv-footer-bg);
   }
 
   .background {
     position: absolute;
-    width: 600px;
+    width: 700px;
     height: auto;
     top: 15px;
     left: 420px;
