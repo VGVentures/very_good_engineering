@@ -123,6 +123,8 @@ export default defineConfig({
       components: {
         TwoColumnContent:
           "./src/components/vgv_two_column_content/vgv-two-column-content.astro",
+        Header: "./src/components/vgv_nav/vgv-nav.astro",
+        PageFrame: "./src/components/vgv_page/vgv-page-frame.astro",
       },
     }),
     react(),

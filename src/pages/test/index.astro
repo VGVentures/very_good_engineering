@@ -9,7 +9,6 @@ import VgvPage from "~/components/vgv_page/vgv-page.astro";
 export type Props = StarlightPageProps;
 
 import CallToAction from "@astrojs/starlight/components/CallToAction.astro";
-import CardGrid from "node_modules/@astrojs/starlight/user-components/CardGrid.astro";
 import Icon from "node_modules/@astrojs/starlight/user-components/Icon.astro";
 import DartFrogDemo from "~/components/dart_frog/dart-frog-demo.astro";
 import DartFrog from "~/components/dart_frog/dart-frog.astro";
@@ -18,6 +17,8 @@ import GithubCard from "~/components/github_card/github-card.astro";
 import VeryGoodCliDemo from "~/components/very_good_cli/very-good-cli-demo.astro";
 import VeryGoodCli from "~/components/very_good_cli/very-good-cli.astro";
 import VgvChip from "~/components/vgv_chip/vgv-chip.astro";
+import VgvScrollItem from "~/components/vgv_scroll/vgv-scroll-item.astro";
+import VgvScroll from "~/components/vgv_scroll/vgv-scroll.astro";
 import hero from "./very_good_engineering.png";
 
 const props = await generateStarlightPageRouteData({
@@ -197,12 +198,36 @@ const actions = props.entry.data.hero?.actions ?? [];
       </ul>
     </div>
   </VgvHeroBreakout>
-  <CardGrid>
-    <GithubCard owner="VGVentures" repo="airplane_entertainment_system" />
-    <GithubCard owner="VGVentures" repo="vehicle_cockpit" />
-    <GithubCard owner="VGVentures" repo="financial_dashboard" />
-    <GithubCard owner="VGVentures" repo="bloc_concurrency_demos" />
-  </CardGrid>
+  <VgvScroll>
+    <Fragment slot="title">
+      <VgvChip color="purple">SHIP SAFER</VgvChip>
+      <h2
+        class="text-4xl lg:text-5xl font-medium lg:tracking-tight mt-4 text-center"
+      >
+        Very Good <span class="font-bold">Practices</span>
+      </h2>
+    </Fragment>
+    <Fragment>
+      <VgvScrollItem>
+        <GithubCard owner="VeryGoodOpenSource" repo="formz" />
+      </VgvScrollItem>
+      <VgvScrollItem>
+        <GithubCard owner="VeryGoodOpenSource" repo="very_good_analysis" />
+      </VgvScrollItem>
+      <VgvScrollItem>
+        <GithubCard owner="VeryGoodOpenSource" repo="very_good_workflows" />
+      </VgvScrollItem>
+      <VgvScrollItem>
+        <GithubCard owner="VeryGoodOpenSource" repo="very_good_infinite_list" />
+      </VgvScrollItem>
+      <VgvScrollItem>
+        <GithubCard owner="VeryGoodOpenSource" repo="cli_completion" />
+      </VgvScrollItem>
+      <VgvScrollItem>
+        <GithubCard owner="VeryGoodOpenSource" repo="r13n" />
+      </VgvScrollItem>
+    </Fragment>
+  </VgvScroll>
 </VgvPage>
 
 <style>

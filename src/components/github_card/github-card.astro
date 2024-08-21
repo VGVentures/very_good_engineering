@@ -16,14 +16,14 @@ const props = Astro.props;
 const repo = await getRepository(props.owner, props.repo);
 ---
 
-<a title="hi" href={repo.url} class={css.ghCard}>
+<a href={repo.url} class={css.ghCard}>
   <header class={css.header}>
     <div class={css.ghLogo}>
       <Icon name="github" size="24px" />
     </div>
     <div class={css.headerTitle}>
-      <h2>{props.owner}/</h2>
-      <h1>{props.repo}</h1>
+      <h2 class="text-nowrap">{props.owner}/</h2>
+      <h1 class="text-nowrap">{props.repo}</h1>
     </div>
     <div class={css.headerLogo}>
       <img src={props.logo} width="auto" height="auto" />

@@ -64,7 +64,10 @@ export async function getRepository(
     repositoryCache[fullName] = await fetchRepository(owner, repo);
   }
 
-  return repositoryCache[fullName];
+  const ghRepo = repositoryCache[fullName];
+  console.log("Found repository:" + JSON.stringify(ghRepo, null, 2));
+
+  return ghRepo;
 }
 
 // Returns a map of repository full names to repository data.
@@ -113,14 +116,14 @@ async function fetchRepository(
     repo,
   });
 
-  if (typeof response !== "object") {
+  if (typeof response !== "object" || typeof response.data !== "object") {
     throw new Error(
       "Unexpected response from GitHub API: " +
         JSON.stringify(response, null, 2),
     );
   }
 
-  return mapRepository(response);
+  return mapRepository(response.data);
 }
 
 function mapRepository(raw: { [key: string]: any }): GithubRepository {
