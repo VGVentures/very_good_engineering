@@ -122,7 +122,7 @@ export default defineConfig({
       ],
       components: {
         TwoColumnContent:
-          "./src/components/vgv_footer/vgv-two-column-content.astro",
+          "./src/components/vgv_two_column_content/vgv-two-column-content.astro",
       },
     }),
     react(),
