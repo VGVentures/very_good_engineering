@@ -46,8 +46,8 @@ export default defineConfig({
           "https://github.com/vgventures/very_good_engineering/edit/main/",
       },
       logo: {
-        light: "./src/assets/logos/unicorn_light.png",
-        dark: "./src/assets/logos/unicorn_dark.png",
+        light: "./src/assets/logos/logo_light.svg",
+        dark: "./src/assets/logos/logo_dark.svg",
       },
       social: {
         github: "https://github.com/vgventures/very_good_engineering",
