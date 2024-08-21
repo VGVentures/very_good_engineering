@@ -64,7 +64,7 @@ export async function getRepository(
     repositoryCache[fullName] = await fetchRepository(owner, repo);
   }
 
-  const ghRepo = repositoryCache[fullName];
+  const ghRepo = repositoryCache[fullName]!;
   console.log("Found repository:" + JSON.stringify(ghRepo, null, 2));
 
   return ghRepo;
