@@ -4,103 +4,23 @@ import type { Props as PageFrameProps } from "@astrojs/starlight/props";
 import VGVFooter from "../vgv_footer/vgv-footer.astro";
 
 interface Props extends PageFrameProps {}
+
+const props = Astro.props;
+
+const { hasSidebar } = props;
 ---
 
 <Default {...Astro.props}>
   <slot name="right-sidebar" slot="right-sidebar" />
   <slot slot="default" />
+  {hasSidebar && <VGVFooter compact={true} />}
 </Default>
-<div class="footer-pane">
-  <div class="footer">
-    <div class="content-panel">
-      <div class="sl-container">
-        <VGVFooter />
-      </div>
-    </div>
-  </div>
-</div>
+
+{!hasSidebar && <VGVFooter />}
 
 <style is:inline>
   .main-frame {
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
-  }
-
-  .main-frame > div {
-    flex-grow: 1;
-  }
-</style>
-
-<style>
-  .action-container {
-    display: block;
-    max-width: max-content;
-  }
-
-  .sl-container {
-    position: relative;
-  }
-
-  .footer {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    color: var(--vgv-footer-text);
-    background-color: var(--vgv-footer-bg);
-
-    position: relative;
-    overflow: hidden;
-  }
-
-  :global([data-has-sidebar][data-has-toc]) .footer {
-    background-color: inherit;
-  }
-  :global([data-has-sidebar][data-has-toc]) .sl-container {
-    background-color: var(--vgv-footer-bg);
-  }
-
-  .footer-pane {
-    display: flex;
-    flex-grow: 1;
-    flex-direction: column;
-    isolation: isolate;
-  }
-
-  .container {
-    max-width: calc(var(--sl-content-width) - var(--sl-sidebar-width));
-  }
-
-  @media (min-width: 72rem) {
-    .footer-pane {
-      width: 100%;
-    }
-    :global([data-has-sidebar][data-has-toc]) .footer-pane {
-      --sl-content-margin-inline: auto 0;
-
-      order: 1;
-      width: calc(
-        var(--sl-content-width) +
-          (100% - var(--sl-content-width) - var(--sl-sidebar-width)) / 2
-      );
-    }
-  }
-
-  /* From ContentPanel */
-  .content-panel {
-    height: 100%;
-  }
-  .content-panel + .content-panel {
-    border-top: 1px solid var(--sl-color-hairline);
-  }
-  .sl-container {
-    max-width: calc(var(--sl-content-width) + var(--sl-content-pad-x));
-    height: 100%;
-  }
-
-  @media (min-width: 72rem) {
-    .sl-container {
-      margin-inline: var(--sl-content-margin-inline, auto);
-    }
   }
 </style>

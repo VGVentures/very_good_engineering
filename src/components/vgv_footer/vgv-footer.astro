@@ -1,69 +1,53 @@
 ---
-import CallToAction from "@astrojs/starlight/components/CallToAction.astro";
 import { Image } from "astro:assets";
 import VGVWordmarkDark from "~/assets/logos/vgv_wordmark_dark.svg";
-import Pattern2 from "~/components/branding/pattern-2.astro";
+
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
 ---
 
-<div class="footer-area">
-  <div class="background-container">
-    <div class="background">
-      <Pattern2 class="background-img" />
+<div
+  class:list={[
+    "footer-area bg-[var(--vgv-footer-bg)] flex flex-row justify-center ",
+    compact ? "compact" : "",
+  ]}
+>
+  <section
+    class="max-w-screen-xl flex flex-row gap-2 p-8 flex-wrap grow items-start"
+  >
+    <div
+      class="grow flex flex-row md:justify-start lg:justify-start xl:justify-start 2xl:justify-start justify-center"
+    >
+      <Image src={VGVWordmarkDark} alt="VGV Wordmark" class="logo" />
     </div>
-  </div>
-  <section class="footer-contents">
-    <section class="main-contents">
-      <div>
-        <Image src={VGVWordmarkDark} alt="VGV Wordmark" class="logo" />
-        <div class="shrink">
-          <CallToAction
-            variant="primary"
-            link="https://verygood.ventures/contact"
-          >
-            Let's talk
-          </CallToAction>
-        </div>
-      </div>
-      <div class="links-container">
-        <a href="https://verygood.ventures/">Home</a>
-        <a href="https://verygood.ventures/our-team">About</a>
-        <a href="https://verygood.ventures/testimonials">Testimonials</a>
-        <a href="https://verygood.ventures/careers">Careers</a>
-        <a href="https://verygood.ventures/success-stories">Our Work</a>
-        <a href="/">Engineering</a>
-      </div>
-    </section>
+    <div
+      class="links-container grow flex md:flex-col items-end justify-center flex-row flex-wrap"
+    >
+      <a href="https://verygood.ventures/">Home</a>
+      <a href="https://verygood.ventures/our-team">About</a>
+      <a href="https://verygood.ventures/testimonials">Testimonials</a>
+      <a href="https://verygood.ventures/careers">Careers</a>
+      <a href="https://verygood.ventures/success-stories">Our Work</a>
+      <a href="/">Engineering</a>
+    </div>
   </section>
 </div>
 
 <style>
-  .footer-area {
-    min-height: 24rem;
+  @media (min-width: 72rem) {
+    .compact {
+      margin-inline: var(--sl-content-margin-inline, auto);
+    }
   }
-  .footer-contents {
-    padding: 2.5rem var(--sl-content-pad-x);
-    height: 100%;
-    z-index: 10;
-    position: relative;
-    display: block;
+  .compact {
+    max-width: calc(var(--sl-content-width) + var(--sl-content-pad-x));
   }
+
   .logo {
     display: inline-block;
-    margin-bottom: 2rem;
-  }
-  .main-contents {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  .shrink {
-    max-width: fit-content;
-  }
-  .links-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    margin-left: 8rem;
   }
 
   .links-container a,
@@ -82,23 +66,5 @@ import Pattern2 from "~/components/branding/pattern-2.astro";
   .links-container a:hover {
     background-color: var(--vgv-gray-70);
     font-weight: bold;
-  }
-
-  .background-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
-    overflow: hidden;
-    background-color: var(--vgv-footer-bg);
-  }
-
-  .background {
-    position: absolute;
-    width: 700px;
-    height: auto;
-    top: 15px;
-    left: 420px;
   }
 </style>
