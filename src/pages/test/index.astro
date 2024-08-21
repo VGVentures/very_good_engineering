@@ -11,8 +11,7 @@ export type Props = StarlightPageProps;
 
 import CallToAction from "@astrojs/starlight/components/CallToAction.astro";
 import Diagram from "~/components/diagram.astro";
-import mainHeroDark from "./hero_dark.png";
-import mainHeroLight from "./hero_light.png";
+import hero from "./very_good_engineering.png";
 
 const props = await generateStarlightPageRouteData({
   props: {
@@ -59,7 +58,9 @@ const actions = props.entry.data.hero?.actions ?? [];
             Engineering
           </span>
         </h1>
-        <p class="text-lg mt-4 max-w-lg text-pretty text-center lg:text-start">
+        <p
+          class="subtitle text-lg mt-4 max-w-lg text-pretty text-center lg:text-start"
+        >
           A comprehensive guide to building better software, faster.
         </p>
       </div>
@@ -75,15 +76,14 @@ const actions = props.entry.data.hero?.actions ?? [];
       }
     </div>
 
-    <Diagram
-      slot="graphic"
-      additionalProps={{
-        style: "max-width: 100%; height: auto; display: content;",
-      }}
-      light={mainHeroLight}
-      dark={mainHeroDark}
-      alt="Hero image."
-    />
+    <div slot="graphic">
+      <Diagram
+        classes="max-w-[100%] lg:max-w-[inherit]"
+        light={hero}
+        dark={hero}
+        alt="Hero image."
+      />
+    </div>
   </VgvHeroArea>
 </VgvPage>
 
@@ -118,5 +118,9 @@ const actions = props.entry.data.hero?.actions ?? [];
     flex-direction: column;
     gap: clamp(1.5rem, calc(1.5rem + 1vw), 2rem);
     text-align: center;
+  }
+
+  .subtitle {
+    max-width: 100%;
   }
 </style>

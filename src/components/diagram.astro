@@ -5,7 +5,7 @@ interface Props {
   light: ImageMetadata;
   dark: ImageMetadata;
   alt: string;
-  additionalProps?: Record<string, string>;
+  classes: string;
 }
 
 const { ...props } = Astro.props;
@@ -27,5 +27,5 @@ const dark = await getImage({
 {/* Only downloads what is needed, not both :) */}
 <picture>
   <source srcset={dark.src} media="(prefers-color-scheme: dark)" />
-  <img src={light.src} {...props.additionalProps ?? {}} />
+  <img src={light.src} class:list={props.classes} />
 </picture>
