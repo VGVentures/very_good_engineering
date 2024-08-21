@@ -44,10 +44,16 @@
   --vgv-card-bg-hover: var(--vgv-gray-10);
   --vgv-card-fg: black;
   --vgv-card-shadow: drop-shadow(0px 0px 8px var(--vgv-gray-30));
-  --vgv-card-shadow-hover: drop-shadow(0px 0px 16px var(--vgv-gray-30));
+  --vgv-card-shadow-hover: drop-shadow(0px 0px 12px var(--vgv-blue-20));
 
   --vgv-footer-text: var(--vgv-gray-30);
   --vgv-footer-bg: var(--vgv-navy);
+
+  --vgv-nav-bg: var(--vgv-gray-20);
+  --vgv-nav-glow: var(--vgv-gray-10);
+  --vgv-nav-opacity: 0.6;
+
+  --vgv-home-bg: var(--vgv-gray-20);
 }
 
 :root[data-theme="dark"] {
@@ -59,4 +65,10 @@
 
   --vgv-footer-text: var(--vgv-gray-30);
   --vgv-footer-bg: var(--vgv-gray-80);
+
+  --vgv-nav-bg: transparent;
+  --vgv-nav-glow: var(--vgv-gray-80);
+  --vgv-nav-opacity: 0;
+
+  --vgv-home-bg: transparent;
 }

@@ -1,7 +1,7 @@
 ---
 import Default from "@astrojs/starlight/components/TwoColumnContent.astro";
 import type { Props as PageFrameProps } from "@astrojs/starlight/props";
-import VGVFooter from "./vgv-footer.astro";
+import VGVFooter from "../vgv_footer/vgv-footer.astro";
 
 interface Props extends PageFrameProps {}
 ---
@@ -10,7 +10,7 @@ interface Props extends PageFrameProps {}
   <slot name="right-sidebar" slot="right-sidebar" />
   <slot slot="default" />
 </Default>
-<div class="main-pane">
+<div class="footer-pane">
   <div class="footer">
     <div class="content-panel">
       <div class="sl-container">
@@ -25,6 +25,10 @@ interface Props extends PageFrameProps {}
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+  }
+
+  .main-frame > div {
+    flex-grow: 1;
   }
 </style>
 
@@ -56,7 +60,7 @@ interface Props extends PageFrameProps {}
     background-color: var(--vgv-footer-bg);
   }
 
-  .main-pane {
+  .footer-pane {
     display: flex;
     flex-grow: 1;
     flex-direction: column;
@@ -68,10 +72,10 @@ interface Props extends PageFrameProps {}
   }
 
   @media (min-width: 72rem) {
-    .main-pane {
+    .footer-pane {
       width: 100%;
     }
-    :global([data-has-sidebar][data-has-toc]) .main-pane {
+    :global([data-has-sidebar][data-has-toc]) .footer-pane {
       --sl-content-margin-inline: auto 0;
 
       order: 1;
