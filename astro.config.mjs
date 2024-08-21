@@ -54,67 +54,68 @@ export default defineConfig({
       },
       sidebar: [
         {
-          label: "Architecture",
+          label: "🏛️ Architecture",
           autogenerate: {
             directory: "architecture",
           },
         },
         {
-          label: "Automation",
+          label: "🦾 Automation",
           autogenerate: {
             directory: "automation",
           },
         },
         {
-          label: "Code Style",
+          label: "✨ Code Style",
           autogenerate: {
             directory: "code_style",
           },
         },
         {
-          label: "Development",
+          label: "🦄 Development",
           autogenerate: {
             directory: "development",
           },
         },
         {
-          label: "Examples",
+          label: "📺 Examples",
+          badge: "NEW",
           autogenerate: {
             directory: "examples",
           },
         },
         {
-          label: "Internationalization",
+          label: "🌐 Internationalization",
           autogenerate: {
             directory: "internationalization",
           },
         },
         {
-          label: "Navigation",
+          label: "🗺️ Navigation",
           autogenerate: {
             directory: "navigation",
           },
         },
         {
-          label: "State Management",
+          label: "🪄 State Management",
           autogenerate: {
             directory: "state_management",
           },
         },
         {
-          label: "Testing",
+          label: "🧪 Testing",
           autogenerate: {
             directory: "testing",
           },
         },
         {
-          label: "Theming",
+          label: "🎨 Theming",
           autogenerate: {
             directory: "theming",
           },
         },
         {
-          label: "Widgets",
+          label: "🧩 Widgets",
           autogenerate: {
             directory: "widgets",
           },

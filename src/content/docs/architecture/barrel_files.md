@@ -1,5 +1,5 @@
 ---
-title: 🛢 Barrel Files
+title: Barrel Files
 description: Best practices for exposing public facing files.
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: 🎨 Theming
+title: Theming
 description: Theming best practices.
 ---
 
