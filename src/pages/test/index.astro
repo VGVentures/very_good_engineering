@@ -3,12 +3,21 @@ import {
   generateStarlightPageRouteData,
   type StarlightPageProps,
 } from "node_modules/@astrojs/starlight/utils/starlight-page";
-import VgvHeroArea from "~/components/vgv_hero_area/vgv-hero-area.astro";
+import VgvHeroBreakout from "~/components/vgv_hero/vgv-hero-breakout.astro";
+import VgvHeroFeature from "~/components/vgv_hero/vgv-hero-feature.astro";
 import VgvPage from "~/components/vgv_page/vgv-page.astro";
 export type Props = StarlightPageProps;
 
 import CallToAction from "@astrojs/starlight/components/CallToAction.astro";
+import CardGrid from "node_modules/@astrojs/starlight/user-components/CardGrid.astro";
+import Icon from "node_modules/@astrojs/starlight/user-components/Icon.astro";
+import DartFrogDemo from "~/components/dart_frog/dart-frog-demo.astro";
+import DartFrog from "~/components/dart_frog/dart-frog.astro";
 import Diagram from "~/components/diagram.astro";
+import GithubCard from "~/components/github_card/github-card.astro";
+import VeryGoodCliDemo from "~/components/very_good_cli/very-good-cli-demo.astro";
+import VeryGoodCli from "~/components/very_good_cli/very-good-cli.astro";
+import VgvChip from "~/components/vgv_chip/vgv-chip.astro";
 import hero from "./very_good_engineering.png";
 
 const props = await generateStarlightPageRouteData({
@@ -43,7 +52,7 @@ const actions = props.entry.data.hero?.actions ?? [];
 ---
 
 <VgvPage {...props}>
-  <VgvHeroArea>
+  <VgvHeroFeature>
     <Fragment slot="content">
       <div class="sl-flex stack">
         <h1
@@ -82,7 +91,118 @@ const actions = props.entry.data.hero?.actions ?? [];
         alt="Hero image."
       />
     </div>
-  </VgvHeroArea>
+  </VgvHeroFeature>
+
+  <VgvHeroBreakout>
+    <Fragment slot="heading">
+      <VgvChip color="purple">SHIP FASTER</VgvChip>
+      <h2
+        class="text-4xl lg:text-5xl font-medium lg:tracking-tight mt-4 text-center"
+      >
+        Very Good <span class="font-bold">Development</span>
+      </h2>
+      <p class="max-w-4xl text-lg my-6 text-center text-pretty">
+        Stop dreading the hard part — we've already created the tools you need
+        and established best practices that will let you ship <span
+          class="font-bold">fast</span
+        > and <span class="font-bold">safe</span>.
+      </p>
+    </Fragment>
+
+    <Fragment slot="first-image">
+      <VeryGoodCliDemo />
+    </Fragment>
+
+    <div slot="first-content" class="md:mr-8">
+      <div class="text-center md:text-left"><VeryGoodCli /></div>
+      <h3
+        class="text-2xl text-center md:text-left font-medium mt-4 text-balance"
+      >
+        &#128187; The Command-Line Interface to generate scalable templates and
+        use helpful commands.
+      </h3>
+      <p class="max-w-[100%] mt-4 text-balance text-center md:text-left">
+        Generate a <a href="https://cli.vgv.dev/docs/templates/core"
+          >Flutter app</a
+        >, <a href="https://cli.vgv.dev/docs/templates/flame_game"
+          >Flame game
+        </a>,
+        <a href="https://cli.vgv.dev/docs/templates/flutter_pkg">
+          Flutter package
+        </a>,
+        <a href="https://cli.vgv.dev/docs/templates/dart_pkg">Dart package</a>,
+        <a href="https://cli.vgv.dev/docs/templates/federated_plugin">
+          federated plugin
+        </a>, or
+        <a href="https://cli.vgv.dev/docs/templates/dart_cli">Dart CLI</a>
+        with one command.
+      </p>
+      <ul class="pl-4 mt-6 text-center md:text-left">
+        <li class="flex gap-2">
+          <Icon name="approve-check" color="green" class="size-6" />
+
+          <span class="text-sm">Scalable Starter Templates</span>
+        </li>
+        <li class="flex gap-2">
+          <Icon name="approve-check" color="green" class="size-6" />
+
+          <span class="text-sm">Built-In Best Practices</span>
+        </li>
+        <li class="flex gap-2">
+          <Icon name="approve-check" color="green" class="size-6" />
+
+          <span class="text-sm">Utility Commands</span>
+        </li>
+      </ul>
+    </div>
+
+    <Fragment slot="second-image">
+      <DartFrogDemo />
+    </Fragment>
+
+    <div slot="second-content" class="md:pl-10 justify-start flex flex-col">
+      <div class="text-center md:text-left text-black dark:text-slate-300">
+        <DartFrog />
+      </div>
+      <h3
+        class="text-2xl text-center md:text-left font-medium mt-4 text-balance grow"
+      >
+        &#127919; The fast, minimalistic backend framework for Dart
+      </h3>
+      <p class="max-w-[100%] mt-4 text-balance text-center md:text-left">
+        With Dart Frog, your client models will never be out of date. Quickly
+        and effectively build backends in Dart, all while sharing code between
+        the front-end and backend.
+      </p>
+      <ul class="pl-4 mt-6 text-center md:text-left">
+        <li class="flex gap-2">
+          <Icon name="approve-check" color="green" class="size-6" />
+
+          <span class="text-sm">Hot Reload</span>
+        </li>
+        <li class="flex gap-2">
+          <Icon name="approve-check" color="green" class="size-6" />
+
+          <span class="text-sm"
+            >Performance powered by <a href="https://pub.dev/packages/shelf"
+              >Shelf</a
+            ></span
+          >
+        </li>
+        <li class="flex gap-2">
+          <Icon name="approve-check" color="green" class="size-6" />
+
+          <span class="text-sm">Easy to learn API</span>
+        </li>
+      </ul>
+    </div>
+  </VgvHeroBreakout>
+  <CardGrid>
+    <GithubCard owner="VGVentures" repo="airplane_entertainment_system" />
+    <GithubCard owner="VGVentures" repo="vehicle_cockpit" />
+    <GithubCard owner="VGVentures" repo="financial_dashboard" />
+    <GithubCard owner="VGVentures" repo="bloc_concurrency_demos" />
+  </CardGrid>
 </VgvPage>
 
 <style>

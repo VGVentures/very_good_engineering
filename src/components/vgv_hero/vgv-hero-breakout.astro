@@ -1,0 +1,36 @@
+---
+interface Props {
+  // featureImage: ImageMetadata;
+}
+
+// const props = Astro.props;
+---
+
+<div
+  class="max-w-screen-xl px-5 mx-auto flex flex-col items-center justify-center dark:text-slate-300 text-slate-600"
+>
+  <slot name="heading" />
+
+  <div class="grid md:grid-cols-2 py-10 min-w-[100%]">
+    <div class="grid place-items-center pb-10 md:pb-0 md:order-2">
+      <slot name="first-image" />
+    </div>
+
+    <div class="grid place-items-center">
+      <div class="max-w-lg h-[100%]">
+        <slot name="first-content" />
+      </div>
+    </div>
+  </div>
+
+  <div class="grid md:grid-cols-2 py-10 min-w-[100%]">
+    <div class="grid place-items-center pb-10 md:pb-0 order-1">
+      <slot name="second-image" />
+    </div>
+    <div class="grid place-items-center order-1">
+      <div class="max-w-lg h-[100%]">
+        <slot name="second-content" />
+      </div>
+    </div>
+  </div>
+</div>
