@@ -7,7 +7,7 @@ import ThemeSelect from "@astrojs/starlight/components/ThemeSelect.astro";
 import type { Props } from "@astrojs/starlight/props";
 ---
 
-<header class="sticky top-0 z-20 transition-all backdrop-blur-2xl">
+<header class="fixed top-0 w-[100%] transition-all backdrop-blur-2xl z-20">
   <div class="header-background"></div>
   <div class="header">
     <div class="inner-header sl-flex">
@@ -28,6 +28,12 @@ import type { Props } from "@astrojs/starlight/props";
   </div>
 </header>
 
+<style is:global>
+  :root {
+    --sl-z-index-navbar: 6000;
+  }
+</style>
+
 <style>
   .header-background {
     position: absolute;
@@ -37,10 +43,11 @@ import type { Props } from "@astrojs/starlight/props";
     padding: 0px;
     background-color: var(--vgv-nav-bg);
     opacity: var(--vgv-nav-opacity);
-    z-index: -1;
+    z-index: calc(var(--sl-z-index-navbar) - 1);
     pointer-events: none;
   }
   .header {
+    position: fixed;
     z-index: var(--sl-z-index-navbar);
     position: relative;
 
