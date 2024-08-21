@@ -1,5 +1,5 @@
 ---
-import type { Props } from "@astrojs/starlight/props";
+import type { Props as StarlightProps } from "@astrojs/starlight/props";
 
 // Built-in CSS styles.
 import "node_modules/@astrojs/starlight/style/props.css";
@@ -22,22 +22,29 @@ import "node_modules/@astrojs/starlight/style/asides.css";
 import "virtual:starlight/user-css";
 import VgvTwoColumnContent from "../vgv_two_column_content/vgv-two-column-content.astro";
 
+interface Props extends StarlightProps {
+  htmlClasses?: string[];
+}
+
+const props = Astro.props;
+
 const pagefindEnabled =
-  Astro.props.entry.slug !== "404" &&
-  !Astro.props.entry.slug.endsWith("/404") &&
-  Astro.props.entry.data.pagefind !== false;
+  props.entry.slug !== "404" &&
+  !props.entry.slug.endsWith("/404") &&
+  props.entry.data.pagefind !== false;
 ---
 
 <html
-  lang={Astro.props.lang}
-  dir={Astro.props.dir}
-  data-has-toc={Boolean(Astro.props.toc)}
-  data-has-sidebar={Astro.props.hasSidebar}
-  data-has-hero={Boolean(Astro.props.entry.data.hero)}
+  lang={props.lang}
+  dir={props.dir}
+  data-has-toc={Boolean(props.toc)}
+  data-has-sidebar={props.hasSidebar}
+  data-has-hero={Boolean(props.entry.data.hero)}
   data-theme="dark"
+  class:list={[...(props.htmlClasses ?? [])]}
 >
   <head>
-    <Head {...Astro.props} />
+    <Head {...props} />
     <style>
       html:not([data-has-toc]) {
         --sl-mobile-toc-height: 0rem;
@@ -66,24 +73,24 @@ const pagefindEnabled =
         }
       }
     </style>
-    <ThemeProvider {...Astro.props} />
+    <ThemeProvider {...props} />
   </head>
   <body>
-    <SkipLink {...Astro.props} />
-    <VgvPageFrame {...Astro.props}>
-      <VgvNav slot="header" {...Astro.props} />
-      <VgvTwoColumnContent {...Astro.props}>
+    <SkipLink {...props} />
+    <VgvPageFrame {...props}>
+      <VgvNav slot="header" {...props} />
+      <VgvTwoColumnContent {...props}>
         <main
           data-pagefind-body={pagefindEnabled}
-          lang={Astro.props.entryMeta.lang}
-          dir={Astro.props.entryMeta.dir}
+          lang={props.entryMeta.lang}
+          dir={props.entryMeta.dir}
         >
           {/* TODO: Revisit how this logic flows. */}
-          <Banner {...Astro.props} />
+          <Banner {...props} />
           {
             (
               <>
-                {/* <ContentPanel {...Astro.props}> */}
+                {/* <ContentPanel {...props}> */}
                 <slot />
                 {/* </ContentPanel> */}
               </>

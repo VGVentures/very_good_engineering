@@ -1,60 +1,273 @@
 ---
-import { CardGrid } from "@astrojs/starlight/components";
-import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import {
+  generateStarlightPageRouteData,
+  type StarlightPageProps,
+} from "node_modules/@astrojs/starlight/utils/starlight-page";
+import VgvHeroBreakout from "~/components/vgv_hero/vgv-hero-breakout.astro";
+import VgvHeroFeature from "~/components/vgv_hero/vgv-hero-feature.astro";
+import VgvPage from "~/components/vgv_page/vgv-page.astro";
+export type Props = StarlightPageProps;
+
+import CallToAction from "@astrojs/starlight/components/CallToAction.astro";
+import Icon from "node_modules/@astrojs/starlight/user-components/Icon.astro";
+import DartFrogDemo from "~/components/dart_frog/dart-frog-demo.astro";
+import DartFrog from "~/components/dart_frog/dart-frog.astro";
+import Diagram from "~/components/diagram.astro";
 import GithubCard from "~/components/github_card/github-card.astro";
+import VeryGoodCliDemo from "~/components/very_good_cli/very-good-cli-demo.astro";
+import VeryGoodCli from "~/components/very_good_cli/very-good-cli.astro";
+import VgvChip from "~/components/vgv_chip/vgv-chip.astro";
+import VgvScrollItem from "~/components/vgv_scroll/vgv-scroll-item.astro";
+import VgvScroll from "~/components/vgv_scroll/vgv-scroll.astro";
+import hero from "./home/very_good_engineering.png";
+
+const props = await generateStarlightPageRouteData({
+  props: {
+    ...Astro.props,
+    frontmatter: {
+      title: "Very Good Engineering",
+      tableOfContents: false,
+      hero: {
+        actions: [
+          {
+            text: "Read the Best Practices",
+            link: "/architecture",
+            icon: "right-arrow",
+            variant: "primary",
+          },
+          {
+            text: "Learn more about Very Good Ventures",
+            link: "https://verygood.ventures",
+            icon: "external",
+          },
+        ],
+      },
+    },
+
+    hasSidebar: false,
+  },
+  url: Astro.url,
+});
+
+const actions = props.entry.data.hero?.actions ?? [];
 ---
 
-<StarlightPage
-  frontmatter={{
-    title: "Very Good Engineering",
-    template: "splash",
-    hero: {
-      title: "Very Good Engineering",
-      tagline: "A comprehensive guide to building better software, faster.",
-      image: {
-        dark: {
-          src: "/hero/hero_dark.png",
-          width: 1080,
-          height: 860,
-          format: "png",
-        },
-        light: {
-          src: "/hero/hero_light.png",
-          width: 1080,
-          height: 860,
-          format: "png",
-        },
-      },
-      actions: [
-        {
-          text: "Read the Best Practices",
-          link: "/architecture",
-          icon: "right-arrow",
-          variant: "primary",
-        },
-        {
-          text: "Learn more about Very Good Ventures",
-          link: "https://verygood.ventures",
-          icon: "external",
-        },
-      ],
-    },
-  }}
->
-  <h2>What we're up to</h2>
-  <CardGrid>
-    <GithubCard owner="VGVentures" repo="pinball" />
-    <GithubCard owner="VGVentures" repo="slide_puzzle" />
-  </CardGrid>
-</StarlightPage>
+<VgvPage {...props}>
+  <VgvHeroFeature>
+    <Fragment slot="content">
+      <div class="sl-flex stack">
+        <h1
+          class="title font-medium leading-[3rem] lg:leading-[4rem] text-4xl lg:text-5xl xl:text-6xl text-pretty text-center lg:text-start"
+        >
+          &#129412; Very Good<br />
+          <span
+            class="font-bold text-5xl lg:text-6xl xl:text-7xl text-balance text-center lg:text-start"
+          >
+            Engineering
+          </span>
+        </h1>
+        <p
+          class="subtitle text-lg mt-4 max-w-lg text-pretty text-center lg:text-start"
+        >
+          A comprehensive guide to building better software, faster.
+        </p>
+      </div>
+    </Fragment>
+    <div
+      slot="actions"
+      class="actions-container lg:min-w-[200%] justify-center lg:justify-start"
+    >
+      {
+        actions.map(({ text, ...attrs }) => (
+          <CallToAction {...attrs} set:html={text} />
+        ))
+      }
+    </div>
 
-<!-- 
-  actions:
-    - text: Read the Best Practices
-      link: /architecture
-      icon: right-arrow
-      variant: primary
-    - text: Learn more about Very Good Ventures
-      link: https://verygood.ventures
-      icon: external
--->
+    <div slot="graphic">
+      <Diagram
+        classes="max-w-[100%] lg:max-w-[inherit]"
+        light={hero}
+        dark={hero}
+        alt="Hero image."
+      />
+    </div>
+  </VgvHeroFeature>
+
+  <VgvHeroBreakout>
+    <Fragment slot="heading">
+      <VgvChip color="purple">SHIP FASTER</VgvChip>
+      <h2
+        class="text-4xl lg:text-5xl font-medium lg:tracking-tight mt-4 text-center"
+      >
+        Very Good <span class="font-bold">Development</span>
+      </h2>
+      <p class="max-w-4xl text-lg my-6 text-center text-pretty">
+        Stop dreading the hard part — we've already created the tools you need
+        and established best practices that will let you ship <span
+          class="font-bold">fast</span
+        > and <span class="font-bold">safe</span>.
+      </p>
+    </Fragment>
+
+    <Fragment slot="first-image">
+      <VeryGoodCliDemo />
+    </Fragment>
+
+    <div slot="first-content" class="md:mr-8">
+      <div class="text-center md:text-left"><VeryGoodCli /></div>
+      <h3
+        class="text-2xl text-center md:text-left font-medium mt-4 text-balance"
+      >
+        &#128187; The Command-Line Interface to generate scalable templates and
+        use helpful commands.
+      </h3>
+      <p class="max-w-[100%] mt-4 text-balance text-center md:text-left">
+        Generate a <a href="https://cli.vgv.dev/docs/templates/core"
+          >Flutter app</a
+        >, <a href="https://cli.vgv.dev/docs/templates/flame_game"
+          >Flame game
+        </a>,
+        <a href="https://cli.vgv.dev/docs/templates/flutter_pkg">
+          Flutter package
+        </a>,
+        <a href="https://cli.vgv.dev/docs/templates/dart_pkg">Dart package</a>,
+        <a href="https://cli.vgv.dev/docs/templates/federated_plugin">
+          federated plugin
+        </a>, or
+        <a href="https://cli.vgv.dev/docs/templates/dart_cli">Dart CLI</a>
+        with one command.
+      </p>
+      <ul class="pl-4 mt-6 text-center md:text-left">
+        <li class="flex gap-2">
+          <Icon name="approve-check" color="green" class="size-6" />
+
+          <span class="text-sm">Scalable Starter Templates</span>
+        </li>
+        <li class="flex gap-2">
+          <Icon name="approve-check" color="green" class="size-6" />
+
+          <span class="text-sm">Built-In Best Practices</span>
+        </li>
+        <li class="flex gap-2">
+          <Icon name="approve-check" color="green" class="size-6" />
+
+          <span class="text-sm">Utility Commands</span>
+        </li>
+      </ul>
+    </div>
+
+    <Fragment slot="second-image">
+      <DartFrogDemo />
+    </Fragment>
+
+    <div slot="second-content" class="md:pl-10 justify-start flex flex-col">
+      <div class="text-center md:text-left text-black dark:text-slate-300">
+        <DartFrog />
+      </div>
+      <h3
+        class="text-2xl text-center md:text-left font-medium mt-4 text-balance grow"
+      >
+        &#127919; The fast, minimalistic backend framework for Dart
+      </h3>
+      <p class="max-w-[100%] mt-4 text-balance text-center md:text-left">
+        With Dart Frog, your client models will never be out of date. Quickly
+        and effectively build backends in Dart, all while sharing code between
+        the front-end and backend.
+      </p>
+      <ul class="pl-4 mt-6 text-center md:text-left">
+        <li class="flex gap-2">
+          <Icon name="approve-check" color="green" class="size-6" />
+
+          <span class="text-sm">Hot Reload</span>
+        </li>
+        <li class="flex gap-2">
+          <Icon name="approve-check" color="green" class="size-6" />
+
+          <span class="text-sm"
+            >Performance powered by <a href="https://pub.dev/packages/shelf"
+              >Shelf</a
+            ></span
+          >
+        </li>
+        <li class="flex gap-2">
+          <Icon name="approve-check" color="green" class="size-6" />
+
+          <span class="text-sm">Easy to learn API</span>
+        </li>
+      </ul>
+    </div>
+  </VgvHeroBreakout>
+  <VgvScroll>
+    <Fragment slot="title">
+      <VgvChip color="purple">SHIP SAFER</VgvChip>
+      <h2
+        class="text-4xl lg:text-5xl font-medium lg:tracking-tight mt-4 text-center"
+      >
+        Very Good <span class="font-bold">Practices</span>
+      </h2>
+    </Fragment>
+    <Fragment>
+      <VgvScrollItem>
+        <GithubCard owner="VeryGoodOpenSource" repo="formz" />
+      </VgvScrollItem>
+      <VgvScrollItem>
+        <GithubCard owner="VeryGoodOpenSource" repo="very_good_analysis" />
+      </VgvScrollItem>
+      <VgvScrollItem>
+        <GithubCard owner="VeryGoodOpenSource" repo="very_good_workflows" />
+      </VgvScrollItem>
+      <VgvScrollItem>
+        <GithubCard owner="VeryGoodOpenSource" repo="very_good_infinite_list" />
+      </VgvScrollItem>
+      <VgvScrollItem>
+        <GithubCard owner="VeryGoodOpenSource" repo="cli_completion" />
+      </VgvScrollItem>
+      <VgvScrollItem>
+        <GithubCard owner="VeryGoodOpenSource" repo="r13n" />
+      </VgvScrollItem>
+    </Fragment>
+  </VgvScroll>
+</VgvPage>
+
+<style is:inline>
+  body {
+    --sl-color-bg: var(--vgv-home-bg);
+  }
+</style>
+
+<style>
+  .actions-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .button {
+    max-width: max-content;
+    flex: 0 1 auto;
+  }
+
+  .title {
+    /* Don't ever truncate a single letter. */
+    min-width: max-content;
+  }
+
+  @media (min-width: 50rem) {
+    .stack {
+      text-align: start;
+    }
+  }
+
+  .stack {
+    flex-direction: column;
+    gap: clamp(1.5rem, calc(1.5rem + 1vw), 2rem);
+    text-align: center;
+  }
+
+  .subtitle {
+    max-width: 100%;
+  }
+</style>

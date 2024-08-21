@@ -9,11 +9,10 @@ import { StickyHeader } from "astro-navbar";
 ---
 
 <StickyHeader
-  class="sticky top-0 border-b z-20 transition-all"
+  class="sticky top-0 z-20 transition-all backdrop-blur-2xl"
   scrollY={0}
-  defaultClass="border-transparent"
-  activeClass="border-transparent backdrop-blur-lg"
 >
+  <div class="header-background"></div>
   <header class="header">
     <div class="inner-header sl-flex">
       <div class="title-wrapper sl-flex">
@@ -34,16 +33,29 @@ import { StickyHeader } from "astro-navbar";
 </StickyHeader>
 
 <style>
+  .header-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    background-color: var(--vgv-nav-bg);
+    opacity: var(--vgv-nav-opacity);
+    z-index: 0;
+    pointer-events: none;
+  }
   .header {
     z-index: var(--sl-z-index-navbar);
+    position: relative;
 
     inset-inline-start: 0;
     inset-block-start: 0;
     width: 100%;
     height: var(--sl-nav-height);
-    border-bottom: 1px solid var(--sl-color-hairline-shade);
     padding: var(--sl-nav-pad-y) var(--sl-nav-pad-x);
     padding-inline-end: var(--sl-nav-pad-x);
+
+    box-shadow: 0 0 3rem var(--vgv-nav-glow);
   }
 
   :global([data-has-sidebar]) .header {
@@ -78,7 +90,6 @@ import { StickyHeader } from "astro-navbar";
   .social-icons::after {
     content: "";
     height: 2rem;
-    border-inline-end: 1px solid var(--sl-color-gray-5);
   }
 
   @media (min-width: 50rem) {
