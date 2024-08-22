@@ -1,30 +1,28 @@
-# State handling
+---
+title: State Handling
+description: Recommended practices for handling state that are emitted from blocs/cubits.
+---
 
-To `enum` or to `sealed class`? That is the question we'll be discussing in this episode of
-**Very Good Engineering** 🦄, to understand which way to go when declaring states for our Cubits/Blocs.
+To `enum` or to `sealed class`? That is the question we'll be discussing in this episode of **Very Good Engineering** 🦄, to understand which way to go when declaring states for our Cubits/Blocs.
 
 > 💡 Either one of these options could be the right one depending on the following use cases.
 
 ## Do I want to persist previous data when emitting a new state?
 
-As it happens when filling out a form where data is updated step by step, or when the state
-has several values that are loaded independently, if your aim is to update new fields of the
-state or the state itself without losing previously emitted data, using **a single class with
-an enum as the state's 'status'** it's the easiest way to go.
+As it happens when filling out a form where data is updated step by step, or when the state has several values that are loaded independently, if your aim is to update new fields of the state or the state itself without losing previously emitted data, using **a single class with an enum as the state's 'status'** it's the easiest way to go.
 
-> 💡 You can also share properties throughout all the states by setting those inside the parent
-> `sealed` or `abstract` class.
+> 💡 You can also share properties throughout all the states by setting those inside the parent `sealed` or `abstract` class.
 
 This can look something like:
 
 ```txt
-initial state   
+initial state
         |----> update property 1
             |----> update property 2
                   |----> update property 3
-                        |----> submit form  
+                        |----> submit form
                                   |----> success state
-                                  |----> failure state           
+                                  |----> failure state
 ```
 
 Let's see an example:
@@ -63,18 +61,18 @@ class CreateAccountState extends Equatable {
       email: email ?? this.email,
     );
   }
-  
+
   /// Getter to check whether every field has valid data
-  bool get isValid => name.isNotNullOrEmpty 
-      && surname.isNotNullOrEmpty 
-      && email.isNotNullOrEmpty 
+  bool get isValid => name.isNotNullOrEmpty
+      && surname.isNotNullOrEmpty
+      && email.isNotNullOrEmpty
       && email.isValid;
 
   @override
   List<Object> get props => [
-    status, 
-    name, 
-    surname, 
+    status,
+    name,
+    surname,
     email,
   ];
 }
@@ -82,9 +80,7 @@ class CreateAccountState extends Equatable {
 
 As you can see above, because the user is going to fill out their name, surname, and email, and any of them can be null or empty at any time, we need to make sure we have data in each property as per our business logic before allowing the user to create their account.
 
-> 💡 Using `enums` to handle status is useful in cases like this where there are **several steps**
-> for the user to fill up information and the **data emitted in previous steps should not be lost
-> in newer emits**.
+> 💡 Using `enums` to handle status is useful in cases like this where there are **several steps** for the user to fill up information and the **data emitted in previous steps should not be lost in newer emits**.
 
 Take a look at the `Cubit` example for this implementation:
 
@@ -92,7 +88,7 @@ Take a look at the `Cubit` example for this implementation:
 
 class CreateAccountCubit extends Cubit<CreateAccountState> {
   CreateAccountCubit(): super(const CreateAccountState());
-  
+
   void updateName(String name) {
     /// We emit the name without losing any other data
     emit(state.copyWith(name: name));
@@ -109,7 +105,7 @@ class CreateAccountCubit extends Cubit<CreateAccountState> {
   }
 
   /// ... other update methods here
-  
+
   Future<void> createAccount() async {
     emit(state.copyWith(status: CreateAccountStatus.loading));
     try {
@@ -127,11 +123,9 @@ class CreateAccountCubit extends Cubit<CreateAccountState> {
     }
   }
 }
-
 ```
 
-As you can see, having a **single state class** with an `enum` for the status helps to keep the
-information that was added previously.
+As you can see, having a **single state class** with an `enum` for the status helps to keep the information that was added previously.
 
 Let's see how we consume these types of states in the UI using the `BlocListener` widget.
 
@@ -163,16 +157,13 @@ class CreateAccountPage extends StatelessWidget {
 }
 ```
 
-As seen above, with this approach, the current status is get from the `status`
-**enum** property inside the `cubit state`.
+As seen above, with this approach, the current status is get from the `status` **enum** property inside the `cubit state`.
 
 Let's now check the other way to handle states.
 
-## Do I want to emit a *fresh* state every time?
+## Do I want to emit a _fresh_ state every time?
 
-The other side of the state management aims for clean state updates, isolating the properties of
-each state that's emitted. This is useful for when the data being fetched is not going to change,
-or for instance, we don't need to keep it in future emits, and it's a matter of simply:
+The other side of the state management aims for clean state updates, isolating the properties of each state that's emitted. This is useful for when the data being fetched is not going to change, or for instance, we don't need to keep it in future emits, and it's a matter of simply:
 
 ```txt
 loading ---->   <try fetch data>    |----> success (data fetched)
@@ -259,8 +250,7 @@ class ProfilePage extends StatelessWidget {
 }
 ```
 
-As you can see, `sealed classes` helps us to properly **isolate** data inside each state, and
-whenever we check we are in a certain state **we are sure that the data won't be null at all**, as it happens when dealing with `enum states`.
+As you can see, `sealed classes` helps us to properly **isolate** data inside each state, and whenever we check we are in a certain state **we are sure that the data won't be null at all**, as it happens when dealing with `enum states`.
 
 ### Using `abstract` classes
 
@@ -343,19 +333,15 @@ class ProfilePage extends StatelessWidget {
 }
 ```
 
-Here you can see that consuming states based on an `abstract class` is more painful than using `sealed classes`, but is still the way to go when the Flutter version is not up-to date and you
-would like to isolate each state.
+Here you can see that consuming states based on an `abstract class` is more painful than using `sealed classes`, but is still the way to go when the Flutter version is not up-to date and you would like to isolate each state.
 
 ### Bonus - Share properties in some of the states (sealed or abstract classes)
 
-You might be wondering... can I have the same property in more than one state and still continue to
-use sealed classes? **Yes you can!**
+You might be wondering... can I have the same property in more than one state and still continue to use sealed classes? **Yes you can!**
 
-> 💡 You can also share properties throughout all the states by setting those inside the
-> parent `sealed` or `abstract` class.
+> 💡 You can also share properties throughout all the states by setting those inside the parent `sealed` or `abstract` class.
 
-Let's look at an updated version of our state and cubit implementation using `sealed classes`
-(Pst! Same thing works for `abstract classes` as well):
+Let's look at an updated version of our state and cubit implementation using `sealed classes` (Pst! Same thing works for `abstract classes` as well):
 
 ```dart
 sealed class ProfileState {}
@@ -381,8 +367,7 @@ class ProfileFailure extends ProfileState {
 }
 ```
 
-As seen above, `ProfileSuccess` and `ProfileEditing` contains a `Profile` property inside.
-How can we handle that from inside the `Cubit`?
+As seen above, `ProfileSuccess` and `ProfileEditing` contains a `Profile` property inside. How can we handle that from inside the `Cubit`?
 
 ```dart
 class ProfileCubit extends Cubit<ProfileState> {
@@ -393,11 +378,11 @@ class ProfileCubit extends Cubit<ProfileState> {
   Future<void> getProfileDetails() async {
     /// Already seen
   }
-  
+
   Future<void> editName(String newName) async {
     switch(state) {
       /// Here we get both Profile objects stored inside each state class
-      /// and we're able to use it inside the block to update the profile 
+      /// and we're able to use it inside the block to update the profile
       case ProfileSuccess(profile: final prof):
       case ProfileEditing(profile: final prof):
         final newProfile = prof.copyWith(name: newName);
@@ -408,11 +393,9 @@ class ProfileCubit extends Cubit<ProfileState> {
     }
   }
 }
-
 ```
 
-This way you can be sure to handle all states in your Cubit methods and also be able to
-use the values contained.
+This way you can be sure to handle all states in your Cubit methods and also be able to use the values contained.
 
 To conclude this part, here's also the way to do the same thing but UI side:
 
@@ -427,9 +410,9 @@ class ProfilePage extends StatelessWidget {
         /// Leverage the usage of switch statements
         return switch (state) {
           ProfileLoading() => const _ProgressIndicator(),
-          /// We get the Profile prof by declaring a value based on the 
+          /// We get the Profile prof by declaring a value based on the
           /// internal property of the state
-          ProfileSuccess(profile: final prof) 
+          ProfileSuccess(profile: final prof)
           || ProfileEditing(profile: final prof) => ProfileView(prof),
           /// Here we get the message property from the ProfileFailure state
           ProfileFailure(errorMessage: var message) => Text(message),
@@ -438,7 +421,6 @@ class ProfilePage extends StatelessWidget {
     );
   }
 }
-
 ```
 
 Hope this helps to get an idea about which route to take when designing states for your Cubits/Blocs.✨
