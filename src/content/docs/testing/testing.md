@@ -15,38 +15,37 @@ This `my_package` library contains `models` and `widgets`. The `test` folder sho
 
 ```txt
 my_package/
-  |- lib/
-  |   |- models/
-  |   |   - model_a.dart
-  |   |   - model_b.dart
-  |   |   - models.dart
-  |   |- widgets/
-  |   |   - widget_1.dart
-  |   |   - widget_2.dart
-  |   |   - widgets.dart
-  |- test/
-      ...
+├── lib/
+│   ├── models/
+│   │   ├── model_a.dart
+│   │   ├── model_b.dart
+│   │   └── models.dart
+│   └── widgets/
+│       ├── widget_1.dart
+│       ├── widget_2.dart
+│       └── widgets.dart
+└── test/
 ```
 
 Bad ❗️
 
 ```txt
 test/
-  |- model_a_test.dart
-  |- model_b_test.dart
-  |- widgets_test.dart
+├── model_a_test.dart
+├── model_b_test.dart
+└── widgets_test.dart
 ```
 
 Good ✅
 
 ```txt
 test/
-  |- models/
-  |   - model_a_test.dart
-  |   - model_b_test.dart
-  |- widgets/
-  |   - widget_1_test.dart
-  |   - widget_2_test.dart
+├── models/
+│   ├── model_a_test.dart
+│   └── model_b_test.dart
+└── widgets/
+    ├── widget_1_test.dart
+    └── widget_2_test.dart
 ```
 
 > Note: `models.dart` and `widgets.dart` are barrel files and do not need to be tested.

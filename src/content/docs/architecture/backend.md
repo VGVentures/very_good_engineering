@@ -31,36 +31,36 @@ While providers, routes, and tests, can live in the root backend project, consid
 
 ```txt
 my_app/
-  |- api/
-  |  |- lib/
-  |  |  |- src/
-  |  |  |  |- middleware/
-  |  |- packages/
-  |  |  |- models/
-  |  |  |  |- lib/
-  |  |  |  |  |- src/
-  |  |  |  |  |  |- endpoint_models/
-  |  |  |  |  |  |- shared_models/
-  |  |  |  |- test/
-  |  |  |  |  |- src/
-  |  |  |  |  |  |- endpoint_models/
-  |  |  |  |  |  |- shared_models/
-  |  |  |- data_source/
-  |  |  |  |- lib/
-  |  |  |  |  |- src/
-  |  |  |  |- test/
-  |  |  |  |  |- src/
-  |  |- routes/
-  |  |  |- api/
-  |  |  |  |- v1/
-  |  |  |  |  |- todos/
-  |  |  |- test/
-  |  |  |  |- src/
-  |  |  |  |  |- middleware/
-  |  |  |  |- routes/
-  |  |  |  |  |- api/
-  |  |  |  |  |  |- v1/
-  |  |  |  |  |  |  |- todos/
+└── api/
+    ├── lib/
+    │   └── src/
+    │       └── middleware
+    ├── packages/
+    │   ├── models/
+    │   │   ├── lib/
+    │   │   │   └── src/
+    │   │   │       ├── endpoint_models/
+    │   │   │       └── shared_models/
+    │   │   └── test/
+    │   │       └── src/
+    │   │           ├── endpoint_models/
+    │   │           └── shared_models/
+    │   └── data_source/
+    │       ├── lib/
+    │       │   └── src
+    │       └── test/
+    │           └── src
+    └── routes/
+        ├── api/
+        │   └── v1/
+        │       └── todos
+        └── test/
+            ├── src/
+            │   └── middleware/
+            └── routes/
+                └── api/
+                    └── v1/
+                        └── todos/
 ```
 
 ### Models

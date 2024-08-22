@@ -94,10 +94,10 @@ To keep things organized, fonts are generally stored in an `assets` folder:
 
 ```txt
 assets/
-  |- fonts/
-  |   - Inter-Bold.ttf
-  |   - Inter-Regular.ttf
-  |   - Inter-Light.ttf
+└── fonts/
+    ├── Inter-Bold.ttf
+    ├── Inter-Regular.ttf
+    └── Inter-Light.ttf
 ```
 
 Then declared in the `pubspec.yaml` file:

@@ -9,32 +9,32 @@ For a package, the structure could look something like:
 
 ```text
 my_package/
- |-lib/
- |   |- src/
- |   |    |- models/
- |   |    |    - model_1.dart
- |   |    |    - model_2.dart
- |   |    |- widgets/
- |   |    |    - widget_1.dart
- |   |    |    - widget_2.dart
- |- test/...
- |- pubspec.yaml
+├── lib/
+│   └── src/
+│       ├── models/
+│       │   ├── model_1.dart
+│       │   └── model_2.dart
+│       └── widgets/
+│           ├── widget_1.dart
+│           └── widget_2.dart
+├── test/
+└── pubspec.yaml
 ```
 
 And for a feature, it could look like:
 
 ```text
 my_feature/
- |- bloc/
- |    - feature_bloc.dart
- |    - feature_event.dart
- |    - feature_state.dart
- |- view/
- |    - feature_page.dart
- |    - feature_view.dart
- |- widgets/
-      - widget_1.dart
-      - widget_2.dart
+├── bloc/
+│   ├── feature_bloc.dart
+│   ├── feature_event.dart
+│   └── feature_state.dart
+├── view/
+│   ├── feature_page.dart
+│   └── feature_view.dart
+└── widgets/
+    ├── widget_1.dart
+    └── widget_2.dart
 ```
 
 In both cases, if we want to use both `widget_1.dart` and `widget_2.dart` in other parts of the app, we will have to import them separately like:
@@ -58,34 +58,34 @@ A package with barrel files should look like:
 
 ```text
 my_package/
- |-lib/
- |   |- src/
- |   |    |- models/
- |   |    |    - model_1.dart
- |   |    |    - model_2.dart
- |   |    |    - models.dart
- |   |    |- widgets/
- |   |    |    - widget_1.dart
- |   |    |    - widget_2.dart
- |   |    |    - widgets.dart
- |   |- my_package.dart
- |- test/...
- |- pubspec.yaml
+├── lib/
+│   ├── src/
+│   │   ├── models/
+│   │   │   ├── model_1.dart
+│   │   │   ├── model_2.dart
+│   │   │   └── models.dart
+│   │   └── widgets/
+│   │       ├── widget_1.dart
+│   │       ├── widget_2.dart
+│   │       └── widgets.dart
+│   └── my_package.dart
+├── test/
+└── pubspec.yaml
 ```
 
 And for a feature, it should look like:
 
 ```text
 my_feature/
- |- bloc/
- |    - feature_bloc.dart
- |    - feature_event.dart
- |    - feature_state.dart
- |- view/
- |    - feature_page.dart
- |    - feature_view.dart
- |    - view.dart
- |- my_feature.dart
+├── bloc/
+│   ├── feature_bloc.dart
+│   ├── feature_event.dart
+│   └── feature_state.dart
+├── view/
+│   ├── feature_page.dart
+│   ├── feature_view.dart
+│   └── view.dart
+└── my_feature.dart
 ```
 
 Finally let's see what these files contain. Continuing with the package example, we have three barrel files: `models.dart`, `widgets.dart` and `my_package.dart`.
@@ -121,9 +121,9 @@ By convention, blocs are typically broken into separate files consisting of the 
 
 ```text
 bloc/
-  - feature_bloc.dart
-  - feature_event.dart
-  - feature_state.dart
+├── feature_bloc.dart
+├── feature_event.dart
+└── feature_state.dart
 ```
 
 In this case, we don't add an extra barrel file since the `feature_bloc.dart` file is working as such, thanks to the `part of` directives. You can read more about it in the [bloc documentation][bloc_documentation].

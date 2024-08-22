@@ -59,43 +59,43 @@ Good ✅
 
 ```txt
 my_app/
-  |- lib/
-  |   |- login/
-  |   |   |- bloc/
-  |   |   |   - login_bloc.dart
-  |   |   |   - login_event.dart
-  |   |   |   - login_state.dart
-  |   |   |- view/
-  |   |   |   - login_page.dart
-  |   |   |   - view.dart
-  |- packages/
-  |   |- user_repository/
-  |   |   |- lib/
-  |   |   |   |- src/
-  |   |   |   |   |- models/
-  |   |   |   |   |   - models.dart
-  |   |   |   |   |   - user.dart
-  |   |   |   |   |- user_repository.dart
-  |   |   |   - user_repository.dart
-  |   |   |- test/
-  |   |   |   |- models/
-  |   |   |   |   - user_test.dart
-  |   |   |   - user_repository_test.dart
-  |   |- api_client/
-  |   |   |- lib/
-  |   |   |   |- src/
-  |   |   |   |   - api_client.dart
-  |   |   |   - api_client.dart
-  |   |   |- test/
-  |   |   |   - api_client_test.dart
-  |- test/
-  |   |- login/
-  |   |   |- bloc/
-  |   |   |   - login_bloc_test.dart
-  |   |   |   - login_event_test.dart
-  |   |   |   - login_state_test.dart
-  |   |   |- view/
-  |   |   |   - login_page_test.test
+├── lib/
+│   └── login/
+│       ├── bloc/
+│       │   ├── login_bloc.dart
+│       │   ├── login_event.dart
+│       │   └── login_state.dart
+│       └── view/
+│           ├── login_page.dart
+│           └── view.dart
+├── packages/
+│   ├── user_repository/
+│   │   ├── lib/
+│   │   │   ├── src/
+│   │   │   │   ├── models/
+│   │   │   │   │   ├── models.dart
+│   │   │   │   │   └── user.dart
+│   │   │   │   └── user_repository.dart
+│   │   │   └── user_repository.dart
+│   │   └── test/
+│   │       ├── models/
+│   │       │   └── user_test.dart
+│   │       └── user_repository_test.dart
+│   └── api_client/
+│       ├── lib/
+│       │   ├── src/
+│       │   │   └── api_client.dart
+│       │   └── api_client.dart
+│       └── test/
+│           └── api_client_test.dart
+└── test/
+    └── login/
+        ├── bloc/
+        │   ├── login_bloc_test.dart
+        │   ├── login_event_test.dart
+        │   └── login_state_test.dart
+        └── view/
+            └── login_page_test.dart
 ```
 
 Each layer abstracts the underlying layers' implementation details. Avoid indirect dependencies between layers. For example, the repository layer shouldn't need to know how the data is fetched in the data layer, and the presentation layer shouldn't directly access values from Shared Preferences. In other words, the implementation details should not leak between the layers. Using layered architecture ensures flexibility, reusability, and testability as the codebase grows.
@@ -183,9 +183,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
                     'email': state.email,
                     'password': state.password,
                 },
-        );
+            );
 
-        emit(const LoginSuccess());
+            emit(const LoginSuccess());
         } catch (error, stackTrace) {
             addError(error, stackTrace);
             emit(const LoginFailure());
