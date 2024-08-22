@@ -157,7 +157,7 @@ class CreateAccountPage extends StatelessWidget {
 }
 ```
 
-As seen above, with this approach, the current status is get from the `status` **enum** property inside the `cubit state`.
+As seen above, with this approach, the current status comes from the `status` **enum** property inside the `cubit state`.
 
 Let's now check the other way to handle states.
 
