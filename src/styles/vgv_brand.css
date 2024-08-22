@@ -32,6 +32,7 @@
   --vgv-gray-10: #fafbff;
   --vgv-gray-20: #f3f6ff;
   --vgv-gray-30: #d2d5dd;
+  --vgv-gray-35: #b8bac2;
   --vgv-gray-40: #838998;
   --vgv-gray-50: #5a5f6e;
   --vgv-gray-60: #4b4f5a;
@@ -40,11 +41,11 @@
 }
 
 :root[data-theme="light"] {
-  --vgv-card-bg: var(--vgv-gray-20);
+  --vgv-card-bg: #fafbfe;
   --vgv-card-bg-hover: var(--vgv-gray-10);
   --vgv-card-fg: black;
   --vgv-card-shadow: drop-shadow(0px 0px 8px var(--vgv-gray-30));
-  --vgv-card-shadow-hover: drop-shadow(0px 0px 12px var(--vgv-blue-20));
+  --vgv-card-shadow-hover: drop-shadow(0px 0px 10px var(--vgv-gray-35));
 
   --vgv-footer-text: var(--vgv-gray-30);
   --vgv-footer-bg: var(--vgv-navy);
@@ -54,6 +55,9 @@
   --vgv-nav-opacity: 0.6;
 
   --vgv-home-bg: var(--vgv-gray-20);
+
+  --vgv-title: var(--vgv-gray-60);
+  --vgv-title-emph: black;
 }
 
 :root[data-theme="dark"] {
@@ -70,5 +74,8 @@
   --vgv-nav-glow: var(--vgv-gray-80);
   --vgv-nav-opacity: 0;
 
-  --vgv-home-bg: transparent;
+  --vgv-home-bg: var(--sl-color-bg);
+
+  --vgv-title: var(--vgv-gray-30);
+  --vgv-title-emph: var(--vgv-gray-20);
 }
