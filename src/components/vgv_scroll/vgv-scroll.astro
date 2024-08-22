@@ -12,17 +12,17 @@
   </div>
 </div>
 
-<div class="mt-2 relative overflow-x-clip overflow-y-visible mx-8">
-  <div class="relative lg:flex gap-10 py-5 group overflow-visible">
+<div class="relative overflow-x-clip overflow-y-visible mx-8">
+  <div class="relative lg:flex py-5 group overflow-visible">
     <div class="absolute scroll-shadow left"></div>
     <div class="absolute scroll-shadow right"></div>
     <div
-      class="lg:motion-safe:animate-scroll w-auto py-5 overflow-x-auto flex flex-nowrap min-w-full shrink-0 items-stretch gap-0 overflow-y-visible"
+      class="lg:motion-safe:animate-scroll w-auto overflow-x-auto flex flex-nowrap min-w-full shrink-0 items-stretch gap-0 overflow-y-visible"
     >
       <slot name="default" />
     </div>
     <div
-      class="lg:motion-safe:animate-scroll hidden lg:motion-reduce:hidden lg:flex min-w-full shrink-0 items-stretch gap-0 py-5 overflow-y-visible"
+      class="lg:motion-safe:animate-scroll hidden lg:motion-reduce:hidden lg:flex min-w-full shrink-0 items-stretch gap-0 overflow-y-visible"
     >
       <slot name="default" />
     </div>

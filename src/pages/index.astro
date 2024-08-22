@@ -3,6 +3,7 @@ import {
   generateStarlightPageRouteData,
   type StarlightPageProps,
 } from "node_modules/@astrojs/starlight/utils/starlight-page";
+import VgvHeroBreakoutVertical from "~/components/vgv_hero/vgv-hero-breakout-vertical.astro";
 import VgvHeroBreakout from "~/components/vgv_hero/vgv-hero-breakout.astro";
 import VgvHeroFeature from "~/components/vgv_hero/vgv-hero-feature.astro";
 import VgvPage from "~/components/vgv_page/vgv-page.astro";
@@ -17,6 +18,7 @@ import GithubCard from "~/components/github_card/github-card.astro";
 import VeryGoodCliDemo from "~/components/very_good_cli/very-good-cli-demo.astro";
 import VeryGoodCli from "~/components/very_good_cli/very-good-cli.astro";
 import VgvChip from "~/components/vgv_chip/vgv-chip.astro";
+import VgvHeroSectionHeader from "~/components/vgv_hero/vgv-hero-section-header.astro";
 import VgvScrollItem from "~/components/vgv_scroll/vgv-scroll-item.astro";
 import VgvScroll from "~/components/vgv_scroll/vgv-scroll.astro";
 import hero from "./home/very_good_engineering.png";
@@ -97,17 +99,17 @@ const actions = props.entry.data.hero?.actions ?? [];
   <VgvHeroBreakout>
     <Fragment slot="heading">
       <VgvChip color="purple">SHIP FASTER</VgvChip>
-      <h2
-        class="text-4xl lg:text-5xl font-medium lg:tracking-tight mt-4 text-center"
-      >
-        Very Good <span class="font-bold">Development</span>
-      </h2>
-      <p class="max-w-4xl text-lg my-6 text-center text-pretty">
-        Stop dreading the hard part — we've already created the tools you need
-        and established best practices that will let you ship <span
-          class="font-bold">fast</span
-        > and <span class="font-bold">safe</span>.
-      </p>
+      <VgvHeroSectionHeader>
+        <span slot="title"
+          >Very Good <span class="font-bold">Development</span></span
+        >
+        <span slot="subtitle">
+          Stop dreading the hard part — we've already created the tools you need
+          and established best practices that will let you ship
+          <span class="font-bold">fast</span> and
+          <span class="font-bold">safe</span>.
+        </span>
+      </VgvHeroSectionHeader>
     </Fragment>
 
     <Fragment slot="first-image">
@@ -198,15 +200,21 @@ const actions = props.entry.data.hero?.actions ?? [];
       </ul>
     </div>
   </VgvHeroBreakout>
+
   <VgvScroll>
-    <Fragment slot="title">
+    <div slot="title" class="mt-4 md:mt-16">
       <VgvChip color="purple">SHIP SAFER</VgvChip>
-      <h2
-        class="text-4xl lg:text-5xl font-medium lg:tracking-tight mt-4 text-center"
-      >
-        Very Good <span class="font-bold">Practices</span>
-      </h2>
-    </Fragment>
+      <VgvHeroSectionHeader>
+        <span slot="title"
+          >Very Good <span class="font-bold">Practices</span></span
+        >
+        <span slot="subtitle">
+          Quality is really important to us — we've created the tools we need to
+          help us ship <span class="font-bold">fast</span> and
+          <span class="font-bold">safe</span>.
+        </span>
+      </VgvHeroSectionHeader>
+    </div>
     <Fragment>
       <VgvScrollItem>
         <GithubCard owner="VeryGoodOpenSource" repo="formz" />
@@ -228,6 +236,24 @@ const actions = props.entry.data.hero?.actions ?? [];
       </VgvScrollItem>
     </Fragment>
   </VgvScroll>
+
+  <div class="mt-4 md:mt-24">
+    <VgvHeroBreakoutVertical>
+      <VgvHeroSectionHeader>
+        <span slot="title"
+          >Very Good <span class="font-bold">Experiences</span></span
+        >
+        <span slot="subtitle">
+          Quality is really important to us — we've created the tools we need to
+          help us ship <span class="font-bold">fast</span> and
+          <span class="font-bold">safe</span>.
+        </span>
+      </VgvHeroSectionHeader>
+      <section class="w-[100%] h-[450px] bg-red-500"></section>
+      <section class="w-[100%] h-[450px] bg-green-500"></section>
+      <section class="w-[100%] h-[450px] bg-blue-500"></section>
+    </VgvHeroBreakoutVertical>
+  </div>
 </VgvPage>
 
 <style is:inline>

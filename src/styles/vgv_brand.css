@@ -70,5 +70,5 @@
   --vgv-nav-glow: var(--vgv-gray-80);
   --vgv-nav-opacity: 0;
 
-  --vgv-home-bg: transparent;
+  --vgv-home-bg: var(--sl-color-bg);
 }
