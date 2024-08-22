@@ -1,5 +1,5 @@
 ---
-title: 🗄️ Backend Architecture
+title: Backend Architecture
 description: Best practices for building backend APIs.
 ---
 

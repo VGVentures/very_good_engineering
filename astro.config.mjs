@@ -18,18 +18,19 @@ export default defineConfig({
           // See https://scottwillsey.com/theme-flicker/
           tag: "script",
           attrs: {
-            src: `
-            <script>
-              const theme = localStorage.getItem("theme") || "light";
-              document.documentElement.dataset.theme = theme;
-            </script>
-            `,
+            type: "text/javascript",
           },
+          content: `
+              theme = localStorage.getItem("theme") || "light";
+              document.documentElement.dataset.theme = theme;
+            `,
         },
       ],
       customCss: [
         // Add tailwind base styles:
-        "./src/assets/styles/tailwind.css",
+        "./src/styles/tailwind.css",
+        "./src/styles/vgv_brand.css",
+        "./src/styles/theme.css",
         "@fontsource/poppins/100.css",
         "@fontsource/poppins/200.css",
         "@fontsource/poppins/300.css",
@@ -42,77 +43,90 @@ export default defineConfig({
       ],
       editLink: {
         baseUrl:
-          "https://github.com/vgventures/very_good_engineering/edit/main/docs/",
+          "https://github.com/vgventures/very_good_engineering/edit/main/",
       },
       logo: {
-        light: "./src/assets/logos/unicorn_light.png",
-        dark: "./src/assets/logos/unicorn_dark.png",
+        light: "./src/assets/logos/logo_light.svg",
+        dark: "./src/assets/logos/logo_dark.svg",
       },
       social: {
         github: "https://github.com/vgventures/very_good_engineering",
       },
       sidebar: [
         {
-          label: "Architecture",
+          label: "🏛️ Architecture",
           autogenerate: {
             directory: "architecture",
           },
         },
         {
-          label: "Automation",
+          label: "🦾 Automation",
           autogenerate: {
             directory: "automation",
           },
         },
         {
-          label: "Code Style",
+          label: "✨ Code Style",
           autogenerate: {
             directory: "code_style",
           },
         },
         {
-          label: "Development",
+          label: "🦄 Development",
           autogenerate: {
             directory: "development",
           },
         },
         {
-          label: "Internationalization",
+          label: "📺 Examples",
+          badge: "NEW",
+          autogenerate: {
+            directory: "examples",
+          },
+        },
+        {
+          label: "🌐 Internationalization",
           autogenerate: {
             directory: "internationalization",
           },
         },
         {
-          label: "Navigation",
+          label: "🗺️ Navigation",
           autogenerate: {
             directory: "navigation",
           },
         },
         {
-          label: "State Management",
+          label: "🪄 State Management",
           autogenerate: {
             directory: "state_management",
           },
         },
         {
-          label: "Testing",
+          label: "🧪 Testing",
           autogenerate: {
             directory: "testing",
           },
         },
         {
-          label: "Theming",
+          label: "🎨 Theming",
           autogenerate: {
             directory: "theming",
           },
         },
         {
-          label: "Widgets",
+          label: "🧩 Widgets",
           autogenerate: {
             directory: "widgets",
           },
         },
       ],
+      components: {
+        TwoColumnContent:
+          "./src/components/vgv_two_column_content/vgv-two-column-content.astro",
+        Header: "./src/components/vgv_nav/vgv-nav.astro",
+        PageFrame: "./src/components/vgv_page/vgv-page-frame.astro",
+      },
     }),
     react(),
     mdx(),
