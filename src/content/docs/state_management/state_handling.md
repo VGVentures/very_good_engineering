@@ -62,7 +62,7 @@ class CreateAccountState extends Equatable {
     );
   }
 
-  /// Getter to check whether every field has valid data
+  // Getter to check whether every field has valid data.
   bool get isValid => name.isNotNullOrEmpty
       && surname.isNotNullOrEmpty
       && email.isNotNullOrEmpty
@@ -90,26 +90,26 @@ class CreateAccountCubit extends Cubit<CreateAccountState> {
   CreateAccountCubit(): super(const CreateAccountState());
 
   void updateName(String name) {
-    /// We emit the name without losing any other data
+    // We emit the name without losing any other data.
     emit(state.copyWith(name: name));
   }
 
   void updateSurname(String surname) {
-    /// We emit the surname without losing any other data
+    // We emit the surname without losing any other data.
     emit(state.copyWith(surname: surname));
   }
 
   void updateEmail(String email) {
-    /// We emit the email without losing any other data
+    // We emit the email without losing any other data.
     emit(state.copyWith(email: email));
   }
 
-  /// ... other update methods here
+  // ... other update methods here.
 
   Future<void> createAccount() async {
     emit(state.copyWith(status: CreateAccountStatus.loading));
     try {
-      /// Double check the current state is valid
+      // Double check the current state is valid.
       if (state.isValid) {
         emit(state.copyWith(status: CreateAccountStatus.success));
       } else {
@@ -117,8 +117,8 @@ class CreateAccountCubit extends Cubit<CreateAccountState> {
       }
     } catch (e, s) {
       addError(e, s);
-      /// We can emit the failure without losing the content that
-      /// was added by the user
+      // We can emit the failure without losing the content that
+      // was added by the user.
       emit(state.copyWith(status: CreateAccountStatus.failure));
     }
   }
@@ -138,7 +138,7 @@ class CreateAccountPage extends StatelessWidget {
     return const Scaffold(
       body: BlocListener<CreateAccountCubit, CreateAccountState>(
         listener: (context, state) {
-          /// This is how we check for the actual status
+          // This is how we check for the actual status.
           if (state.status == CreateAccountStatus.failure) {
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 backgroundColor: Colors.red,
@@ -177,7 +177,7 @@ This can be achieved by leveraging the use of `sealed classes` (when in Flutter 
 Let's see how the states are built:
 
 ```dart
-/// Using sealed classes
+// Using sealed classes.
 sealed class ProfileState {}
 
 class ProfileLoading extends ProfileState {}
@@ -217,8 +217,8 @@ class ProfileCubit extends Cubit<ProfileState> {
 
       emit(ProfileSuccess(data));
     } catch (e) {
-      /// We can emit the failure without losing the content that was
-      /// added by the user
+      // We can emit the failure without losing the content that was
+      // added by the user.
       emit(ProfileFailure(
           'Oops, could not load your profile. Please try again later.'));
     }
@@ -236,12 +236,12 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocBuilder<ProfileCubit, ProfileState>(builder: (context, state) {
-        /// Leverage the usage of switch statements
+        // Leverage the usage of switch statements.
         return switch (state) {
           ProfileLoading() => const _ProgressIndicator(),
-          /// 'success' here is the same state value casted as a ProfileSuccess
+          // 'success' here is the same state value casted as a ProfileSuccess.
           ProfileSuccess success => ProfileView(success.profile),
-          /// Here we get the message property from the ProfileFailure state
+          // Here we get the message property from the ProfileFailure state.
           ProfileFailure(errorMessage: final message) => Text(message),
         };
       }),
@@ -255,7 +255,7 @@ As you can see, `sealed classes` helps us to properly **isolate** data inside ea
 ### Using `abstract` classes
 
 ```dart
-/// Using abstract classes
+// Using abstract classes.
 abstract class ProfileState {}
 
 class ProfileLoading extends ProfileState {}
@@ -293,8 +293,8 @@ class ProfileCubit extends Cubit<ProfileState> {
 
       emit(ProfileSuccess(data));
     } catch (e) {
-      /// We can emit the failure without losing the content that was
-      /// added by the user
+      // We can emit the failure without losing the content that was
+      // added by the user.
       emit(ProfileFailure(
           'Oops, could not load your profile. Please try again later.'));
     }
@@ -313,16 +313,16 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       body: BlocBuilder<ProfileCubit, ProfileState>(
         builder: (_, state) {
-          /// Using normal Switch statement
+          // Using normal Switch statement.
           switch (state) {
             case ProfileLoading():
               return const _ProgressIndicator();
             case ProfileSuccess():
-              /// Properties have to be accessed by the state
+              // Properties have to be accessed by the state.
               return ProfileView(state.profile);
             case ProfileFailure():
               return Text(state.errorMessage);
-            /// Default case is mandatory
+            // Default case is mandatory.
             default:
               return const SizedBox.shrink();
           }
@@ -376,13 +376,13 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   Future<void> getProfileDetails() async {
-    /// Already seen
+    // Already seen.
   }
 
   Future<void> editName(String newName) async {
     switch(state) {
-      /// Here we get both Profile objects stored inside each state class
-      /// and we're able to use it inside the block to update the profile
+      // Here we get both Profile objects stored inside each state class
+      // and we're able to use it inside the block to update the profile.
       case ProfileSuccess(profile: final prof):
       case ProfileEditing(profile: final prof):
         final newProfile = prof.copyWith(name: newName);
@@ -407,14 +407,14 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocBuilder<ProfileCubit, ProfileState>(builder: (context, state) {
-        /// Leverage the usage of switch statements
+        // Leverage the usage of switch statements.
         return switch (state) {
           ProfileLoading() => const _ProgressIndicator(),
-          /// We get the Profile prof by declaring a value based on the
-          /// internal property of the state
+          // We get the Profile prof by declaring a value based on the
+          // internal property of the state.
           ProfileSuccess(profile: final prof)
           || ProfileEditing(profile: final prof) => ProfileView(prof),
-          /// Here we get the message property from the ProfileFailure state
+          // Here we get the message property from the ProfileFailure state.
           ProfileFailure(errorMessage: var message) => Text(message),
         };
       }),
