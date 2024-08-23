@@ -6,16 +6,16 @@ interface Props {
 const props = Astro.props;
 ---
 
-<a href={props.url} class="contents">
-  <div
-    class="drop-shadow-lg rounded-lg overflow-hidden h-[100%] w-[100%] max-w-[478px] bg-[var(--vgv-card-bg)]"
-  >
+<div
+  class="drop-shadow-lg rounded-lg overflow-hidden h-[100%] w-[100%] max-w-[478px] bg-[var(--vgv-card-bg)] flex flex-col"
+>
+  <a href={props.url} class="contents">
     <slot name="thumbnail" />
-    <div class="p-4">
+    <div class="m-4 grow flex flex-col justify-between">
       <slot />
     </div>
-  </div>
-</a>
+  </a>
+</div>
 
 <style>
   a,
