@@ -11,7 +11,7 @@ export default defineConfig({
   integrations: [
     starlight({
       favicon: "./public/favicon.png",
-      title: "Very Good Engineering",
+      title: "VGV Engineering",
       head: [
         {
           // Fix theme flickering on page load.
