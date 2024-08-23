@@ -6,15 +6,12 @@ description: Code reviews best practices
 Code reviews are an integral part of any high-quality software development workflow. Whether you're a reviewer or an author, following good practices will improve the team's productivity and code quality while ensuring a smoother development flow.
 Writing clean and readable code, preparing code for review, conducting thorough and effective code reviews, and using tools to automate parts of the process, all these are key points to keep a healthy codebase.
 
-
 Consider the review when writing code
 When writing code it is essential to consider the review process right from the start. Code that’s designed with the reviewer in mind results in more efficient and productive code reviews, ultimately speeding up the development lifecycle.
 
 Prioritize Clean and Readable Code: Adopting consistent coding styles and best practices helps to ensure that everyone on the team can easily understand and maintain each other's code. It also streamlines onboarding for new team members and enhances collaboration across the board.
 Keep PRs small and focused: Small PRs reduce review complexity, allow for faster feedback, and prevent blockers from piling up in the review pipeline.
 Incorporate review time in planning: The time it takes for your code to be reviewed, feedback to be incorporated, and any revisions to be made can have a huge impact on a task's overall timeline. Accurately accounting for this in your task estimations ensures more realistic deadlines and helps prevent bottlenecks.
-
-
 
 #### Preparing Code for Review
 
@@ -24,7 +21,6 @@ Writing clear and comprehensive commit messages and adding relevant documentatio
 #### Conducting Effective Code Reviews
 
 Effective code reviews require a balance between attention to detail and a focus on the bigger picture. Making sure that we allocate enough time to review a pull request is critical to avoid missing anything.
-
 
 Prioritizing understanding the purpose of the code change, helps you evaluate whether the implementation truly aligns with the intended functionality, and the proposed solution fits within the larger architecture.
 
