@@ -1,5 +1,5 @@
 ---
-title: 🧪 Testing Overview
+title: Testing Overview
 description: Testing best practices.
 sidebar:
   order: 1

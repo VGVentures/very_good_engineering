@@ -1,0 +1,103 @@
+---
+import type { Props as StarlightProps } from "@astrojs/starlight/props";
+
+// Built-in CSS styles.
+import "node_modules/@astrojs/starlight/style/props.css";
+import "node_modules/@astrojs/starlight/style/reset.css";
+import "node_modules/@astrojs/starlight/style/shiki.css";
+import "node_modules/@astrojs/starlight/style/util.css";
+
+// Components — can override built-in CSS, but not user CSS.
+import Banner from "@astrojs/starlight/components/Banner.astro";
+import Head from "@astrojs/starlight/components/Head.astro";
+import SkipLink from "@astrojs/starlight/components/SkipLink.astro";
+import ThemeProvider from "@astrojs/starlight/components/ThemeProvider.astro";
+import VgvNav from "~/components/vgv_nav/vgv-nav.astro";
+import VgvPageFrame from "~/components/vgv_page/vgv-page-frame.astro";
+
+// Remark component CSS (needs to override `MarkdownContent.astro`)
+import "node_modules/@astrojs/starlight/style/asides.css";
+
+// Important that this is the last import so it can override built-in styles.
+import "virtual:starlight/user-css";
+import VgvTwoColumnContent from "../vgv_two_column_content/vgv-two-column-content.astro";
+
+interface Props extends StarlightProps {
+  htmlClasses?: string[];
+}
+
+const props = Astro.props;
+
+const pagefindEnabled =
+  props.entry.slug !== "404" &&
+  !props.entry.slug.endsWith("/404") &&
+  props.entry.data.pagefind !== false;
+---
+
+<html
+  lang={props.lang}
+  dir={props.dir}
+  data-has-toc={Boolean(props.toc)}
+  data-has-sidebar={props.hasSidebar}
+  data-has-hero={Boolean(props.entry.data.hero)}
+  data-theme="dark"
+  class:list={[...(props.htmlClasses ?? [])]}
+>
+  <head>
+    <Head {...props} />
+    <style>
+      html:not([data-has-toc]) {
+        --sl-mobile-toc-height: 0rem;
+      }
+      html:not([data-has-sidebar]) {
+        --sl-content-width: 67.5rem;
+      }
+      /* Add scroll padding to ensure anchor headings aren't obscured by nav */
+      html {
+        /* Additional padding is needed to account for the mobile TOC */
+        scroll-padding-top: calc(
+          1.5rem + var(--sl-nav-height) + var(--sl-mobile-toc-height)
+        );
+      }
+      main {
+        padding-bottom: 3vh;
+      }
+      @media (min-width: 50em) {
+        [data-has-sidebar] {
+          --sl-content-inline-start: var(--sl-sidebar-width);
+        }
+      }
+      @media (min-width: 72em) {
+        html {
+          scroll-padding-top: calc(1.5rem + var(--sl-nav-height));
+        }
+      }
+    </style>
+    <ThemeProvider {...props} />
+  </head>
+  <body>
+    <SkipLink {...props} />
+    <VgvPageFrame {...props}>
+      <VgvNav slot="header" {...props} />
+      <VgvTwoColumnContent {...props}>
+        <main
+          data-pagefind-body={pagefindEnabled}
+          lang={props.entryMeta.lang}
+          dir={props.entryMeta.dir}
+        >
+          {/* TODO: Revisit how this logic flows. */}
+          <Banner {...props} />
+          {
+            (
+              <>
+                {/* <ContentPanel {...props}> */}
+                <slot />
+                {/* </ContentPanel> */}
+              </>
+            )
+          }
+        </main>
+      </VgvTwoColumnContent>
+    </VgvPageFrame>
+  </body>
+</html>

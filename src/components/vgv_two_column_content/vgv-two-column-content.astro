@@ -1,0 +1,26 @@
+---
+import Default from "@astrojs/starlight/components/TwoColumnContent.astro";
+import type { Props as PageFrameProps } from "@astrojs/starlight/props";
+import VGVFooter from "../vgv_footer/vgv-footer.astro";
+
+interface Props extends PageFrameProps {}
+
+const props = Astro.props;
+
+const { hasSidebar } = props;
+---
+
+<Default {...Astro.props}>
+  <slot name="right-sidebar" slot="right-sidebar" />
+  <slot slot="default" />
+  {hasSidebar && <VGVFooter compact={true} />}
+</Default>
+
+{!hasSidebar && <VGVFooter />}
+
+<style is:inline>
+  .main-frame {
+    display: flex;
+    flex-direction: column;
+  }
+</style>

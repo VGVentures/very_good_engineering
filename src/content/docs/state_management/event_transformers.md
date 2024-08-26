@@ -1,5 +1,5 @@
 ---
-title: 🪄 Bloc Event Transformers
+title: Bloc Event Transformers
 description: Specifying the order in which Bloc events are handled.
 ---
 

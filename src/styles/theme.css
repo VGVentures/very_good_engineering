@@ -13,7 +13,13 @@
   --sl-color-gray-5: #323846;
   --sl-color-gray-6: #212633;
   --sl-color-black: #16181e;
+
+  --sl-color-bg-sidebar: transparent;
+  --sl-color-hairline-shade: #323846;
+
+  --sl-z-index-navbar: 6000;
 }
+
 /* Light mode colors. */
 :root[data-theme="light"] {
   --sl-color-accent-low: #c7d7fb;

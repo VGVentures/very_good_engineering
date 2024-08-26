@@ -11,7 +11,7 @@ export default defineConfig({
   integrations: [
     starlight({
       favicon: "./public/favicon.png",
-      title: "Very Good Engineering",
+      title: "VGV Engineering",
       head: [
         {
           // Fix theme flickering on page load.
@@ -46,75 +46,76 @@ export default defineConfig({
           "https://github.com/vgventures/very_good_engineering/edit/main/",
       },
       logo: {
-        light: "./src/assets/logos/unicorn_light.png",
-        dark: "./src/assets/logos/unicorn_dark.png",
+        light: "./src/assets/logos/logo_light.svg",
+        dark: "./src/assets/logos/logo_dark.svg",
       },
       social: {
         github: "https://github.com/vgventures/very_good_engineering",
       },
       sidebar: [
         {
-          label: "Architecture",
+          label: "🏛️ Architecture",
           autogenerate: {
             directory: "architecture",
           },
         },
         {
-          label: "Automation",
+          label: "🦾 Automation",
           autogenerate: {
             directory: "automation",
           },
         },
         {
-          label: "Code Style",
+          label: "✨ Code Style",
           autogenerate: {
             directory: "code_style",
           },
         },
         {
-          label: "Development",
+          label: "🦄 Development",
           autogenerate: {
             directory: "development",
           },
         },
         {
-          label: "Examples",
+          label: "📺 Examples",
+          badge: "NEW",
           autogenerate: {
             directory: "examples",
           },
         },
         {
-          label: "Internationalization",
+          label: "🌐 Internationalization",
           autogenerate: {
             directory: "internationalization",
           },
         },
         {
-          label: "Navigation",
+          label: "🗺️ Navigation",
           autogenerate: {
             directory: "navigation",
           },
         },
         {
-          label: "State Management",
+          label: "🪄 State Management",
           autogenerate: {
             directory: "state_management",
           },
         },
         {
-          label: "Testing",
+          label: "🧪 Testing",
           autogenerate: {
             directory: "testing",
           },
         },
         {
-          label: "Theming",
+          label: "🎨 Theming",
           autogenerate: {
             directory: "theming",
           },
         },
         {
-          label: "Widgets",
+          label: "🧩 Widgets",
           autogenerate: {
             directory: "widgets",
           },
@@ -122,7 +123,9 @@ export default defineConfig({
       ],
       components: {
         TwoColumnContent:
-          "./src/components/vgv_footer/vgv-two-column-content.astro",
+          "./src/components/vgv_two_column_content/vgv-two-column-content.astro",
+        Header: "./src/components/vgv_nav/vgv-nav.astro",
+        PageFrame: "./src/components/vgv_page/vgv-page-frame.astro",
       },
     }),
     react(),
