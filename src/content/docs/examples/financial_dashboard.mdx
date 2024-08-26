@@ -22,7 +22,9 @@ The Financial Dashboard is a simple demo managed by two state handlers, a Flavor
 
 ### Theming
 
-The theme in the app is handled by a `FlavorCubit`. It is a simple cubit that emits the selected flavor and rebuilds the appropriate page when that happens with a `BlocBuilder`.
+The theme in the app consists of a new color pallete and a different widget layout. With this in mind, we cannot just update the `ThemeData` in the `MaterialApp` widget, but we handle the feature with a `FlavorCubit`.
+
+It is a simple cubit that emits the selected flavor when the corresponding button is tapped.
 
 ```dart
 class FlavorCubit extends Cubit<AppFlavor> {
@@ -30,6 +32,32 @@ class FlavorCubit extends Cubit<AppFlavor> {
 
   void select(AppFlavor flavor) => emit(flavor);
 }
+```
+
+And rebuilds the appropriate page with a `BlocBuilder`.
+
+```dart
+BlocBuilder<FlavorCubit, AppFlavor>(
+  builder: (context, state) {
+    return switch (state) {
+      AppFlavor.one => DeviceFrame(
+          lightTheme: const FlavorOneTheme().themeData,
+          darkTheme: const FlavorOneDarkTheme().themeData,
+          child: const AppOne(),
+        ),
+      AppFlavor.two => DeviceFrame(
+          lightTheme: const FlavorTwoTheme().themeData,
+          darkTheme: const FlavorTwoDarkTheme().themeData,
+          child: const AppTwo(),
+        ),
+      AppFlavor.three => DeviceFrame(
+          lightTheme: const FlavorThreeTheme().themeData,
+          darkTheme: const FlavorThreeDarkTheme().themeData,
+          child: const AppThree(),
+        ),
+    };
+  },
+)
 ```
 
 ### Financial Data
