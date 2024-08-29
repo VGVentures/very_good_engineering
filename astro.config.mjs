@@ -54,6 +54,12 @@ export default defineConfig({
       },
       sidebar: [
         {
+          label: "🦄 Very Good Engineering",
+          autogenerate: {
+            directory: "very_good_engineering",
+          },
+        },
+        {
           label: "🏛️ Architecture",
           autogenerate: {
             directory: "architecture",
@@ -69,12 +75,6 @@ export default defineConfig({
           label: "✨ Code Style",
           autogenerate: {
             directory: "code_style",
-          },
-        },
-        {
-          label: "🦄 Development",
-          autogenerate: {
-            directory: "development",
           },
         },
         {

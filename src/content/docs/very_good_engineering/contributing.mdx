@@ -1,0 +1,41 @@
+---
+title: Contributing
+description: Very Good Engineering contribution guide.
+---
+
+## Setup
+
+We welcome (and encourage) contributions to Very Good Engineering!
+
+Since this is an [Astro] static website with the [Starlight] theme, you'll need to make sure you've installed [NVM] and the latest stable version of [Node.js].
+
+### GitHub PAT
+
+At build time, we dynamically fetch information about GitHub repositories so our cards on the home page are rendered with up-to-date information about the repositories they are linking to. To avoid being throttled by GitHub on rebuilds, you may wish to [create a GitHub PAT][github-pat] with permission to read public repositories and add it to your environment variable in your `.zshrc` or `.bashrc` file:
+
+```
+export VGVENTURES_GITHUB_PAT="(your github pat string)"
+```
+
+## Contributions
+
+Once you've made changes, you'll want to lint and format your code before submitting a pull request:
+
+```bash title="Terminal"
+npm run lint
+npm run format
+```
+
+:::note
+For substantial content changes or additions, we encourage you to first file an [issue] or raise a [discussion] so that we can consider the proposed changes.
+
+For small grammatical or typographical errors, feel free to submit a pull request directly.
+:::
+
+[Astro]: https://astro.build/
+[Starlight]: https://starlight.astro.build/
+[NVM]: https://github.com/nvm-sh/nvm
+[Node.js]: https://nodejs.org/
+[issue]: https://github.com/VGVentures/very_good_engineering/issues
+[discussion]: https://github.com/VGVentures/very_good_engineering/discussions
+[github-pat]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token
