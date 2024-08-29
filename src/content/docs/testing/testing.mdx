@@ -5,6 +5,8 @@ sidebar:
   order: 1
 ---
 
+import { FileTree, TabItem, Tabs } from '@astrojs/starlight/components';
+
 At Very Good Ventures, our goal is to achieve 100% test coverage on all projects. Writing tests not only helps to reduce the number of bugs, but also encourages code to be written in a very clean, consistent, and maintainable way. While testing can initially add some additional time to the project, the trade-off is fewer bugs, higher confidence when shipping, and less time spent in QA cycles.
 
 ## Organize test files
@@ -13,41 +15,50 @@ Test files should be organized to match your project file structure.
 
 This `my_package` library contains `models` and `widgets`. The `test` folder should copy this structure:
 
-```txt
-my_package/
-  |- lib/
-  |   |- models/
-  |   |   - model_a.dart
-  |   |   - model_b.dart
-  |   |   - models.dart
-  |   |- widgets/
-  |   |   - widget_1.dart
-  |   |   - widget_2.dart
-  |   |   - widgets.dart
-  |- test/
-      ...
-```
+<FileTree>
 
-Bad ❗️
+  - my_package/
+    - lib/
+      - models/
+        - model_a.dart
+        - model_b.dart
+        - models.dart
+      - widgets/
+        - widget_1.dart
+        - widget_2.dart
+        - widgets.dart
+    - test/
+        ...
 
-```txt
-test/
-  |- model_a_test.dart
-  |- model_b_test.dart
-  |- widgets_test.dart
-```
+</FileTree>
 
-Good ✅
+<Tabs>
+  <TabItem label="Good ✅">
+    <FileTree>
 
-```txt
-test/
-  |- models/
-  |   - model_a_test.dart
-  |   - model_b_test.dart
-  |- widgets/
-  |   - widget_1_test.dart
-  |   - widget_2_test.dart
-```
+        - test/
+          - models/
+            - model_a_test.dart
+            - model_b_test.dart
+          - widgets/
+            - widget_1_test.dart
+            - widget_2_test.dart
+
+    </FileTree>
+
+  </TabItem>
+
+  <TabItem label="Bad ❗️">
+    <FileTree>
+
+      - test/
+        - model_a_test.dart
+        - model_b_test.dart
+        - widgets_test.dart
+
+    </FileTree>
+  </TabItem>
+</Tabs>
 
 > Note: `models.dart` and `widgets.dart` are barrel files and do not need to be tested.
 
