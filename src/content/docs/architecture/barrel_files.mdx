@@ -3,39 +3,45 @@ title: Barrel Files
 description: Best practices for exposing public facing files.
 ---
 
+import { FileTree } from "@astrojs/starlight/components";
+
 When building a package, a feature, or an API, we will create a folder structure with all the source code inside. If we stop here and don't export the files that will be required in other places of the app, we will force developers to have a long and messy import section. Furthermore, any refactor that affects file names in one feature will require changes in other places that could be avoided.
 
 For a package, the structure could look something like:
 
-```text
-my_package/
- |-lib/
- |   |- src/
- |   |    |- models/
- |   |    |    - model_1.dart
- |   |    |    - model_2.dart
- |   |    |- widgets/
- |   |    |    - widget_1.dart
- |   |    |    - widget_2.dart
- |- test/...
- |- pubspec.yaml
-```
+<FileTree>
+
+- my_package/
+  - lib/
+    - src/
+      - models/
+        - model_1.dart
+        - model_2.dart
+      - widgets/
+        - widget_1.dart
+        - widget_2.dart
+  - test/...
+  - pubspec.yaml
+
+</FileTree>
 
 And for a feature, it could look like:
 
-```text
-my_feature/
- |- bloc/
- |    - feature_bloc.dart
- |    - feature_event.dart
- |    - feature_state.dart
- |- view/
- |    - feature_page.dart
- |    - feature_view.dart
- |- widgets/
-      - widget_1.dart
-      - widget_2.dart
-```
+<FileTree>
+
+- my_feature/
+  - bloc/
+    - feature_bloc.dart
+    - feature_event.dart
+    - feature_state.dart
+  - view/
+    - feature_page.dart
+    - feature_view.dart
+  - widgets/
+    - widget_1.dart
+    - widget_2.dart
+
+</FileTree>
 
 In both cases, if we want to use both `widget_1.dart` and `widget_2.dart` in other parts of the app, we will have to import them separately like:
 
@@ -56,37 +62,41 @@ With these changes, let's update the folder structures for both scenarios.
 
 A package with barrel files should look like:
 
-```text
-my_package/
- |-lib/
- |   |- src/
- |   |    |- models/
- |   |    |    - model_1.dart
- |   |    |    - model_2.dart
- |   |    |    - models.dart
- |   |    |- widgets/
- |   |    |    - widget_1.dart
- |   |    |    - widget_2.dart
- |   |    |    - widgets.dart
- |   |- my_package.dart
- |- test/...
- |- pubspec.yaml
-```
+<FileTree>
+
+- my_package/
+  - lib/
+    - src/
+      - models/
+        - model_1.dart
+        - model_2.dart
+        - models.dart
+      - widgets/
+        - widget_1.dart
+        - widget_2.dart
+        - widgets.dart
+    - my_package.dart
+  - test/...
+  - pubspec.yaml
+
+</FileTree>
 
 And for a feature, it should look like:
 
-```text
-my_feature/
- |- bloc/
- |    - feature_bloc.dart
- |    - feature_event.dart
- |    - feature_state.dart
- |- view/
- |    - feature_page.dart
- |    - feature_view.dart
- |    - view.dart
- |- my_feature.dart
-```
+<FileTree>
+
+- my_feature/
+  - bloc/
+    - feature_bloc.dart
+    - feature_event.dart
+    - feature_state.dart
+  - view/
+    - feature_page.dart
+    - feature_view.dart
+    - view.dart
+  - my_feature.dart
+
+</FileTree>
 
 Finally let's see what these files contain. Continuing with the package example, we have three barrel files: `models.dart`, `widgets.dart` and `my_package.dart`.
 
@@ -119,12 +129,14 @@ In this example, we are exporting all files from the folder, but this is not alw
 
 By convention, blocs are typically broken into separate files consisting of the events, states, and the bloc itself:
 
-```text
-bloc/
+<FileTree>
+
+- bloc/
   - feature_bloc.dart
   - feature_event.dart
   - feature_state.dart
-```
+
+</FileTree>
 
 In this case, we don't add an extra barrel file since the `feature_bloc.dart` file is working as such, thanks to the `part of` directives. You can read more about it in the [bloc documentation][bloc_documentation].
 
