@@ -7,6 +7,7 @@ Code reviews are an integral part of any high-quality software development workf
 Writing clean and readable code, preparing code for review, conducting thorough and effective code reviews, and using tools to automate parts of the process, are key points to keep a healthy codebase.
 
 ## Consider the review when writing code
+
 When writing code it is essential to consider the review process right from the start. Code that’s designed with the reviewer in mind results in more efficient and productive code reviews, ultimately speeding up the development lifecycle.
 
 - Prioritize Clean and Readable Code: Adopting consistent coding styles and best practices helps to ensure that everyone on the team can easily understand and maintain each other's code. It also streamlines onboarding for new team members and enhances collaboration across the board.
