@@ -3,7 +3,7 @@ title: Backend Architecture
 description: Best practices for building backend APIs.
 ---
 
-import { FileTree } from "@astrojs/starlight/components";
+import { FileTree } from '@astrojs/starlight/components';
 
 Loose coupling, separation of concerns and layered architecture should not only be applied to frontend development. These principles can also be applied during backend development. For example, concepts such as route navigation, data access, data processing and data models can be separated and tested in isolation.
 
@@ -33,36 +33,36 @@ While providers, routes, and tests, can live in the root backend project, consid
 
 <FileTree>
 
-- api/
-  - lib/
-    - src/
-      - middleware/
-  - packages/
-    - models/
-      - lib/
-        - src/
-          - endpoint_models/
-          - shared_models/
-      - test/
-        - src/
-          - endpoint_models/
-          - shared_models/
-    - data_source/
-      - lib/
-        - src/
-      - test/
-        - src/
-    - routes/
-      - api/
-        - v1/
-          - todos/
-      - test/
-        - src/
-          - middleware/
-        - routes/
-          - api/
-            - v1/
-              - todos/
+  - api/
+    - lib/
+      - src/
+        - middleware/
+    - packages/
+      - models/
+        - lib/
+          - src/
+            - endpoint_models/
+            - shared_models/
+        - test/
+          - src/
+            - endpoint_models/
+            - shared_models/
+      - data_source/
+        - lib/
+          - src/
+        - test/
+          - src/
+      - routes/
+        - api/
+          - v1/
+            - todos/
+        - test/
+          - src/
+            - middleware/
+          - routes/
+            - api/
+              - v1/
+                - todos/
 
 </FileTree>
 
