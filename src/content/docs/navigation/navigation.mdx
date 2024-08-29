@@ -21,26 +21,26 @@ Structure your routes in a way that makes logical sense. Avoid placing all of yo
   <TabItem label="Good ✅">
 
 ```txt
-/  
-/flutter  
-/flutter/news  
-/flutter/chat  
-/android  
-/android/news  
-/android/chat  
+/
+/flutter
+/flutter/news
+/flutter/chat
+/android
+/android/news
+/android/chat
 ```
 
   </TabItem>
   <TabItem label="Bad ❗️">
 
 ```txt
-/  
-/flutter  
-/flutter-news  
-/flutter-chat  
-/android  
-/android-news  
-/android-chat  
+/
+/flutter
+/flutter-news
+/flutter-chat
+/android
+/android-news
+/android-chat
 ```
 
   </TabItem>
@@ -119,9 +119,11 @@ context.goNamed('categories', queryParameters: {'size': 'small', 'color': 'blue'
   <TabItem label="Navigating by path">
 
 Navigating by path:
+
 ```dart
 context.go('/categories?size=small&color=blue');
 ```
+
   </TabItem>
 </Tabs>
 :::
