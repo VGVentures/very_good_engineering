@@ -3,7 +3,7 @@ title: Barrel Files
 description: Best practices for exposing public facing files.
 ---
 
-import { FileTree } from '@astrojs/starlight/components';
+import { FileTree } from "@astrojs/starlight/components";
 
 When building a package, a feature, or an API, we will create a folder structure with all the source code inside. If we stop here and don't export the files that will be required in other places of the app, we will force developers to have a long and messy import section. Furthermore, any refactor that affects file names in one feature will require changes in other places that could be avoided.
 
@@ -19,7 +19,7 @@ For a package, the structure could look something like:
         - model_2.dart
       - widgets/
         - widget_1.dart
-        - widget_2.dart 
+        - widget_2.dart
   - test/...
   - pubspec.yaml
 
