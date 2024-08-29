@@ -3,6 +3,7 @@ title: Architecture
 description: Architecture best practices.
 ---
 
+import { FileTree, TabItem, Tabs } from "@astrojs/starlight/components";
 import Diagram from "~/components/diagram.astro";
 import architectureDark from "./diagrams/layered_architecture_dark.png";
 import architectureLight from "./diagrams/layered_architecture_light.png";
@@ -55,48 +56,48 @@ The presentation layer is the layer that includes the Flutter UI dependencies. I
 
 The presentation layer and state management live in the project's `lib` folder. The data and repository layers will live as separate packages within the project's `packages` folder.
 
-Good ✅
+<FileTree>
 
-```txt
-my_app/
-  |- lib/
-  |   |- login/
-  |   |   |- bloc/
-  |   |   |   - login_bloc.dart
-  |   |   |   - login_event.dart
-  |   |   |   - login_state.dart
-  |   |   |- view/
-  |   |   |   - login_page.dart
-  |   |   |   - view.dart
-  |- packages/
-  |   |- user_repository/
-  |   |   |- lib/
-  |   |   |   |- src/
-  |   |   |   |   |- models/
-  |   |   |   |   |   - models.dart
-  |   |   |   |   |   - user.dart
-  |   |   |   |   |- user_repository.dart
-  |   |   |   - user_repository.dart
-  |   |   |- test/
-  |   |   |   |- models/
-  |   |   |   |   - user_test.dart
-  |   |   |   - user_repository_test.dart
-  |   |- api_client/
-  |   |   |- lib/
-  |   |   |   |- src/
-  |   |   |   |   - api_client.dart
-  |   |   |   - api_client.dart
-  |   |   |- test/
-  |   |   |   - api_client_test.dart
-  |- test/
-  |   |- login/
-  |   |   |- bloc/
-  |   |   |   - login_bloc_test.dart
-  |   |   |   - login_event_test.dart
-  |   |   |   - login_state_test.dart
-  |   |   |- view/
-  |   |   |   - login_page_test.test
-```
+- my_app/
+  - lib/
+    - login/
+      - bloc/
+        - login_bloc.dart
+        - login_event.dart
+        - login_state.dart
+      - view/
+        - login_page.dart
+        - view.dart
+  - packages/
+    - user_repository/
+      - lib/
+        - src/
+          - models/
+            - models.dart
+            - user.dart
+          - user_repository.dart
+        - user_repository.dart
+      - test/
+        - models/
+          - user_test.dart
+        - user_repository_test.dart
+    - api_client/
+      - lib/
+        - src/
+          - api_client.dart
+        - api_client.dart
+      - test/
+        - api_client_test.dart
+  - test/
+    - login/
+      - bloc/
+        - login_bloc_test.dart
+        - login_event_test.dart
+        - login_state_test.dart
+      - view/
+        - login_page_test.test
+
+</FileTree>
 
 Each layer abstracts the underlying layers' implementation details. Avoid indirect dependencies between layers. For example, the repository layer shouldn't need to know how the data is fetched in the data layer, and the presentation layer shouldn't directly access values from Shared Preferences. In other words, the implementation details should not leak between the layers. Using layered architecture ensures flexibility, reusability, and testability as the codebase grows.
 
