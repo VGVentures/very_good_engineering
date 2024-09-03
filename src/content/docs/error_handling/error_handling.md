@@ -13,15 +13,15 @@ This transparency allows developers to handle exceptions properly, leading to mo
   <TabItem label="Good ✅">
 
 ```dart
-/// Deletes permanenetly an account with the given [name].
+/// Deletes permanently an account with the given [name].
 ///
 /// Throws:
 ///
-/// * [UnothorizedException] if the active role is not [Role.admin], since only
+/// * [UnauthorizedException] if the active role is not [Role.admin], since only
 ///  admins are authorized to delete accounts.
 void deleteAccount(String name) {
   if (activeRole != Role.admin) {
-    throw UnothorizedException('Only admin can delete account');
+    throw UnauthorizedException('Only admin can delete account');
   }
   // ...
 }
@@ -31,10 +31,10 @@ void deleteAccount(String name) {
   <TabItem label="Bad ❗️">
 
 ```dart
-/// Deletes permanenetly an account with the given [name].
+/// Deletes permanently an account with the given [name].
 void deleteAccount(String name) {
   if (activeRole != Role.admin) {
-    throw UnothorizedException('Only admin can delete account');
+    throw UnauthorizedException('Only admin can delete account');
   }
   // ...
 }
@@ -43,7 +43,7 @@ void deleteAccount(String name) {
   </TabItem>
 </Tabs>
 
-## Define implemented exceptions
+## Define descriptive exceptions
 
 Implement `Exception` with descriptive names rather than simply throwing a generic `Exception`.
 
@@ -53,18 +53,18 @@ By creating custom exceptions, developers can provide more meaningful error mess
   <TabItem label="Good ✅">
 
 ```dart
-class UnothorizedException implements Exception {
-  UnothorizedException(this.message);
+class UnauthorizedException implements Exception {
+  UnauthorizedException(this.message);
 
   final String message;
 
   @override
-  String toString() => 'UnothorizedException: $message';
+  String toString() => 'UnauthorizedException: $message';
 }
 
 void deleteAccount(String name) {
   if (activeRole != Role.admin) {
-    throw UnothorizedException('Only admin can delete account');
+    throw UnauthorizedException('Only admin can delete account');
   }
   // ...
 }
@@ -72,7 +72,7 @@ void deleteAccount(String name) {
 void main() {
   try {
     deleteAccount('user');
-  } on UnothorizedException catch (e) {
+  } on UnauthorizedException catch (e) {
     // Handle the exception.
   }
 }
