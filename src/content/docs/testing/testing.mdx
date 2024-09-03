@@ -418,3 +418,86 @@ abstract class TestTag {
 ```
 
 :::
+
+## Do not share state between tests
+
+Tests should not share state between them to ensure they remain independent, reliable, and predictable. 
+
+When tests share state—such as variables, test's outcome and order can influence another's, leading to inconsistent results and making it difficult to identify the root cause of failures.
+
+Bad ❗️
+
+```dart
+class _Counter {
+  int value = 0;
+  void increment() => value++;
+  void decrement() => value--;
+}
+
+void main() {
+  group(_Counter, () {
+    final _Counter counter = _Counter();
+
+    test('increment', () {
+      counter.increment();
+      expect(counter.value, 1);
+    });
+
+    test('decrement', () {
+      counter.decrement();
+      // The expectation only succeeds when the previous test executes first.
+      expect(counter.value, 0);
+    });
+  });
+}
+
+```
+
+
+Good ✅
+
+```dart
+class _Counter {
+  int value = 0;
+  void increment() => value++;
+  void decrement() => value--;
+}
+
+void main() {
+  group(_Counter, () {
+    late _Counter counter;
+
+    setUp(() => counter = _Counter());
+
+    test('increment', () {
+      counter.increment();
+      expect(counter.value, 1);
+    });
+
+    test('decrement', () {
+      counter.decrement();
+      expect(counter.value, -1);
+    });
+  });
+}
+
+```
+
+## Use random test ordering
+
+Running tests in an arbitrary (random) order is a crucial practice to identify and eliminate flaky tests, specially during continuous integration.
+
+Flaky tests are those that pass or fail inconsistently without changes to the codebase, often due to unintended dependencies between tests.
+
+By running tests in random order, these hidden dependencies are more likely to be exposed, as any reliance on the order of test execution becomes clear when tests fail unexpectedly. 
+
+This practice ensures that tests do not share state or rely on the side effects of previous tests, leading to a more robust and reliable test suite. Overall, the tests become easier to trust and reduce debugging time caused by intermittent test failures.
+
+
+Good ✅
+
+```sh
+# Randomize test ordering using the --test-randomize-ordering-seed flag
+flutter test --test-randomize-ordering-seed random
+dart test --test-randomize-ordering-seed random
+```
