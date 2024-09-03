@@ -435,8 +435,8 @@ class _Counter {
 }
 
 void main() {
-group(\_Counter, () {
-late \_Counter counter;
+  group(_Counter, () {
+    late _Counter counter;
 
     setUp(() => counter = _Counter());
 
@@ -449,8 +449,7 @@ late \_Counter counter;
       counter.decrement();
       expect(counter.value, -1);
     });
-
-});
+  });
 }
 
 ````
