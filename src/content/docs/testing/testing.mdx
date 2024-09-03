@@ -427,6 +427,7 @@ When tests share state—such as variables, test's outcome and order can influen
 
 <Tabs>
   <TabItem label="Good ✅">
+
 ```dart
 class _Counter {
   int value = 0;
@@ -451,10 +452,11 @@ void main() {
     });
   });
 }
+```
 
-````
   </TabItem>
   <TabItem label="Bad ❗️">
+
 ```dart
 class _Counter {
   int value = 0;
@@ -478,8 +480,7 @@ void main() {
     });
   });
 }
-
-````
+```
 
   </TabItem>
 </Tabs>
