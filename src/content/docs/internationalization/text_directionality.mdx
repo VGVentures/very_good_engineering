@@ -11,7 +11,7 @@ Supporting variable text directions is a critical component of internationalizat
 
 Fortunately, Flutter provides robust capabilities for handling variable text directions. Utilizing these correctly will allow your application to make visual sense to all users. 
 
-Let's explore how Flutter handles text directionality, and discuss important guidelines for ensuring your app supports both LTR and RTL text flawlessly.
+Let's explore how Flutter handles text directionality and discuss important guidelines for ensuring your app supports both LTR and RTL text flawlessly.
 
 ### How Flutter Handles Text Directionality
 The [`Directionality`](https://api.flutter.dev/flutter/widgets/Directionality-class.html) widget is the basis of direction handling in Flutter. Its `textDirection` property controls how direction is assigned and can have a value of `TextDirection.ltr` or `TextDirection.rtl`, which will be furnished as a default text direction to all of the widget's children.
@@ -50,19 +50,19 @@ Flutter uses the [Unicode Bidirectional Algorithm](https://unicode.org/reports/t
 :::
 
 ### Tips for Handling Directionality in Flutter Like a Pro
- 1. Know when to use visual versus directional widgets.
+ 1. **Know when to use visual versus directional widgets.**
 
 The mirroring behavior exhibited by text-direction-sensitive widgets presents a unique challenge for developers. For example, how are text-aligned elements supposed to maintain their relative position when the alignment of the text itself is being flipped? What about widgets that require an *absolute* position independent of any text direction changes?
 
 Flutter has introduced a powerful system for expressing the precise behavior you want for many direction-sensitive widgets, but it's important to understand its details in order to get the most out of your bidirectional app.
 
-Flutter offers both visually and directionally-based versions of many related widgets and values. Visually-based values are defined in absolute directions such as `top`, `left`, `right`, and `bottom`. Directionally-sensitive widgets, by contrast, are defined in terms relative to the widget's directional alignment: `top`, `start`, `end`, `bottom`. 
+Flutter offers both visually- and directionally-demarcated versions of many relevant widgets and values. Visually-based values are defined in absolute directions such as `top`, `left`, `right`, and `bottom`. Directionally-based widgets, by contrast, are defined in terms relative to the widget's directional alignment: `top`, `start`, `end`, and `bottom`. 
 
-This distinction is illustrated by comparing the `EdgeInsets` and `EdgeInsetsDirectional` classes. If I want to introduce a padding value that always comes before the beginning of a text widget, `EdgeInsetsDirectional` allows me to maintain that relative position regardless of the text's orientation:
+This distinction is illustrated by comparing the `EdgeInsets` and `EdgeInsetsDirectional` classes. If we want to introduce a padding value that always comes before the beginning of a text widget, `EdgeInsetsDirectional` allows us to maintain that relative position regardless of the text's orientation:
 ```
 Padding(
     padding: EdgeInsetsDirectional.only(start: 12),
-    child: Text('Whether RTL or LTR text, padding will always be at the start of this string!'),
+    child: Text('Whether RTL or LTR, padding will always be at the start of this string!'),
 ),
 Padding(
     padding: EdgeInsets.only(left:  10),
@@ -71,9 +71,9 @@ Padding(
 ```
 Many Flutter widgets, including `Positioned` and `Border`, have `Directional` variants that will allow you to specify the exact relationship you want them to have with directionality.
 
- 2. Account for non-text elements.
+ 2. **Account for non-text elements.**
 
-Text isn't the only content in your app that changes with directionality! Many Flutter icons will also by default be mirrored when the text direction flips.
+Text isn't the only content in your app that changes with directionality! Many Flutter icons will also by default be mirrored when the text direction flips:
 
 <Image 
   src={bikeBidirectional}
@@ -87,7 +87,7 @@ If you want an icon to retain a static direction, set it in the `Icon`'s `textDi
 
 Images may need to be flipped as well. `Image` and most other default graphics widgets have a `matchTextDirection` property which is `false` by default. When set to `true`, the image will be drawn starting from the top left (default behavior) in LTR environments, and from the top right in RTL environments, mirroring the image.
 
- 3. Follow Bidirectional Mirroring Standards.
+ 3. **Follow bidirectional mirroring standards.**
  
 There are established guidelines for which elements should and should not be mirrored when switching between LTR and RTL layouts. For example, visual references to a forward direction or future time (e.g. an arrow pointing right in an LTR layout) should be mirrored, whereas media progress indicators should remain oriented LTR as they model the direction of a tape being played.
 
