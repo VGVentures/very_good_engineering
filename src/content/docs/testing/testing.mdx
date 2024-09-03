@@ -425,36 +425,9 @@ Tests should not share state between them to ensure they remain independent, rel
 
 When tests share state—such as variables, test's outcome and order can influence another's, leading to inconsistent results and making it difficult to identify the root cause of failures.
 
-Bad ❗️
 
-```dart
-class _Counter {
-  int value = 0;
-  void increment() => value++;
-  void decrement() => value--;
-}
-
-void main() {
-  group(_Counter, () {
-    final _Counter counter = _Counter();
-
-    test('increment', () {
-      counter.increment();
-      expect(counter.value, 1);
-    });
-
-    test('decrement', () {
-      counter.decrement();
-      // The expectation only succeeds when the previous test executes first.
-      expect(counter.value, 0);
-    });
-  });
-}
-
-```
-
-Good ✅
-
+<Tabs>
+  <TabItem label="Good ✅">
 ```dart
 class _Counter {
   int value = 0;
@@ -481,6 +454,35 @@ void main() {
 }
 
 ```
+  </TabItem>
+  <TabItem label="Bad ❗️">
+```dart
+class _Counter {
+  int value = 0;
+  void increment() => value++;
+  void decrement() => value--;
+}
+
+void main() {
+  group(_Counter, () {
+    final _Counter counter = _Counter();
+
+    test('increment', () {
+      counter.increment();
+      expect(counter.value, 1);
+    });
+
+    test('decrement', () {
+      counter.decrement();
+      // The expectation only succeeds when the previous test executes first.
+      expect(counter.value, 0);
+    });
+  });
+}
+
+```
+  </TabItem>
+</Tabs>
 
 ## Use random test ordering
 
@@ -492,7 +494,9 @@ By running tests in random order, these hidden dependencies are more likely to b
 
 This practice ensures that tests do not share state or rely on the side effects of previous tests, leading to a more robust and reliable test suite. Overall, the tests become easier to trust and reduce debugging time caused by intermittent test failures.
 
-Good ✅
+
+<Tabs>
+  <TabItem label="Good ✅">
 
 ```sh
 # Randomize test ordering using the --test-randomize-ordering-seed option
@@ -500,3 +504,5 @@ flutter test --test-randomize-ordering-seed random
 dart test --test-randomize-ordering-seed random
 very_good test --test-randomize-ordering-seed   
 ```
+  </TabItem>
+</Tabs>
