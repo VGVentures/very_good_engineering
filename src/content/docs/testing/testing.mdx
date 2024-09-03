@@ -425,7 +425,6 @@ Tests should not share state between them to ensure they remain independent, rel
 
 When tests share state—such as variables, test's outcome and order can influence another's, leading to inconsistent results and making it difficult to identify the root cause of failures.
 
-
 <Tabs>
   <TabItem label="Good ✅">
 ```dart
@@ -436,8 +435,8 @@ class _Counter {
 }
 
 void main() {
-  group(_Counter, () {
-    late _Counter counter;
+group(\_Counter, () {
+late \_Counter counter;
 
     setUp(() => counter = _Counter());
 
@@ -450,10 +449,11 @@ void main() {
       counter.decrement();
       expect(counter.value, -1);
     });
-  });
+
+});
 }
 
-```
+````
   </TabItem>
   <TabItem label="Bad ❗️">
 ```dart
@@ -480,7 +480,8 @@ void main() {
   });
 }
 
-```
+````
+
   </TabItem>
 </Tabs>
 
@@ -494,7 +495,6 @@ By running tests in random order, these hidden dependencies are more likely to b
 
 This practice ensures that tests do not share state or rely on the side effects of previous tests, leading to a more robust and reliable test suite. Overall, the tests become easier to trust and reduce debugging time caused by intermittent test failures.
 
-
 <Tabs>
   <TabItem label="Good ✅">
 
@@ -502,7 +502,8 @@ This practice ensures that tests do not share state or rely on the side effects 
 # Randomize test ordering using the --test-randomize-ordering-seed option
 flutter test --test-randomize-ordering-seed random
 dart test --test-randomize-ordering-seed random
-very_good test --test-randomize-ordering-seed   
+very_good test --test-randomize-ordering-seed
 ```
+
   </TabItem>
 </Tabs>
