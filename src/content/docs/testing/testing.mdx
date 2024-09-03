@@ -421,7 +421,7 @@ abstract class TestTag {
 
 ## Do not share state between tests
 
-Tests should not share state between them to ensure they remain independent, reliable, and predictable. 
+Tests should not share state between them to ensure they remain independent, reliable, and predictable.
 
 When tests share state—such as variables, test's outcome and order can influence another's, leading to inconsistent results and making it difficult to identify the root cause of failures.
 
@@ -452,7 +452,6 @@ void main() {
 }
 
 ```
-
 
 Good ✅
 
@@ -489,10 +488,9 @@ Running tests in an arbitrary (random) order is a crucial practice to identify a
 
 Flaky tests are those that pass or fail inconsistently without changes to the codebase, often due to unintended dependencies between tests.
 
-By running tests in random order, these hidden dependencies are more likely to be exposed, as any reliance on the order of test execution becomes clear when tests fail unexpectedly. 
+By running tests in random order, these hidden dependencies are more likely to be exposed, as any reliance on the order of test execution becomes clear when tests fail unexpectedly.
 
 This practice ensures that tests do not share state or rely on the side effects of previous tests, leading to a more robust and reliable test suite. Overall, the tests become easier to trust and reduce debugging time caused by intermittent test failures.
-
 
 Good ✅
 
