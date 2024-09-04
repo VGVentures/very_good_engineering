@@ -41,5 +41,6 @@
   },
   "tailwindCSS.includeLanguages": {
     "plaintext": "html"
-  }
+  },
+  "cSpell.enableFiletypes": ["mdx"]
 }
