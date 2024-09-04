@@ -3,34 +3,34 @@ title: Layouts
 description: Expanding on rows and columns
 ---
 
-import { Aside, Code, TabItem, Tabs } from '@astrojs/starlight/components';
-import crossAxisAlignCenter from 'assets/Cross Axis Align Center.png';
-import crossAxisAlignEnd from 'assets/Cross Axis Align End.png';
-import crossAxisAlignStart from 'assets/Cross Axis Align Start.png';
-import crossAxisAlignStretch from 'assets/Cross Axis Align Stretch.png';
-import expanded from 'assets/Expanded.png';
-import flexible from 'assets/Flexible.png';
-import listview from 'assets/Listview.png';
-import mainAxisAlignCenter from 'assets/Main Axis Alignment Center.png';
-import mainAxisAlignEnd from 'assets/Main Axis Alignment End.png';
-import mainAxisAlignSpaceAround from 'assets/Main Axis Alignment SpaceAround.png';
-import mainAxisAlignSpaceBetween from 'assets/Main Axis Alignment SpaceBetween.png';
-import mainAxisAlignSpaceEven from 'assets/Main Axis Alignment SpaceEvenly.png';
-import mainAxisAlignStart from 'assets/Main Axis Alignment Start.png';
-import mainAxisMax from 'assets/Main Axis Size Max.png';
-import mainAxisMin from 'assets/Main Axis Size Min.png';
-import noConstraints from 'assets/No Constraints.png';
-import noFlex from 'assets/No Flex.png';
-import noSize from 'assets/No Size.png';
-import overflow from 'assets/Overflow.png';
-import parentSize from 'assets/Parent Size.png';
-import singleChildScroll from 'assets/Single Child Scroll.png';
-import spacer from 'assets/Spacer.png';
-import wrap from 'assets/Wrap.png';
-import yesConstraints from 'assets/Yes Constraints.png';
-import yesFlex from 'assets/Yes Flex.png';
-import yesSize from 'assets/Yes Size.png';
-import { Image } from 'astro:assets';
+import { Aside, Code, TabItem, Tabs } from "@astrojs/starlight/components";
+import crossAxisAlignCenter from "assets/Cross Axis Align Center.png";
+import crossAxisAlignEnd from "assets/Cross Axis Align End.png";
+import crossAxisAlignStart from "assets/Cross Axis Align Start.png";
+import crossAxisAlignStretch from "assets/Cross Axis Align Stretch.png";
+import expanded from "assets/Expanded.png";
+import flexible from "assets/Flexible.png";
+import listview from "assets/Listview.png";
+import mainAxisAlignCenter from "assets/Main Axis Alignment Center.png";
+import mainAxisAlignEnd from "assets/Main Axis Alignment End.png";
+import mainAxisAlignSpaceAround from "assets/Main Axis Alignment SpaceAround.png";
+import mainAxisAlignSpaceBetween from "assets/Main Axis Alignment SpaceBetween.png";
+import mainAxisAlignSpaceEven from "assets/Main Axis Alignment SpaceEvenly.png";
+import mainAxisAlignStart from "assets/Main Axis Alignment Start.png";
+import mainAxisMax from "assets/Main Axis Size Max.png";
+import mainAxisMin from "assets/Main Axis Size Min.png";
+import noConstraints from "assets/No Constraints.png";
+import noFlex from "assets/No Flex.png";
+import noSize from "assets/No Size.png";
+import overflow from "assets/Overflow.png";
+import parentSize from "assets/Parent Size.png";
+import singleChildScroll from "assets/Single Child Scroll.png";
+import spacer from "assets/Spacer.png";
+import wrap from "assets/Wrap.png";
+import yesConstraints from "assets/Yes Constraints.png";
+import yesFlex from "assets/Yes Flex.png";
+import yesSize from "assets/Yes Size.png";
+import { Image } from "astro:assets";
 import Column from "~/components/two_column.astro";
 
 The Flutter [documentation](https://docs.flutter.dev/ui/layout) provides a great introduction to widget layout. Here, we will cover more detailed use cases with `Row`, `Column`, and `Listview`, specifically focusing on how to best leverage the sizing capabilities of widgets. For this discussion, we will illustrate techniques by using the following box widget — a blue square with rounded edges and padding.
@@ -53,17 +53,23 @@ class Box extends StatelessWidget {
 }
 ```
 
-<Aside>The padding is added to assist with visualization as columns or rows will not add padding around or between children by default. In reality widgets will be right up next to each other.</Aside>
+<Aside>
+  The padding is added to assist with visualization as columns or rows will not
+  add padding around or between children by default. In reality widgets will be
+  right up next to each other.
+</Aside>
 
 ## Why Indefinite Sizes
-In an ideal world, every phone would have the same physical size and resolution. We could give each widget a width and a height that match the design, pixel for pixel. Unfortunately, there are countless number of screen sizes for all kinds of devices, so our code has to intelligently use the space to make designs looks consistent across multiple devices. 
+
+In an ideal world, every phone would have the same physical size and resolution. We could give each widget a width and a height that match the design, pixel for pixel. Unfortunately, there are countless number of screen sizes for all kinds of devices, so our code has to intelligently use the space to make designs looks consistent across multiple devices.
 
 ## Rows and Columns
+
 `Row` and `Column` are the building blocks of all layouts and allow you to lay out a list of widgets in a particular direction — horizontally for rows and vertically for columns. Rows and columns provide three options to help with laying out across their children: `MainAxisSize`, `MainAxisAlignment`, and `CrossAxisAlignment`.
 
 ### `MainAxisSize`
 
-`MainAxisSize` determines whether a `Row` or `Column` will fill the space in the main axis direction. By default, this is set to main `MainAxisSize.max`, meaning the height will be as large as possible (subject to height constraints). If set to `MainAxisSize.min`, the column height will shrink so as to only fit its children. 
+`MainAxisSize` determines whether a `Row` or `Column` will fill the space in the main axis direction. By default, this is set to main `MainAxisSize.max`, meaning the height will be as large as possible (subject to height constraints). If set to `MainAxisSize.min`, the column height will shrink so as to only fit its children.
 
 <Tabs>
   <TabItem label="min">
@@ -110,7 +116,7 @@ Column(
 
 ### `MainAxisAlignment`
 
-`MainAxisAlignment` determines how to lay out the children along the primary axis (vertical for columns and horizontal for rows) when there is extra vertical space available. If there is no extra vertical space, this value will do nothing. 
+`MainAxisAlignment` determines how to lay out the children along the primary axis (vertical for columns and horizontal for rows) when there is extra vertical space available. If there is no extra vertical space, this value will do nothing.
 
 <Tabs>
   <TabItem label="start">
@@ -156,6 +162,7 @@ Column(
   </TabItem>
 
     <TabItem label="center">
+
   <Column>
   <div slot="left">
 
@@ -177,6 +184,7 @@ Column(
   </TabItem>
 
     <TabItem label="spaceAround">
+
   <Column>
   <div slot="left">
 
@@ -198,6 +206,7 @@ Column(
   </TabItem>
 
     <TabItem label="spaceBetween">
+
   <Column>
   <div slot="left">
 
@@ -219,6 +228,7 @@ Column(
   </TabItem>
 
     <TabItem label="spaceEvenly">
+
   <Column>
   <div slot="left">
 
@@ -243,9 +253,12 @@ Column(
 
 ### `CrossAxisAlignment`
 
-`CrossAxisAlignment` determines how to lay out widgets along the alternate axis (vertically for rows and horizontally for columns). The column's width is set to the size of the largest child (by default). If all the children are the same size and there are no width constraints, this value will do nothing. While `start`, `center`, and `end` will only adjust the position of the widget, `stretch` will adjust the size of the widgets in the column. 
+`CrossAxisAlignment` determines how to lay out widgets along the alternate axis (vertically for rows and horizontally for columns). The column's width is set to the size of the largest child (by default). If all the children are the same size and there are no width constraints, this value will do nothing. While `start`, `center`, and `end` will only adjust the position of the widget, `stretch` will adjust the size of the widgets in the column.
 
-<Aside>For these examples, the width of the parent container is set larger than the children.</Aside>
+<Aside>
+  For these examples, the width of the parent container is set larger than the
+  children.
+</Aside>
 
 <Tabs>
 
@@ -292,6 +305,7 @@ Column(
   </TabItem>
 
     <TabItem label="center">
+
   <Column>
   <div slot="left">
 
@@ -313,6 +327,7 @@ Column(
   </TabItem>
 
     <TabItem label="stretch">
+
   <Column>
   <div slot="left">
 
@@ -335,12 +350,15 @@ Column(
 
 </Tabs>
 
-
 ## `Expanded`, `Flexible`, and `Spacer`
 
-Within a row or column, you may want different widgets to take up differing amounts of space. `Expanded`, `Flexible`, and `Spacer` widgets are useful for customizing the sizes and positioning of child widgets. These widgets will wrap one of the children in a `Row` or `Column`. 
+Within a row or column, you may want different widgets to take up differing amounts of space. `Expanded`, `Flexible`, and `Spacer` widgets are useful for customizing the sizes and positioning of child widgets. These widgets will wrap one of the children in a `Row` or `Column`.
 
-<Aside>Using `Expanded` and `Spacer` will override `MainAxisAlignment` and `MainAxisSize`, as the extra space will be taken by the expanded widgets (which expand to take up all the available space, naturally).</Aside>
+<Aside>
+  Using `Expanded` and `Spacer` will override `MainAxisAlignment` and
+  `MainAxisSize`, as the extra space will be taken by the expanded widgets
+  (which expand to take up all the available space, naturally).
+</Aside>
 
 ### `Expanded`
 
@@ -366,7 +384,7 @@ Column(
 
 ### `Spacer`
 
-The `Spacer` widget creates an empty space that fills all the available space across the main axis of its parent widget. 
+The `Spacer` widget creates an empty space that fills all the available space across the main axis of its parent widget.
 
   <Column>
   <div slot="left">
@@ -389,7 +407,7 @@ Column(
 
 ### `Flexible`
 
-The `Flexible` widget is a more flexible (pun intended) expanded widget that lets you choose wether to fill the expandable space (or not).  
+The `Flexible` widget is a more flexible (pun intended) expanded widget that lets you choose wether to fill the expandable space (or not).
 
   <Column>
   <div slot="left">
@@ -576,6 +594,7 @@ Column(
   </TabItem>
 
     <TabItem label="parents size">
+
   <Column>
   <div slot="left">
   
@@ -607,23 +626,24 @@ Container(
 
 ### Parent Sets Position
 
-Children do not know their absolute position since their position is set by the parent. Consider how the `Column` widget parameters `MainAxisAlignment` and `CrossAxisAlignment` set where the children are in the Column. 
+Children do not know their absolute position since their position is set by the parent. Consider how the `Column` widget parameters `MainAxisAlignment` and `CrossAxisAlignment` set where the children are in the Column.
 
 Flutter documentation also provides a number of detailed guides regarding constraints[^1] [^2] [^3].
 
-
 ## Wrapping and Scrolling
 
-Sometimes a list of widgets will grow larger than the space that exists for it. When that happens inside a row or column, you will have *overflow*. The flutter library solves this by allowing you to make the items *wrap* or *scroll*.
+Sometimes a list of widgets will grow larger than the space that exists for it. When that happens inside a row or column, you will have _overflow_. The flutter library solves this by allowing you to make the items _wrap_ or _scroll_.
 
-<Aside>Because these widgets will be built on the space taken up by the widgets, you can’t use widgets that expand to Fill Space like Expanded or Spacer.</Aside>
+<Aside>
+  Because these widgets will be built on the space taken up by the widgets, you
+  can’t use widgets that expand to Fill Space like Expanded or Spacer.
+</Aside>
 
 ### Wrap
 
-The `Wrap` widget functions like a `Row` or `Column` depending on how you set the  `direction` property. When the `Wrap` widget lays out its children widgets, the widgets will wrap to the next row or column when the end of one row or column has been reached.
+The `Wrap` widget functions like a `Row` or `Column` depending on how you set the `direction` property. When the `Wrap` widget lays out its children widgets, the widgets will wrap to the next row or column when the end of one row or column has been reached.
 
-The `Wrap` widget has several properties that are reminiscent of rows and columns. The `alignment` and `crossAxisAlignment` properties are equivalent to `mainAxisAlignment` and `crossAxisAlignment`, respectively. `Wrap` also provides extra properties to deal with additional rows that are created by the wrapping effect, like `runAlignment` and `runSpacing`.  
-
+The `Wrap` widget has several properties that are reminiscent of rows and columns. The `alignment` and `crossAxisAlignment` properties are equivalent to `mainAxisAlignment` and `crossAxisAlignment`, respectively. `Wrap` also provides extra properties to deal with additional rows that are created by the wrapping effect, like `runAlignment` and `runSpacing`.
 
 ### Listview
 
@@ -633,7 +653,7 @@ The `shrinkwrap` parameter changes this: when true, the listview’s children wi
 
 ### SingleChildScrollView
 
-A `SingleChildScrollView` will wrap a widget and make it scrollable. It is ideal to use when making other types of widgets (besides `Row` and `Column`) scrollable. When trying to render a list of children, however, it is usually more performant to use a listview over a `SingleChildScrollView`.  
+A `SingleChildScrollView` will wrap a widget and make it scrollable. It is ideal to use when making other types of widgets (besides `Row` and `Column`) scrollable. When trying to render a list of children, however, it is usually more performant to use a listview over a `SingleChildScrollView`.
 
 <Tabs>
   <TabItem label="overflow">
@@ -711,6 +731,7 @@ ListView(
   </TabItem>
 
     <TabItem label="SingleChildScrollView">
+
   <Column>
   <div slot="left">
 
@@ -738,22 +759,23 @@ SingleChildScrollView(
   </TabItem>
 </Tabs>
 
-
 ## Nesting
 
-A layout will likely have many nested rows and columns. There is no limit to how many rows and columns can be nested, but it is important to consider the constraints that are present on the rows and columns when nesting these widgets. This is especially true when nesting scrollable widgets or using expanded widgets in a nested row or column.  
+A layout will likely have many nested rows and columns. There is no limit to how many rows and columns can be nested, but it is important to consider the constraints that are present on the rows and columns when nesting these widgets. This is especially true when nesting scrollable widgets or using expanded widgets in a nested row or column.
 
 <Aside type="tip" title="Do's">
-- Freely nest rows and columns (they are not expensive widgets)
-- On all rows and columns, consider what `mainAxisSize` should be (`min` or `max`)
-- Set `shrinkwrap` to `true` when nesting Listviews
-- Use widget inspector to visualize widget bounds to see how the widget hierarchy is being rendered 
-- Consider if row or column might overflow on smaller devices
+  - Freely nest rows and columns (they are not expensive widgets) - On all rows
+  and columns, consider what `mainAxisSize` should be (`min` or `max`) - Set
+  `shrinkwrap` to `true` when nesting Listviews - Use widget inspector to
+  visualize widget bounds to see how the widget hierarchy is being rendered -
+  Consider if row or column might overflow on smaller devices
 </Aside>
 
 <Aside type="danger" title="Dont's">
-- Don't put `Expanded` widgets inside of `Wrap`, `Listview`, and `SingleChildScrollView`, even if nested (unless the nested value has a fixed size)
-- Don't use `SingleChildScrollView` when it is possible to use a regular listview (for the sake of performance).
+  - Don't put `Expanded` widgets inside of `Wrap`, `Listview`, and
+  `SingleChildScrollView`, even if nested (unless the nested value has a fixed
+  size) - Don't use `SingleChildScrollView` when it is possible to use a regular
+  listview (for the sake of performance).
 </Aside>
 
 [^1]: [Understanding Constraints](https://docs.flutter.dev/ui/layout/constraints)
