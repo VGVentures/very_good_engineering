@@ -635,8 +635,10 @@ Flutter documentation also provides a number of detailed guides regarding constr
 Sometimes a list of widgets will grow larger than the space that exists for it. When that happens inside a row or column, you will have _overflow_. The flutter library solves this by allowing you to make the items _wrap_ or _scroll_.
 
 <Aside>
-  Because these widgets will be built on the space taken up by the widgets, you
-  can’t use widgets that expand to Fill Space like Expanded or Spacer.
+  Be careful when using widgets which try to fill all the available space, like
+  `Expanded`, `Spacer`, etc, inside a `Wrap` or `Listview`. Since the `Wrap` and
+  `Listview` don't constrain the sizes of their children (without additional
+  configuration), you can end up with unbounded sizes and overflow errors.
 </Aside>
 
 ### Wrap
