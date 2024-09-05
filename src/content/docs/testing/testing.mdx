@@ -423,7 +423,7 @@ abstract class TestTag {
 
 Tests should not share state between them to ensure they remain independent, reliable, and predictable.
 
-When tests share state—such as variables, test's outcome and order can influence another's, leading to inconsistent results and making it difficult to identify the root cause of failures.
+When tests share state (such as relying on static members), the order that tests are executed in can cause inconsistent results. Implicitly sharing state between tests means that tests no longer exist in isolation and are influenced by each other. As a result, it can be difficult to identify the root cause of test failures.
 
 <Tabs>
   <TabItem label="Good ✅">
