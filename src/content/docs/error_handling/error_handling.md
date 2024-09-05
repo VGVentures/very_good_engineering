@@ -13,7 +13,7 @@ This transparency allows developers to handle exceptions properly, leading to mo
   <TabItem label="Good ✅">
 
 ```dart
-/// Deletes permanently an account with the given [name].
+/// Permanently deletes an account with the given [name].
 ///
 /// Throws:
 ///
@@ -31,7 +31,7 @@ void deleteAccount(String name) {
   <TabItem label="Bad ❗️">
 
 ```dart
-/// Deletes permanently an account with the given [name].
+/// Permanently deletes an account with the given [name].
 void deleteAccount(String name) {
   if (activeRole != Role.admin) {
     throw UnauthorizedException('Only admin can delete account');
@@ -94,9 +94,9 @@ void main() {
   try {
     deleteAccount('user');
   } on Exception catch (e) {
-    // Exception is a marker interface implemented by all core library exceptions,
-    // it is very generic and it could be catching many different types of exceptions,
-    // lacking intent and making the code harder to understand.
+    // Exception is a marker interface implemented by all core library exceptions.
+    // It is very generic, potentially catching many different types of exceptions,
+    // lacking intent, and making the code harder to understand.
   }
 }
 ```
