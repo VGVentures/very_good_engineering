@@ -7,7 +7,7 @@ description: Error handling best practices.
 
 Inform about the potential risks associated with calling a function, helping understand under what conditions an exception might be thrown.
 
-This transparency allows developers to handle exceptions properly, leading to more robust and error-resistant code. Thus, reducing the likelihood of unintended errors.
+Properly documenting possible exceptions allows developers to handle exceptions, leading to more robust and error-resistant code and reducing the likelihood of unintended errors.
 
 <Tabs>
   <TabItem label="Good ✅">
