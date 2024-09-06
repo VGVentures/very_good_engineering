@@ -5,7 +5,7 @@ description: Error handling best practices.
 
 ## Document when a call may throw
 
-Inform about the potential risks associated with calling a function, helping understand under what conditions an exception might be thrown.
+Document exceptions associated with calling a function in its documentation comments to help understand when an exception might be thrown.
 
 Properly documenting possible exceptions allows developers to handle exceptions, leading to more robust and error-resistant code and reducing the likelihood of unintended errors.
 
