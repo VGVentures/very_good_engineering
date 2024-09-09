@@ -63,7 +63,7 @@ Flutter offers both visually- and directionally-demarcated versions of many rele
 
 This distinction is illustrated by comparing the `EdgeInsets` and `EdgeInsetsDirectional` classes. If we want to introduce a padding value that always comes before the beginning of a text widget, `EdgeInsetsDirectional` allows us to maintain that relative position regardless of the text's orientation:
 
-```
+```dart
 Padding(
     padding: EdgeInsetsDirectional.only(start: 12),
     child: Text('Whether RTL or LTR, padding will always be at the start of this string!'),
