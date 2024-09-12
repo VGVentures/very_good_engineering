@@ -86,20 +86,9 @@ void main() {
 }
 ```
 
-## Widgets vs Helper Methods
+## Use standalone Widgets over helper methods
 
-When you're creating a widget, sometimes you want to split the widget up into smaller pieces to make the widget reusable or improve readability.
-
-```dart
-class MyWidget extends StatelessWidget {
-  const MyWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Text('Hello World!');
-  }
-}
-```
+If a Widget starts growing with complexity, you might want to split the build method up. Instead of creating a function, simply create a new Widget.
 
 <Tabs>
   <TabItem label="Good ✅">

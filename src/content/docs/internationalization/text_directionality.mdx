@@ -27,7 +27,7 @@ Directionality can also be explicitly supplied to widgets through use of the `Di
 
 Let's observe how directionality impacts the display of various elements in a flutter app. Here we have a `Directionality` widget which furnishes a variable text direction to a row and its children:
 
-```
+```dart
 Directionality(
   textDirection: textDirectionLTR ? TextDirection.ltr : TextDirection.rtl,
   child: Row(
@@ -63,7 +63,7 @@ Flutter offers both visually- and directionally-demarcated versions of many rele
 
 This distinction is illustrated by comparing the `EdgeInsets` and `EdgeInsetsDirectional` classes. If we want to introduce a padding value that always comes before the beginning of a text widget, `EdgeInsetsDirectional` allows us to maintain that relative position regardless of the text's orientation:
 
-```
+```dart
 Padding(
     padding: EdgeInsetsDirectional.only(start: 12),
     child: Text('Whether RTL or LTR, padding will always be at the start of this string!'),
