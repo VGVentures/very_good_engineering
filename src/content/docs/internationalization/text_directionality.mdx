@@ -4,8 +4,8 @@ description: Handling left-to-right and right-to-left content in Flutter.
 ---
 
 import { Image } from "astro:assets";
-import directionExample from "./images/text_direction_figure_1.png";
 import bikeBidirectional from "./images/bike_bidirectional.png";
+import directionExample from "./images/text_direction_figure_1.png";
 
 Supporting variable text directions is a critical component of internationalization. While many languages such as English are read left-to-right (LTR), a great number including Arabic, Hebrew, and Farsi are read right-to-left (RTL). Text directionality impacts not only how text itself is displayed, but the layout and design of your app as a whole.
 
@@ -53,7 +53,7 @@ Flutter uses the [Unicode Bidirectional Algorithm](https://unicode.org/reports/t
 
 ### Tips for Handling Directionality in Flutter Like a Pro
 
-1.  **Know when to use visual versus directional widgets.**
+#### **Know when to use _visual_ versus _directional_ widgets.**
 
 The mirroring behavior exhibited by text-direction-sensitive widgets presents a unique challenge for developers. For example, how are text-aligned elements supposed to maintain their relative position when the alignment of the text itself is being flipped? What about widgets that require an _absolute_ position independent of any text direction changes?
 
@@ -76,7 +76,7 @@ Padding(
 
 Many Flutter widgets, including `Positioned` and `Border`, have `Directional` variants that will allow you to specify the exact relationship you want them to have with directionality.
 
-2.  **Account for non-text elements.**
+#### **Account for non-text elements.**
 
 Text isn't the only content in your app that changes with directionality! Many Flutter icons will also by default be mirrored when the text direction flips:
 
@@ -84,7 +84,7 @@ Text isn't the only content in your app that changes with directionality! Many F
   src={bikeBidirectional}
   alt="Left-to-right and right-to-left variants of a bicycle icon."
 />
-*Icons.directions_bike in LTR and RTL alignments (source: [material.io)](https://m2.material.io/design/usability/bidirectionality.html#mirroring-elements)*
+_Icons.directions_bike in LTR and RTL alignments (source: [material.io)](https://m2.material.io/design/usability/bidirectionality.html#mirroring-elements)_
 
 :::note
 If you want an icon to retain a static direction, set it in the `Icon`'s `textDirection` field.
@@ -92,7 +92,7 @@ If you want an icon to retain a static direction, set it in the `Icon`'s `textDi
 
 Images may need to be flipped as well. `Image` and most other default graphics widgets have a `matchTextDirection` property which is `false` by default. When set to `true`, the image will be drawn starting from the top left (default behavior) in LTR environments, and from the top right in RTL environments, mirroring the image.
 
-3.  **Follow bidirectional mirroring standards.**
+#### **Follow bidirectional mirroring standards.**
 
 There are established guidelines for which elements should and should not be mirrored when switching between LTR and RTL layouts. For example, visual references to a forward direction or future time (e.g. an arrow pointing right in an LTR layout) should be mirrored, whereas media progress indicators should remain oriented LTR as they model the direction of a tape being played.
 
