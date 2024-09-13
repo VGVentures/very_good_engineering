@@ -2,3 +2,206 @@
 title: Vehicle Cockpit
 description: A sample project that simulates a vehicle cockpit.
 ---
+
+import { Image, Picture } from "astro:assets";
+import vehicleCockpitScreenshot from "./images/vehicle_cockpit.png";
+import gaugeProgress from "./images/gauge_progress.png";
+import gaugeRing from "./images/gauge_ring.png";
+import gaugeRpmNumbers from "./images/gauge_rpm_numbers.png";
+import gauge from "./images/gauge.png";
+import gear from "./images/gear.png";
+import speedometer from "./images/speedometer.png";
+
+The Vehicle Cockpit simulates a realtime speedometer and tachometer as the user accelerates around the track.
+
+<Image
+  src={vehicleCockpitScreenshot}
+  alt="Screenshot of the Vehicle Cockpit."
+/>
+
+The source code for this project is available on [GitHub](https://github.com/VGVentures/vehicle_cockpit). To view the live demo, click [here](https://vgventures.github.io/vehicle_cockpit/).
+
+## Flame
+
+[Flame](https://pub.dev/packages/flame) is a game engine that is built for Flutter. It is used to render and update our gauge. Let's take a deeper look into how the components that make up the gauge are created and composed together to form a working speedometer and tachometer.
+
+<Image
+  src={gauge}
+  alt="The gauge that shows the vehicle's current speed and RPM."
+  height="200"
+/>
+
+### GaugeGame
+
+The `GaugeGame` is the [`FlameGame`](https://docs.flame-engine.org/latest/flame/game.html) object. All of the components that make up the gauge are added inside of the `onLoad` method. These components include the [GaugeComponent](#gaugecomponent), [Speedometer](#speedometer), and the [Gear](#gear).
+
+```dart
+  @override
+  Future<void> onLoad() async {
+    await add(
+      gauge = GaugeComponent(
+        size: Vector2.all(340),
+        position: size / 2,
+        maxRpm: (sim.vehicle.engineRpmMaximum / 1000).round(),
+        dangerZone: (sim.vehicle.engineRpmRedline / 1000).round(),
+        appTheme: appTheme,
+      ),
+    );
+
+    await add(
+      speedometer = Speedometer(
+        speed: 0,
+        position: size / 2 - Vector2(0, 40),
+      ),
+    );
+
+    await add(
+      gear = Gear(
+        position: size / 2 + Vector2(0, 30),
+        triangleSize: 60,
+      ),
+    );
+  }
+```
+
+Not only does the `GaugeGame` add the components to be displayed, it also handles the user input to update the game. As you'll see below, the `GaugeGame` can directly call methods on its components, and can also make its variables and methods availble to its children.
+
+The `GaugeGame` relies on a [`GameLoop`](https://docs.flame-engine.org/latest/flame/game.html#game-loop) to update the components on the screen. This calls the `update` method where we can update the gauge's progress, speedometer, and current gear.
+
+```dart
+  @override
+  void update(double dt) {
+    sim.simulate(dt * timeScale, hittingGas ? 1.0 : -1.3);
+
+    gauge.setProgress(
+      sim.engineRpm / sim.vehicle.engineRpmMaximum,
+      dt,
+    );
+    speedometer.speed = sim.speed;
+    gear.gearText.text = sim.gear.toString();
+
+    onSpeedChanged(sim.speed);
+
+    super.update(dt);
+  }
+```
+
+#### GaugeComponent
+
+The `GaugeComponent` is a [`PositionComponent`](https://docs.flame-engine.org/latest/other_modules/oxygen/components.html#positioncomponent) that composes `GaugeRing` and the components that are needed to display the vehicle's RPM information: `GaugeProgress` and `GaugeRpmNumbers`. These are added in the `GaugeComponent`'s `onLoad` method:
+
+```dart
+  @override
+  Future<void> onLoad() async {
+    await add(
+      GaugeRing(
+        size: size.clone(),
+        color: appTheme.colorScheme.error,
+      ),
+    );
+
+    const offset = 16.0;
+    final innerRingPosition = Vector2.all(offset / 2);
+    final innerRingSize = size.clone() - Vector2.all(offset);
+    await add(
+      GaugeProgress(
+        position: innerRingPosition,
+        size: innerRingSize,
+      ),
+    );
+    await add(
+      GaugeRpmNumbers(
+        position: innerRingPosition,
+        size: innerRingSize,
+      ),
+    );
+  }
+```
+
+
+##### Gauge Ring
+
+The `GaugeRing` is a `PositionComponent` that forms the outline of the gauge. This component simply renders the ring.
+
+<Image
+  src={gaugeRing}
+  alt="The outer ring of the gauge."
+  height="200"
+/>
+
+##### Gauge Progress
+
+The `GaugeProgress` is another `PositionComponent` object that draws the gradient RPM progress bar that is located just inside of the `GaugeRing`. The `GaugeComponent`'s `progress` value gets set within the `GaugeGame`'s `update` method. The `GaugeProgress` object makes use of the [`ParentIsA`](https://docs.flame-engine.org/latest/flame/components.html#ensuring-a-component-has-a-given-parent) [mixin](https://dart.dev/language/mixins), which gives the component access to the parent component via the `parent` property.
+
+<Image
+  src={gaugeProgress}
+  alt="The vehicle's current RPM."
+  height="200"
+/>
+
+##### Gauge RPM Numbers
+
+The `GaugeRpmNumbers` is the last `PositionComponent` object that is used for the tachometer. This component consist of the `GaugeRmpPoint` component, that draws the RPM tick marks, and also the `GaugeNumberIndicator` that draws the RPM numbers below the ticks.
+
+<Image
+  src={gaugeRpmNumbers}
+  alt="The RPM ticks and numbers within the gauge."
+  height="200"
+/>
+
+### Speedometer
+
+The `Speedometer` is a [`TextComponent`](https://docs.flame-engine.org/latest/flame/rendering/text_rendering.html#textcomponent) object that renders the current speed and the "MPH" label to the screen. The `Speedometer` object uses the [`HasGameRef<GaugeGame>`](https://github.com/flame-engine/flame/blob/a5338d0c20d01bbe461c6d7fed5951d11e1c76f0/packages/flame/lib/src/components/mixins/has_game_ref.dart) mixin, which allows it to access variables and methods that are in the `GaugeGame` class. This makes it easier for the `Speedometer` to access the `GaugeGame`'s `appTheme` and `l10n` members.
+
+<Image
+  src={speedometer}
+  alt="The vehicle's current speed."
+  height="200"
+/>
+
+### Gear
+
+The `Gear` is a `PositionComponent` that renders the vehicle's current gear inside of a triagle. The `gearText` is set directly in the `GaugeGame`.
+
+```dart
+gear.gearText.text = sim.gear.toString();
+```
+
+<Image
+  src={gear}
+  alt="The vehicle's current gear."
+  height="200"
+/>
+
+
+## Adding the Gauge to the Widget Tree
+
+To add the gauge to the `DashboardPage`, we'll use Flame's [`GameWidget`](https://docs.flame-engine.org/latest/flame/game_widget.html). The `GameWidget` requires a `Game` object. In this case, that would be our `GaugeGame`.
+
+```dart
+final game = GaugeGame(
+  sim: VehicleSim(vehicle: Vehicles.compactCrossoverSUV),
+  appTheme: theme,
+  l10n: l10n,
+  onSpeedChanged: onSpeedChanged,
+);
+
+// ...
+
+LayoutBuilder(
+  builder: (context, constraints) {
+    final width = min<double>(400, constraints.maxWidth);
+    return SizedBox.square(
+      dimension: width * .75,
+      child: Transform.scale(
+        scale: width / 500,
+        child: GameWidget(
+          game: game,
+        ),
+      ),
+    );
+  },
+),
+```
+
+The `acceleratorPedalPushed()` and `acceleratorPedalReleased()` can be called on the `game` object to simulate pressing and releasing the accelerator pedal.
