@@ -118,26 +118,17 @@ The `GaugeComponent` is a [`PositionComponent`](https://docs.flame-engine.org/la
   }
 ```
 
-
 ##### Gauge Ring
 
 The `GaugeRing` is a `PositionComponent` that forms the outline of the gauge. This component simply renders the ring.
 
-<Image
-  src={gaugeRing}
-  alt="The outer ring of the gauge."
-  height="200"
-/>
+<Image src={gaugeRing} alt="The outer ring of the gauge." height="200" />
 
 ##### Gauge Progress
 
 The `GaugeProgress` is another `PositionComponent` object that draws the gradient RPM progress bar that is located just inside of the `GaugeRing`. The `GaugeComponent`'s `progress` value gets set within the `GaugeGame`'s `update` method. The `GaugeProgress` object makes use of the [`ParentIsA`](https://docs.flame-engine.org/latest/flame/components.html#ensuring-a-component-has-a-given-parent) [mixin](https://dart.dev/language/mixins), which gives the component access to the parent component via the `parent` property.
 
-<Image
-  src={gaugeProgress}
-  alt="The vehicle's current RPM."
-  height="200"
-/>
+<Image src={gaugeProgress} alt="The vehicle's current RPM." height="200" />
 
 ##### Gauge RPM Numbers
 
@@ -153,11 +144,7 @@ The `GaugeRpmNumbers` is the last `PositionComponent` object that is used for th
 
 The `Speedometer` is a [`TextComponent`](https://docs.flame-engine.org/latest/flame/rendering/text_rendering.html#textcomponent) object that renders the current speed and the "MPH" label to the screen. The `Speedometer` object uses the [`HasGameRef<GaugeGame>`](https://github.com/flame-engine/flame/blob/a5338d0c20d01bbe461c6d7fed5951d11e1c76f0/packages/flame/lib/src/components/mixins/has_game_ref.dart) mixin, which allows it to access variables and methods that are in the `GaugeGame` class. This makes it easier for the `Speedometer` to access the `GaugeGame`'s `appTheme` and `l10n` members.
 
-<Image
-  src={speedometer}
-  alt="The vehicle's current speed."
-  height="200"
-/>
+<Image src={speedometer} alt="The vehicle's current speed." height="200" />
 
 ### Gear
 
@@ -167,12 +154,7 @@ The `Gear` is a `PositionComponent` that renders the vehicle's current gear insi
 gear.gearText.text = sim.gear.toString();
 ```
 
-<Image
-  src={gear}
-  alt="The vehicle's current gear."
-  height="200"
-/>
-
+<Image src={gear} alt="The vehicle's current gear." height="200" />
 
 ## Adding the Gauge to the Widget Tree
 
