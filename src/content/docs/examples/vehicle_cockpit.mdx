@@ -64,7 +64,7 @@ The `GaugeGame` is the [`FlameGame`](https://docs.flame-engine.org/latest/flame/
   }
 ```
 
-Not only does the `GaugeGame` add the components to be displayed, it also handles the user input to update the game. As you'll see below, the `GaugeGame` can directly call methods on its components, and can also make its variables and methods availble to its children.
+Not only does the `GaugeGame` add the components to be displayed, it also handles the user input to update the game. As you'll see below, the `GaugeGame` can directly call methods on its components, and can also make its variables and methods available to its children.
 
 The `GaugeGame` relies on a [`GameLoop`](https://docs.flame-engine.org/latest/flame/game.html#game-loop) to update the components on the screen. This calls the `update` method where we can update the gauge's progress, speedometer, and current gear.
 
@@ -148,7 +148,7 @@ The `Speedometer` is a [`TextComponent`](https://docs.flame-engine.org/latest/fl
 
 ### Gear
 
-The `Gear` is a `PositionComponent` that renders the vehicle's current gear inside of a triagle. The `gearText` is set directly in the `GaugeGame`.
+The `Gear` is a `PositionComponent` that renders the vehicle's current gear inside of a triangle. The `gearText` is set directly in the `GaugeGame`.
 
 ```dart
 gear.gearText.text = sim.gear.toString();
