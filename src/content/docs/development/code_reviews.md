@@ -28,18 +28,23 @@ Effective code reviews require a balance between attention to detail and a focus
 Here are some key principles for effective and respectful code review communication:
 
 ### Be Constructive and Actionable:
+
 Focus on feedback that helps the author improve by offering clear suggestions for how to address issues. Avoid vague comments and ensure that your feedback points toward a specific, actionable improvement.
 
 ### Balance Criticism with Praise:
+
 Recognize what’s done well before highlighting areas that need improvement. Acknowledging strengths helps build confidence while making the author more receptive to constructive criticism.
 
 ### Focus on Clarity, Maintainability, and Correctness:
+
 Ensure that the code adheres to team standards and is easy to read and maintain. It’s not just about fixing errors but also about making the code cleaner and more understandable for future developers.
 
 ### Recognize Effort and Intent:
+
 Appreciate the time and thought put into the code, even when revisions are needed. A small note of recognition goes a long way in maintaining a collaborative and supportive team atmosphere.
 
 ### Encourage Collaboration:
+
 Frame feedback in a way that invites open discussion and solutions. This creates a culture of shared decision-making and helps the author feel part of the process rather than simply receiving orders.
 
 By adhering to these practices, you can create a code review culture that improves the code while fostering collaboration, mutual respect, and growth within the team.
