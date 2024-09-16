@@ -19,6 +19,7 @@ Structure your routes in a way that makes logical sense. Avoid placing all of yo
 
 <Tabs>
   <TabItem label="Good ✅">
+
     ```txt
     /
     /flutter
@@ -28,8 +29,10 @@ Structure your routes in a way that makes logical sense. Avoid placing all of yo
     /android/news
     /android/chat
     ```
+
   </TabItem>
   <TabItem label="Bad ❗️">
+
     ```txt
     /
     /flutter
@@ -39,6 +42,7 @@ Structure your routes in a way that makes logical sense. Avoid placing all of yo
     /android-news
     /android-chat
     ```
+
   </TabItem>
 </Tabs>
 
@@ -52,6 +56,7 @@ GoRouter allows you to define [type-safe routes](https://pub.dev/documentation/g
 
 <Tabs>
   <TabItem label="Good ✅">
+
     ```dart
     @TypedGoRoute<CategoriesPageRoute>(
       name: 'categories',
@@ -79,6 +84,7 @@ GoRouter allows you to define [type-safe routes](https://pub.dev/documentation/g
 
   </TabItem>
   <TabItem label="Bad ❗️">
+
     ```dart
     GoRoute(
       name: 'categories',
@@ -90,6 +96,7 @@ GoRouter allows you to define [type-safe routes](https://pub.dev/documentation/g
       }
     )
     ```
+
   </TabItem>
 </Tabs>
 
@@ -106,16 +113,18 @@ For reasons listed in the [Prefer navigating by name over path](#prefer-navigati
 
 <Tabs>
   <TabItem label="Navigating by name">
+
     ```dart
     context.goNamed('categories', queryParameters: {'size': 'small', 'color': 'blue'})
     ```
+
   </TabItem>
   <TabItem label="Navigating by path">
-    Navigating by path:
 
     ```dart
     context.go('/categories?size=small&color=blue');
     ```
+
   </TabItem>
 </Tabs>
 
@@ -153,15 +162,19 @@ Mobile app users will likely never see your route's path, but web app users can 
 
 <Tabs>
   <TabItem label="Good ✅">
+
     ```txt
     /user/update-address
     ```
+
   </TabItem>
   <TabItem label="Bad ❗️">
+
     ```txt
     /user/update_address
     /user/updateAddress
     ```
+
   </TabItem>
 </Tabs>
 
@@ -226,14 +239,18 @@ GoRouter provides extension methods on `BuildContext` to simplify navigation. Fo
 
 <Tabs>
   <TabItem label="Good ✅">
+
     ```dart
     context.goNamed('flutterNews');
     ```
+
   </TabItem>
   <TabItem label="Bad ❗️">
+
     ```dart
     GoRouter.of(context).goNamed('flutterNews');
     ```
+
   </TabItem>
 </Tabs>
 
@@ -336,6 +353,7 @@ The `extra` option used during navigation does not work on the web and cannot be
 
 <Tabs>
   <TabItem label="Bad ❗️">
+
     ```dart
     @TypedGoRoute<FlutterArticlePageRoute>(
       name: 'flutterArticle',
@@ -359,6 +377,7 @@ The `extra` option used during navigation does not work on the web and cannot be
     ```dart
     FlutterArticlePageRoute(article: article).go(context);
     ```
+
   </TabItem>
 </Tabs>
 
@@ -366,6 +385,7 @@ In this example, we are passing the `article` object to the article details page
 
 <Tabs>
   <TabItem label="Good ✅">
+
     ```dart
     FlutterArticlePageRoute(id: state.article.id).go(context);
     ```
@@ -389,6 +409,7 @@ In this example, we are passing the `article` object to the article details page
       }
     }
     ```
+
   </TabItem>
 </Tabs>
 
