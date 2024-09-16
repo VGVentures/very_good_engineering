@@ -19,30 +19,26 @@ Structure your routes in a way that makes logical sense. Avoid placing all of yo
 
 <Tabs>
   <TabItem label="Good ✅">
-
-```txt
-/
-/flutter
-/flutter/news
-/flutter/chat
-/android
-/android/news
-/android/chat
-```
-
+    ```txt
+    /
+    /flutter
+    /flutter/news
+    /flutter/chat
+    /android
+    /android/news
+    /android/chat
+    ```
   </TabItem>
   <TabItem label="Bad ❗️">
-
-```txt
-/
-/flutter
-/flutter-news
-/flutter-chat
-/android
-/android-news
-/android-chat
-```
-
+    ```txt
+    /
+    /flutter
+    /flutter-news
+    /flutter-chat
+    /android
+    /android-news
+    /android-chat
+    ```
   </TabItem>
 </Tabs>
 
@@ -110,22 +106,19 @@ For reasons listed in the [Prefer navigating by name over path](#prefer-navigati
 
 <Tabs>
   <TabItem label="Navigating by name">
-
-```dart
-context.goNamed('categories', queryParameters: {'size': 'small', 'color': 'blue'})
-```
-
+    ```dart
+    context.goNamed('categories', queryParameters: {'size': 'small', 'color': 'blue'})
+    ```
   </TabItem>
   <TabItem label="Navigating by path">
+    Navigating by path:
 
-Navigating by path:
-
-```dart
-context.go('/categories?size=small&color=blue');
-```
-
+    ```dart
+    context.go('/categories?size=small&color=blue');
+    ```
   </TabItem>
 </Tabs>
+
 :::
 
 ### Prefer `go` over `push` methods
@@ -160,19 +153,15 @@ Mobile app users will likely never see your route's path, but web app users can 
 
 <Tabs>
   <TabItem label="Good ✅">
-
-```txt
-/user/update-address
-```
-
+    ```txt
+    /user/update-address
+    ```
   </TabItem>
   <TabItem label="Bad ❗️">
-
-```txt
-/user/update_address
-/user/updateAddress
-```
-
+    ```txt
+    /user/update_address
+    /user/updateAddress
+    ```
   </TabItem>
 </Tabs>
 
@@ -237,18 +226,14 @@ GoRouter provides extension methods on `BuildContext` to simplify navigation. Fo
 
 <Tabs>
   <TabItem label="Good ✅">
-
-```dart
-context.goNamed('flutterNews');
-```
-
+    ```dart
+    context.goNamed('flutterNews');
+    ```
   </TabItem>
   <TabItem label="Bad ❗️">
-
-```dart
-GoRouter.of(context).goNamed('flutterNews');
-```
-
+    ```dart
+    GoRouter.of(context).goNamed('flutterNews');
+    ```
   </TabItem>
 </Tabs>
 
@@ -349,59 +334,63 @@ GoRouter has the ability to pass objects from one page to another. Most of the t
 The `extra` option used during navigation does not work on the web and cannot be used for deep linking, so we do not recommend using it.
 :::
 
-Bad ❗️
+<Tabs>
+  <TabItem label="Bad ❗️">
+    ```dart
+    @TypedGoRoute<FlutterArticlePageRoute>(
+      name: 'flutterArticle',
+      path: 'article',
+    )
+    @immutable
+    class FlutterArticlePageRoute extends GoRouteData {
+      const FlutterArticlePageRoute({
+        required this.article,
+      });
 
-```dart
-@TypedGoRoute<FlutterArticlePageRoute>(
-  name: 'flutterArticle',
-  path: 'article',
-)
-@immutable
-class FlutterArticlePageRoute extends GoRouteData {
-  const FlutterArticlePageRoute({
-    required this.article,
-  });
+      final Article article;
 
-  final Article article;
+      @override
+      Widget build(context, state) {
+        return FlutterArticlePage(article: article);
+      }
+    }
+    ```
 
-  @override
-  Widget build(context, state) {
-    return FlutterArticlePage(article: article);
-  }
-}
-```
-
-```dart
-FlutterArticlePageRoute(article: article).go(context);
-```
+    ```dart
+    FlutterArticlePageRoute(article: article).go(context);
+    ```
+  </TabItem>
+</Tabs>
 
 In this example, we are passing the `article` object to the article details page. If your app is designed to only work on mobile and there are no plans of deep linking to the articles details page, then this is fine. But, if the requirements change and now you want to support the web or deep link users directly to the details of a particular article, changes will need to be made. Instead, pass the identifier of the article as a path parameter and fetch the article information from inside of your article details page.
 
-Good ✅
+<Tabs>
+  <TabItem label="Good ✅">
+    ```dart
+    FlutterArticlePageRoute(id: state.article.id).go(context);
+    ```
 
-```dart
-FlutterArticlePageRoute(id: state.article.id).go(context);
-```
+    ```dart
+    @TypedGoRoute<FlutterArticlePageRoute>(
+      name: 'flutterArticle',
+      path: 'article/:id',
+    )
+    @immutable
+    class FlutterArticlePageRoute extends GoRouteData {
+      const CategoriesPageRoute({
+        required this.id,
+      });
 
-```dart
-@TypedGoRoute<FlutterArticlePageRoute>(
-  name: 'flutterArticle',
-  path: 'article/:id',
-)
-@immutable
-class FlutterArticlePageRoute extends GoRouteData {
-  const CategoriesPageRoute({
-    required this.id,
-  });
+      final String id;
 
-  final String id;
-
-  @override
-  Widget build(context, state) {
-    return FlutterArticlePage(id: id);
-  }
-}
-```
+      @override
+      Widget build(context, state) {
+        return FlutterArticlePage(id: id);
+      }
+    }
+    ```
+  </TabItem>
+</Tabs>
 
 :::note
 This does not necessarily mean that you have to make another network request to fetch the article information if you already have it. You may need to refactor your repository layer to retrieve the article information from the cache if the data has already been fetched, otherwise make the request to fetch the article information.

@@ -11,35 +11,31 @@ Properly documenting possible exceptions allows developers to handle exceptions,
 
 <Tabs>
   <TabItem label="Good ✅">
-
-```dart
-/// Permanently deletes an account with the given [name].
-///
-/// Throws:
-///
-/// * [UnauthorizedException] if the active role is not [Role.admin], since only
-///  admins are authorized to delete accounts.
-void deleteAccount(String name) {
-  if (activeRole != Role.admin) {
-    throw UnauthorizedException('Only admin can delete account');
-  }
-  // ...
-}
-```
-
+    ```dart
+    /// Permanently deletes an account with the given [name].
+    ///
+    /// Throws:
+    ///
+    /// * [UnauthorizedException] if the active role is not [Role.admin], since only
+    ///  admins are authorized to delete accounts.
+    void deleteAccount(String name) {
+      if (activeRole != Role.admin) {
+        throw UnauthorizedException('Only admin can delete account');
+      }
+      // ...
+    }
+    ```
   </TabItem>
   <TabItem label="Bad ❗️">
-
-```dart
-/// Permanently deletes an account with the given [name].
-void deleteAccount(String name) {
-  if (activeRole != Role.admin) {
-    throw UnauthorizedException('Only admin can delete account');
-  }
-  // ...
-}
-```
-
+    ```dart
+    /// Permanently deletes an account with the given [name].
+    void deleteAccount(String name) {
+      if (activeRole != Role.admin) {
+        throw UnauthorizedException('Only admin can delete account');
+      }
+      // ...
+    }
+    ```
   </TabItem>
 </Tabs>
 

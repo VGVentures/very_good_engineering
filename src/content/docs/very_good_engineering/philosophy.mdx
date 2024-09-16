@@ -66,33 +66,28 @@ Declarative programming is [difficult to define][declarative] and depends on you
 
 <Tabs>
   <TabItem label="Declarative">
+    ```dart
+    // declarative coding
+    // (saying what it should be)
 
-```dart
-// declarative coding
-// (saying what it should be)
-
-return Visualizer(
-  children: [
-    VisualElement(),
-  ],
-);
-```
-
+    return Visualizer(
+      children: [
+        VisualElement(),
+      ],
+    );
+    ```
   </TabItem>
   <TabItem label="Imperative">
-  
-  ```dart
-  // imperative coding
-  // (saying what should happen)
+    ```dart
+    // imperative coding
+    // (saying what should happen)
 
-final visualizer = Visualizer();
-final text = VisualElement();
-visualizer.add(text);
+    final visualizer = Visualizer();
+    final text = VisualElement();
+    visualizer.add(text);
 
-return visualizer;
-
-````
-
+    return visualizer;
+    ```
 </TabItem>
 </Tabs>
 
