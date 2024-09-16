@@ -3,6 +3,8 @@ title: Error handling
 description: Error handling best practices.
 ---
 
+import { FileTree, TabItem, Tabs } from "@astrojs/starlight/components";
+
 ## Document when a call may throw
 
 Document exceptions associated with calling a function in its documentation comments to help understand when an exception might be thrown.
@@ -47,55 +49,52 @@ By creating custom exceptions, developers can provide more meaningful error mess
 
 <Tabs>
   <TabItem label="Good ✅">
+    ```dart
+    class UnauthorizedException implements Exception {
+      UnauthorizedException(this.message);
 
-```dart
-class UnauthorizedException implements Exception {
-  UnauthorizedException(this.message);
+      final String message;
 
-  final String message;
+      @override
+      String toString() => 'UnauthorizedException: $message';
+    }
 
-  @override
-  String toString() => 'UnauthorizedException: $message';
-}
+    void deleteAccount(String name) {
+      if (activeRole != Role.admin) {
+        throw UnauthorizedException('Only admin can delete account');
+      }
+      // ...
+    }
 
-void deleteAccount(String name) {
-  if (activeRole != Role.admin) {
-    throw UnauthorizedException('Only admin can delete account');
-  }
-  // ...
-}
-
-void main() {
-  try {
-    deleteAccount('user');
-  } on UnauthorizedException catch (e) {
-    // Handle the exception.
-  }
-}
-
-```
+    void main() {
+      try {
+        deleteAccount('user');
+      } on UnauthorizedException catch (e) {
+        // Handle the exception.
+      }
+    }
+    ```
 
   </TabItem>
   <TabItem label="Bad ❗️">
+    ```dart
+    void deleteAccount(String name) {
+      if (activeRole != Role.admin) {
+        throw Exception('Only admin can delete account');
+      }
+      // ...
+    }
 
-```dart
-void deleteAccount(String name) {
-  if (activeRole != Role.admin) {
-    throw Exception('Only admin can delete account');
-  }
-  // ...
-}
-
-void main() {
-  try {
-    deleteAccount('user');
-  } on Exception catch (e) {
-    // Exception is a marker interface implemented by all core library exceptions.
-    // It is very generic, potentially catching many different types of exceptions,
-    // lacking intent, and making the code harder to understand.
-  }
-}
-```
+    void main() {
+      try {
+        deleteAccount('user');
+      } on Exception catch (e) {
+        // Exception is a marker interface implemented by all core library exceptions.
+        // It is very generic, potentially catching many different types of exceptions,
+        // lacking intent, and making the code harder to understand.
+      }
+    }
+    ```
 
   </TabItem>
 </Tabs>

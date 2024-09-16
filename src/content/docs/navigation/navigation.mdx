@@ -19,7 +19,6 @@ Structure your routes in a way that makes logical sense. Avoid placing all of yo
 
 <Tabs>
   <TabItem label="Good ✅">
-
     ```txt
     /
     /flutter
@@ -32,7 +31,6 @@ Structure your routes in a way that makes logical sense. Avoid placing all of yo
 
   </TabItem>
   <TabItem label="Bad ❗️">
-
     ```txt
     /
     /flutter
@@ -56,7 +54,6 @@ GoRouter allows you to define [type-safe routes](https://pub.dev/documentation/g
 
 <Tabs>
   <TabItem label="Good ✅">
-
     ```dart
     @TypedGoRoute<CategoriesPageRoute>(
       name: 'categories',
@@ -84,7 +81,6 @@ GoRouter allows you to define [type-safe routes](https://pub.dev/documentation/g
 
   </TabItem>
   <TabItem label="Bad ❗️">
-
     ```dart
     GoRoute(
       name: 'categories',
@@ -113,14 +109,12 @@ For reasons listed in the [Prefer navigating by name over path](#prefer-navigati
 
 <Tabs>
   <TabItem label="Navigating by name">
-
     ```dart
     context.goNamed('categories', queryParameters: {'size': 'small', 'color': 'blue'})
     ```
 
   </TabItem>
   <TabItem label="Navigating by path">
-
     ```dart
     context.go('/categories?size=small&color=blue');
     ```
@@ -162,14 +156,12 @@ Mobile app users will likely never see your route's path, but web app users can 
 
 <Tabs>
   <TabItem label="Good ✅">
-
     ```txt
     /user/update-address
     ```
 
   </TabItem>
   <TabItem label="Bad ❗️">
-
     ```txt
     /user/update_address
     /user/updateAddress
@@ -239,14 +231,12 @@ GoRouter provides extension methods on `BuildContext` to simplify navigation. Fo
 
 <Tabs>
   <TabItem label="Good ✅">
-
     ```dart
     context.goNamed('flutterNews');
     ```
 
   </TabItem>
   <TabItem label="Bad ❗️">
-
     ```dart
     GoRouter.of(context).goNamed('flutterNews');
     ```
@@ -353,7 +343,6 @@ The `extra` option used during navigation does not work on the web and cannot be
 
 <Tabs>
   <TabItem label="Bad ❗️">
-
     ```dart
     @TypedGoRoute<FlutterArticlePageRoute>(
       name: 'flutterArticle',
@@ -385,7 +374,6 @@ In this example, we are passing the `article` object to the article details page
 
 <Tabs>
   <TabItem label="Good ✅">
-
     ```dart
     FlutterArticlePageRoute(id: state.article.id).go(context);
     ```

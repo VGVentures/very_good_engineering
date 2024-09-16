@@ -77,7 +77,6 @@ All tests should have one or more statements at the end of the test asserting th
 
 <Tabs>
   <TabItem label="Good ✅">
-
     ```dart
     testWidgets('calls [onTap] on tapping widget', (tester) async {
       var isTapped = false;
@@ -97,7 +96,6 @@ All tests should have one or more statements at the end of the test asserting th
 
   </TabItem>
   <TabItem label="Bad ❗️">
-
     ```dart
     testWidgets('can tap widget', (tester) async {
       await tester.pumpWidget(SomeTappableWidget());
@@ -121,7 +119,6 @@ Now, we are explicitly testing that we have accessed the `onTap` property of `So
 
 <Tabs>
   <TabItem label="Good ✅">
-
     ```dart
     expect(name, equals('Hank'));
     expect(people, hasLength(3));
@@ -130,7 +127,6 @@ Now, we are explicitly testing that we have accessed the `onTap` property of `So
 
   </TabItem>
   <TabItem label="Bad ❗️">
-
     ```dart
     expect(name, 'Hank');
     expect(people.length, 3);
@@ -146,14 +142,12 @@ If you're referencing a type within a test description, use a [string expression
 
 <Tabs>
   <TabItem label="Good ✅">
-
     ```dart
     testWidgets('renders $YourView', (tester) async {});
     ```
 
   </TabItem>
   <TabItem label="Bad ❗️">
-
     ```dart
     testWidgets('renders YourView', (tester) async {});
     ```
@@ -165,14 +159,12 @@ If your [test](https://pub.dev/documentation/test/latest/test/test.html) or [gro
 
 <Tabs>
   <TabItem label="Good ✅">
-
     ```dart
     group(YourView, () {});
     ```
 
   </TabItem>
   <TabItem label="Bad ❗️">
-
     ```dart
     group('$YourView', () {});
     ```
@@ -186,7 +178,6 @@ Don't be afraid of being verbose in your tests. Make sure everything is readable
 
 <Tabs>
   <TabItem label="Good ✅">
-
     ```dart
     testWidgets('renders $YourView', (tester) async {});
     testWidgets('renders $YourView for $YourState', (tester) async {});
@@ -196,7 +187,6 @@ Don't be afraid of being verbose in your tests. Make sure everything is readable
 
   </TabItem>
   <TabItem label="Bad ❗️">
-
     ```dart
     testWidgets('renders', (tester) async {});
     test('works', () async {});
@@ -212,7 +202,6 @@ Aim to test one scenario per test. You might end up with more tests in the codeb
 
 <Tabs>
   <TabItem label="Good ✅">
-
     ```dart
     testWidgets('renders $WidgetA', (tester) async {});
     testWidgets('renders $WidgetB', (tester) async {});
@@ -220,7 +209,6 @@ Aim to test one scenario per test. You might end up with more tests in the codeb
 
   </TabItem>
   <TabItem label="Bad ❗️">
-
     ```dart
     testWidgets('renders $WidgetA and $WidgetB', (tester) async {});
     ```
@@ -234,14 +222,12 @@ Although keys can be an easy way to look for a widget while testing, they tend t
 
 <Tabs>
   <TabItem label="Good ✅">
-
     ```dart
     expect(find.byType(HomePage), findsOneWidget);
     ```
 
   </TabItem>
   <TabItem label="Bad ❗️">
-
     ```dart
     expect(find.byKey(Key('homePageKey')), findsOneWidget);
     ```
@@ -255,14 +241,12 @@ Developers may reuse mocks across different test files. This could lead to undes
 
 <Tabs>
   <TabItem label="Good ✅">
-
     ```dart
     class _MockYourClass extends Mock implements YourClass {}
     ```
 
   </TabItem>
   <TabItem label="Bad ❗️">
-
     ```dart
     class MockYourClass extends Mock implements YourClass {}
     ```
@@ -299,7 +283,6 @@ In order to avoid such issues, refrain from adding `setUp` and `setUpAll` (as we
 
 <Tabs>
   <TabItem label="Good ✅">
-
     ```dart
     void main() {
       group(UserRepository, () {
@@ -317,7 +300,6 @@ In order to avoid such issues, refrain from adding `setUp` and `setUpAll` (as we
 
   </TabItem>
   <TabItem label="Bad ❗️">
-
     ```dart
     void main() {
       late ApiClient apiClient;
@@ -342,7 +324,6 @@ We should ensure that shared mutable objects are initialized per test. This avoi
 
 <Tabs>
   <TabItem label="Good ✅">
-
     ```dart
     void main() {
       group(_MySubject, () {
@@ -371,7 +352,6 @@ We should ensure that shared mutable objects are initialized per test. This avoi
 
   </TabItem>
   <TabItem label="Bad ❗️">
-
     ```dart
     class _MySubjectDependency {
       var value = 0;
@@ -418,7 +398,6 @@ When [tagging tests](https://github.com/dart-lang/test/blob/master/pkgs/test/doc
 
 <Tabs>
   <TabItem label="Good ✅">
-
     ```dart
     testWidgets(
       'render matches golden file',
@@ -431,7 +410,6 @@ When [tagging tests](https://github.com/dart-lang/test/blob/master/pkgs/test/doc
 
   </TabItem>
   <TabItem label="Bad ❗️">
-
     ```dart
     testWidgets(
       'render matches golden file',
@@ -478,7 +456,6 @@ When tests share state (such as relying on static members), the order that tests
 
 <Tabs>
   <TabItem label="Good ✅">
-
     ```dart
     class _Counter {
       int value = 0;
@@ -507,7 +484,6 @@ When tests share state (such as relying on static members), the order that tests
 
   </TabItem>
   <TabItem label="Bad ❗️">
-
     ```dart
     class _Counter {
       int value = 0;
@@ -548,7 +524,6 @@ This practice ensures that tests do not share state or rely on the side effects 
 
 <Tabs>
   <TabItem label="Good ✅">
-
     ```sh
     # Randomize test ordering using the --test-randomize-ordering-seed option
     flutter test --test-randomize-ordering-seed random
