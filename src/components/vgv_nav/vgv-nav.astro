@@ -7,7 +7,8 @@ import ThemeSelect from "@astrojs/starlight/components/ThemeSelect.astro";
 import type { Props } from "@astrojs/starlight/props";
 
 // Only show docs link from homepage
-const shouldShowLinks = Astro.url.pathname === "/";
+const base = import.meta.env.BASE_URL;
+const shouldShowLinks = Astro.url.pathname === base + "/";
 ---
 
 <header class="fixed top-0 w-[100%] transition-all backdrop-blur-2xl z-20">
@@ -25,7 +26,7 @@ const shouldShowLinks = Astro.url.pathname === "/";
           {
             shouldShowLinks && (
               <a
-                href="/architecture"
+                href={`${base}/engineering/philosophy`}
                 class="sm:ml-4 md:ml-8 mx-4 mt-[1px] flex text-lg no-underline hover:underline visited:text-inherit active:text-inherit"
               >
                 Docs

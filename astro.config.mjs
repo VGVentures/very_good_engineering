@@ -1,9 +1,10 @@
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import starlight from "@astrojs/starlight";
+import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
 
-import tailwind from "@astrojs/tailwind";
+import relativeLinks from "astro-relative-links";
 
 // https://astro.build/config
 export default defineConfig({
@@ -57,7 +58,7 @@ export default defineConfig({
         {
           label: "🦄 Very Good Engineering",
           autogenerate: {
-            directory: "very_good_engineering",
+            directory: "engineering",
           },
         },
         {
@@ -135,5 +136,6 @@ export default defineConfig({
       // Disable the default base styles:
       applyBaseStyles: false,
     }),
+    relativeLinks(),
   ],
 });
