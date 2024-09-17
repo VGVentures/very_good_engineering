@@ -111,88 +111,91 @@ Each layer abstracts the underlying layers' implementation details. Avoid indire
 
 When using layered architecture, data should only flow from the bottom up, and a layer can only access the layer directly beneath it. For example, the `LoginPage` should never directly access the `ApiClient`, or the `ApiClient` should not be dependent on the `UserRepository`. With this approach, each layer has a specific responsibility and can be tested in isolation.
 
-Good ✅
+<Tabs>
+  <TabItem label="Good ✅">
+    ```dart
+    class LoginPage extends StatelessWidget {
+        ...
+        LoginButton(
+            onPressed: => context.read<LoginBloc>().add(const LoginSubmitted());
+        )
+        ...
+    }
 
-```dart
-class LoginPage extends StatelessWidget {
-    ...
-    LoginButton(
-        onPressed: => context.read<LoginBloc>().add(const LoginSubmitted());
-    )
-    ...
-}
-
-class LoginBloc extends Bloc<LoginEvent, LoginState> {
-    ...
-    Future<void> _onLoginSubmitted(
-        LoginSubmitted event,
-        Emitter<LoginState> emit,
-    ) async {
-        try {
-            await _userRepository.logIn(state.email, state.password);
-            emit(const LoginSuccess());
-        } catch (error, stackTrace) {
-            addError(error, stackTrace);
-            emit(const LoginFailure());
+    class LoginBloc extends Bloc<LoginEvent, LoginState> {
+        ...
+        Future<void> _onLoginSubmitted(
+            LoginSubmitted event,
+            Emitter<LoginState> emit,
+        ) async {
+            try {
+                await _userRepository.logIn(state.email, state.password);
+                emit(const LoginSuccess());
+            } catch (error, stackTrace) {
+                addError(error, stackTrace);
+                emit(const LoginFailure());
+            }
         }
     }
-}
 
-class UserRepository {
-    const UserRepository(this.apiClient);
+    class UserRepository {
+        const UserRepository(this.apiClient);
 
-    final ApiClient apiClient;
+        final ApiClient apiClient;
 
-    final String loginUrl = '/login';
+        final String loginUrl = '/login';
 
-    Future<void> logIn(String email, String password) {
-        await apiClient.makeRequest(
-            url: loginUrl,
-            data: {
-                'email': email,
-                'password': password,
-            },
-        );
-    }
-}
-```
-
-Bad ❗️
-
-```dart
-class LoginPage extends StatelessWidget {
-    ...
-    LoginButton(
-        onPressed: => context.read<LoginBloc>().add(const LoginSubmitted());
-    )
-    ...
-}
-
-class LoginBloc extends Bloc<LoginEvent, LoginState> {
-    ...
-
-    final String loginUrl = '/login';
-
-    Future<void> _onLoginSubmitted(
-        LoginSubmitted event,
-        Emitter<LoginState> emit,
-    ) async {
-        try {
+        Future<void> logIn(String email, String password) {
             await apiClient.makeRequest(
                 url: loginUrl,
                 data: {
-                    'email': state.email,
-                    'password': state.password,
+                    'email': email,
+                    'password': password,
                 },
-        );
-
-        emit(const LoginSuccess());
-        } catch (error, stackTrace) {
-            addError(error, stackTrace);
-            emit(const LoginFailure());
+            );
         }
     }
-}
-```
+    ```
+
+  </TabItem>
+  <TabItem label="Bad ❗️">
+    ```dart
+    class LoginPage extends StatelessWidget {
+        ...
+        LoginButton(
+            onPressed: => context.read<LoginBloc>().add(const LoginSubmitted());
+        )
+        ...
+    }
+
+    class LoginBloc extends Bloc<LoginEvent, LoginState> {
+        ...
+
+        final String loginUrl = '/login';
+
+        Future<void> _onLoginSubmitted(
+            LoginSubmitted event,
+            Emitter<LoginState> emit,
+        ) async {
+            try {
+                await apiClient.makeRequest(
+                    url: loginUrl,
+                    data: {
+                        'email': state.email,
+                        'password': state.password,
+                    },
+            );
+
+            emit(const LoginSuccess());
+            } catch (error, stackTrace) {
+                addError(error, stackTrace);
+                emit(const LoginFailure());
+            }
+        }
+    }
+    ```
+
+  </TabItem>
+</Tabs>
 
 In this example, the API implementation details are now leaked and made known to the bloc. The API's login url and request information should only be known to the `UserRepository`. Also, the `ApiClient` instance will have to be provided directly to the bloc. If the `ApiClient` ever changes, every bloc that relies on the `ApiClient` will need to be updated and retested.
