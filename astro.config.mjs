@@ -78,6 +78,12 @@ export default defineConfig({
           },
         },
         {
+          label: "❌ Error Handling",
+          autogenerate: {
+            directory: "error_handling",
+          },
+        },
+        {
           label: "📺 Examples",
           badge: "NEW",
           autogenerate: {
