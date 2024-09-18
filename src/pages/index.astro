@@ -30,8 +30,6 @@ import financialDashboard from "./home/demos/financial_dashboard.png";
 import vehicleCockpit from "./home/demos/vehicle_cockpit.png";
 import hero from "./home/very_good_engineering.png";
 
-const base = import.meta.env.BASE_URL;
-
 const props = await generateStarlightPageRouteData({
   props: {
     ...Astro.props,
@@ -42,7 +40,7 @@ const props = await generateStarlightPageRouteData({
         actions: [
           {
             text: "Read the Best Practices",
-            link: `${base}/engineering/philosophy`,
+            link: "/engineering/philosophy",
             icon: "right-arrow",
             variant: "primary",
           },

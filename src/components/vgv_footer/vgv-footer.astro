@@ -7,7 +7,6 @@ interface Props {
 }
 
 const { compact = false } = Astro.props;
-const base = import.meta.env.BASE_URL;
 ---
 
 <div
@@ -32,7 +31,7 @@ const base = import.meta.env.BASE_URL;
       <a href="https://verygood.ventures/testimonials">Testimonials</a>
       <a href="https://verygood.ventures/careers">Careers</a>
       <a href="https://verygood.ventures/success-stories">Our Work</a>
-      <a href={base}>Engineering</a>
+      <a href="/">Engineering</a>
     </div>
   </section>
 </div>
