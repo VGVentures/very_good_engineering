@@ -6,8 +6,7 @@ import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://vgventures.github.io",
-  base: "very_good_engineering",
+  site: "https://engineering.verygood.ventures",
   integrations: [
     starlight({
       favicon: "./public/favicon.png",
