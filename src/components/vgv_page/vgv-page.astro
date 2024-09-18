@@ -50,33 +50,32 @@ const pagefindEnabled =
   class:list={[...(props.htmlClasses ?? [])]}
 >
   <head>
-    <Head {...props}>
-      <SEO
-        title={title}
-        description={description}
-        openGraph={{
-          basic: {
-            title: title,
-            type: "website",
-            image: thumbnail,
+    <Head {...props} />
+    <SEO
+      title={title}
+      description={description}
+      openGraph={{
+        basic: {
+          title: title,
+          type: "website",
+          image: thumbnail,
+        },
+      }}
+      twitter={{
+        creator: "@VGVentures",
+      }}
+      extend={{
+        link: [{ rel: "icon", href: "/favicon.ico" }],
+        meta: [
+          {
+            name: "twitter:image",
+            content: thumbnail,
           },
-        }}
-        twitter={{
-          creator: "@VGVentures",
-        }}
-        extend={{
-          link: [{ rel: "icon", href: "/favicon.ico" }],
-          meta: [
-            {
-              name: "twitter:image",
-              content: thumbnail,
-            },
-            { name: "twitter:title", content: title },
-            { name: "twitter:description", content: description },
-          ],
-        }}
-      />
-    </Head>
+          { name: "twitter:title", content: title },
+          { name: "twitter:description", content: description },
+        ],
+      }}
+    />
     <style>
       html:not([data-has-toc]) {
         --sl-mobile-toc-height: 0rem;
