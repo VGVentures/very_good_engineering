@@ -45,7 +45,7 @@ Appreciate the time and thought put into the code, even when revisions are neede
 
 #### Encourage Collaboration
 
-Frame feedback in a way that invites open discussion and solutions. This creates a culture of shared decision-making and helps the author feel part of the process rather than simply receiving orders.
+Frame feedback in a way that invites open discussion and solutions. This creates a culture of shared decision-making and helps the author feel like part of the process rather than simply receiving orders.
 
 By adhering to these practices, you can create a code review culture that improves the code while fostering collaboration, mutual respect, and growth within the team.
 
@@ -59,12 +59,11 @@ The actual code review also goes beyond pointing out errors; it requires open co
 
 Automation plays a key role in making code reviews more efficient and consistent. By integrating linters and static analysis tools, teams can enforce coding standards and catch errors automatically, allowing reviewers to focus more on logic and architecture.
 
-At Very Good Ventures we use our open source analysis tool, very_good_analysis. Very good analysis is a lint library heavily inspired by flutter_lints and pedantic (although it is deprecated now), but has a stricter set of lint rules. We believe these linting rules create a healthier, more scalable codebase.
+At Very Good Ventures, we use our open source analysis tool [`very_good_analysis`](https://github.com/VeryGoodOpenSource/very_good_analysis). Very good analysis is a lint library heavily inspired by [`flutter_lints`](https://pub.dev/packages/flutter_lints) and [`pedantic`](https://pub.dev/packages/pedantic) (although it is deprecated now), but has a stricter set of lint rules. We believe these linting rules create a healthier, more scalable codebase.
 
 ## Post-Review: Merging and Follow-Up
 
 Once the code review is complete, it’s important to make sure that all feedback has been properly addressed before merging. When merging, consider best practices like squashing commits to keep the history clean and concise.
-After merging, it’s helpful to follow up on any potential improvements or edge cases identified during the review, ensuring they are tracked and revisited in future iterations.
 
 ## Conclusion
 
