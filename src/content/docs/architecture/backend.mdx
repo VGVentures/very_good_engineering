@@ -34,9 +34,16 @@ While providers, routes, and tests, can live in the root backend project, consid
 <FileTree>
 
 - api/
-  - lib/
-    - src/
-      - middleware/
+  - routes/
+    - api/
+      - v1/
+        - todos/
+      - \_middleware.dart
+  - test/
+    - routes/
+      - api/
+        - v1/
+          - todos/
   - packages/
     - models/
       - lib/
@@ -52,17 +59,6 @@ While providers, routes, and tests, can live in the root backend project, consid
         - src/
       - test/
         - src/
-    - routes/
-      - api/
-        - v1/
-          - todos/
-      - test/
-        - src/
-          - middleware/
-        - routes/
-          - api/
-            - v1/
-              - todos/
 
 </FileTree>
 
