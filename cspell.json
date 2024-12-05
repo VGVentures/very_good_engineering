@@ -1,8 +1,17 @@
 {
   "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
   "version": "0.2",
-  "ignorePaths": ["node_modules/**", ".**/"],
-  "files": ["**/*.md", "**/*.mdx", "**/*.tsx", "**/*.ts", "**/*.json"],
+  "ignorePaths": [
+    "node_modules/**",
+    ".**/"
+  ],
+  "files": [
+    "**/*.md",
+    "**/*.mdx",
+    "**/*.tsx",
+    "**/*.ts",
+    "**/*.json"
+  ],
   "words": [
     "ABAP",
     "Abuild",
@@ -24,6 +33,7 @@
     "Csound",
     "Cuda",
     "Cupertino",
+    "cybercriminals",
     "Cycript",
     "Cython",
     "Diátaxis",
@@ -48,6 +58,7 @@
     "Inno",
     "Ioke",
     "Ishida",
+    "Jailbreaking",
     "Jasmin",
     "Jison",
     "Jolie",
