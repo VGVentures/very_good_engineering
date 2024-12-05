@@ -97,7 +97,7 @@ More information on _M2: Inadequate Supply Chain Security_ [here.](https://owasp
 
 More information on _M3: Insecure Authentication/Authorization_ [here.](https://owasp.org/www-project-mobile-top-10/2023-risks/m3-insecure-authentication-authorization.html)
 
-- **M4: Insufficient Input/Output Validation**: nsufficient validation and sanitization of user inputs or network data in mobile apps can lead to critical vulnerabilities, including SQL injection, command injection, and XSS attacks. These flaws may enable unauthorized data access, app manipulation, system compromise, data corruption, or malicious code injection, posing significant security risks.
+- **M4: Insufficient Input/Output Validation**: insufficient validation and sanitization of user inputs or network data in mobile apps can lead to critical vulnerabilities, including SQL injection, command injection, and XSS attacks. These flaws may enable unauthorized data access, app manipulation, system compromise, data corruption, or malicious code injection, posing significant security risks.
 
   - **How to prevent it?**:
     - **Input Validation**: Use strict validation, set length limits, and reject unexpected or malicious input.
@@ -109,7 +109,7 @@ More information on _M3: Insecure Authentication/Authorization_ [here.](https://
 
   More information on _M4: Insufficient Input/Output Validation_ [here.](https://owasp.org/www-project-mobile-top-10/2023-risks/m4-insufficient-input-output-validation.html)
 
-- **M5: Insecure Communication**: Modern mobile apps often exchange data with remote servers, creating vulnerabilities if data is sent in plaintext or with outdated encryption. Threat agents can intercept or modify data, aiming for theft, espionage, or identity fraud. Key threats include:
+- **M5: Insecure Communication**: mobile apps often exchange data with remote servers, creating vulnerabilities if data is sent in plaintext or with outdated encryption. Threat agents can intercept or modify data, aiming for theft, espionage, or identity fraud. Key threats include:
 
   - Adversaries on the same local network (e.g., compromised Wi-Fi).
   - Unauthorized network devices (e.g. malicious routers or proxy servers).
@@ -145,11 +145,8 @@ More information on _M6: Inadequate Privacy Controls_ [here.](https://owasp.org/
 
   - **How to prevent it?**:
     - **Minimize risk exposure**: Apps should only access the minimal information needed to function, as all data in the binary is vulnerable to leaks or manipulation.
-
     - **Defend against reverse engineering**: Use obfuscation tools to make binaries incomprehensible. Native compilation, interpreters, or nested virtual machines can further complicate reverse engineering, though this may impact compatibility. Test obfuscation quality using reverse-engineering tools.
-
     - **Strengthen security mechanisms**: Obfuscation makes skipping security checks harder. Reinforce local security checks through backend validation and implement integrity checks to detect code tampering, though attackers may still bypass local checks.
-
     - **Prevent malicious redistribution**: Integrity checks at app launch can detect unauthorized modifications and redistribution. Violations can be reported to remove fake apps from stores, and specialized services are available to support detection and removal efforts.
 
 More information on _M7: Insufficient Binary Protection_ [here.](https://owasp.org/www-project-mobile-top-10/2023-risks/m7-insufficient-binary-protection.html)
@@ -186,9 +183,7 @@ More information on _M9: Insecure Data Storage_ [here.](https://owasp.org/www-pr
 
   - **How to prevent it?**: 
     To prevent vulnerabilities in mobile app cryptography, implement best practices like using strong and widely accepted encryption algorithms such as AES, RSA, or ECC, ensuring key lengths adhere to industry standards for strong cryptographic protection, and following secure key management practices by storing keys securely in key vaults or hardware security modules. Encryption and decryption processes should utilize established libraries to avoid errors associated with custom implementations. Encryption keys must be securely stored using operating system-provided mechanisms or hardware-based options and should not be stored in plain text.
-
     Use secure transport protocols like HTTPS with proper certificate validation to protect data in transit. Validate and authenticate the integrity and authenticity of encryption processes using certificates or digital signatures. Regular updates to cryptographic components are essential to mitigate vulnerabilities, supported by security testing such as vulnerability assessments and penetration testing. Follow industry standards and best practices from organizations like NIST and IETF.
-
     Adopt strong hash functions like SHA-256 or bcrypt, apply salting to hashed passwords to defend against precomputed attack tables, and use Key Derivation Functions like PBKDF2 or scrypt to strengthen password-based cryptography and resist brute-force attacks.
 
 More information on _M10: Insufficient Cryptography_ [here.](https://owasp.org/www-project-mobile-top-10/2023-risks/m10-insufficient-cryptography.html)
