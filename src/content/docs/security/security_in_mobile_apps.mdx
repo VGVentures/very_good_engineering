@@ -2,12 +2,14 @@
 title: Security in Mobile Apps
 description: Mobile app security threats and how to protect your app using OWASP Mobile's 10 best practices.
 ---
+
 Mobile app security is a critical concern for developers and users alike. The [Open Web Application Security Project (OWASP)](https://owasp.org/) Mobile Security Project provides a comprehensive guide to the top 10 security risks for mobile apps. This article will cover the top 10 security threats and how to protect your app using OWASP Mobile's best practices.
 But first let's take a look at the common mobile app security threats.
 
 ## Common Mobile App Security Threats
 
 - **Malware**: Malicious software intentionally designed to harm, exploit, or compromise a mobile device, its data, or the user. Mobile app malware can take various forms, often disguised as legitimate apps or embedded within apps to deceive users into installing it on their devices.
+
   - Trojan
   - Spyware
   - Adware
@@ -78,7 +80,7 @@ More information on _M1: Improper Credential Usage_ [here.](https://owasp.org/ww
     - Ensure secure app signing and distribution to block malicious actors.
     - Use trusted, validated third-party libraries to minimize risks.
     - Implement security controls for updates and patches to address
-    vulnerabilities.
+      vulnerabilities.
     - Monitor and detect supply chain incidents with testing and scanning for timely responses.
 
 More information on _M2: Inadequate Supply Chain Security_ [here.](https://owasp.org/www-project-mobile-top-10/2023-risks/m2-inadequate-supply-chain-security.html)
@@ -86,7 +88,7 @@ More information on _M2: Inadequate Supply Chain Security_ [here.](https://owasp
 - **M3: Insecure Authentication/Authorization**: Threat agents that exploit authentication and authorization vulnerabilities typically do so through automated attacks that use available or custom-built tools.
 
   - **How to prevent it?**:
-  These are only a few of the many ways to prevent this threat:
+    These are only a few of the many ways to prevent this threat:
     - Use server-side authentication; avoid client-side methods to prevent bypasses.
     - Encrypt local data if needed, but mitigate risks of binary attacks.
     - Implement device-specific tokens instead of storing passwords or using weak identifiers.
@@ -115,26 +117,26 @@ More information on _M3: Insecure Authentication/Authorization_ [here.](https://
   - Unauthorized network devices (e.g. malicious routers or proxy servers).
   - Malware on the mobile device itself.
 
-     - **How to prevent it?**:
-        - **Assume an Unsecure Network Layer**: Always secure transport channels against eavesdropping.
-        - **Use SSL/TLS**: Apply SSL/TLS for all data transmissions to backend services and third-party entities, avoiding mixed SSL sessions.
-        - **Use Trusted Certificates**: Implement certificates signed by trusted CAs and never allow untrusted, expired, or mismatched certificates.
-        - **Strong Encryption**: Use industry-standard cipher suites with appropriate key lengths.
-        - **Certificate Pinning**: Consider pinning certificates and always require SSL chain verification.
-        - **Server Authentication**: Verify endpoint server identities using trusted certificates before establishing connections.
-        - **User Alerts**: Notify users of invalid certificates through the app’s UI.
-        - **Secondary Encryption**: Encrypt sensitive data before sending it over SSL for additional protection.
-        - **Avoid Alternate Channels**: Never transmit sensitive data via SMS, MMS, or notifications.
-        - **Development Practices**: Use local development CAs and avoid disabling SSL verification.
-        - **Traffic Analysis**: During security testing, check for plaintext data transmission vulnerabilities.
+    - **How to prevent it?**:
+      - **Assume an Unsecure Network Layer**: Always secure transport channels against eavesdropping.
+      - **Use SSL/TLS**: Apply SSL/TLS for all data transmissions to backend services and third-party entities, avoiding mixed SSL sessions.
+      - **Use Trusted Certificates**: Implement certificates signed by trusted CAs and never allow untrusted, expired, or mismatched certificates.
+      - **Strong Encryption**: Use industry-standard cipher suites with appropriate key lengths.
+      - **Certificate Pinning**: Consider pinning certificates and always require SSL chain verification.
+      - **Server Authentication**: Verify endpoint server identities using trusted certificates before establishing connections.
+      - **User Alerts**: Notify users of invalid certificates through the app’s UI.
+      - **Secondary Encryption**: Encrypt sensitive data before sending it over SSL for additional protection.
+      - **Avoid Alternate Channels**: Never transmit sensitive data via SMS, MMS, or notifications.
+      - **Development Practices**: Use local development CAs and avoid disabling SSL verification.
+      - **Traffic Analysis**: During security testing, check for plaintext data transmission vulnerabilities.
 
 More information on _M5: Insecure Communication_ [here.](https://owasp.org/www-project-mobile-top-10/2023-risks/m5-insecure-communication.html)
 
-- **M6: Inadequate Privacy Controls**: Privacy controls are concerned with protecting personally identifiable information (PII), such as names and addresses, credit card information, email and IP addresses, health information, religion, sexuality, and political opinions. 
-This information is valuable to attackers for a number of reasons. For example, an attacker could impersonate the victim to commit fraud, misuse the victim's payment details, blackmail the victim with sensitive information, or harm the victim by destroying or tampering with their critical data.
+- **M6: Inadequate Privacy Controls**: Privacy controls are concerned with protecting personally identifiable information (PII), such as names and addresses, credit card information, email and IP addresses, health information, religion, sexuality, and political opinions.
+  This information is valuable to attackers for a number of reasons. For example, an attacker could impersonate the victim to commit fraud, misuse the victim's payment details, blackmail the victim with sensitive information, or harm the victim by destroying or tampering with their critical data.
 
   - **How to prevent it?**:
-    The best way to prevent privacy violations is to minimize the collection and processing of Personally Identifiable Information (PII). This requires a full understanding of the app's PII usage. 
+    The best way to prevent privacy violations is to minimize the collection and processing of Personally Identifiable Information (PII). This requires a full understanding of the app's PII usage.
     - Evaluate whether all personally identifiable information is necessary, whether less sensitive alternatives can be used, or whether personally identifiable information can be reduced, anonymized, or deleted after a certain period. Allow users to consent to the optional use of personally identifiable information with clear awareness of the associated risks.
     - Store or transfer PII only when absolutely necessary, with strict authentication and authorization controls. Implement defense-in-depth for critical data, such as encrypting health information with device TPM keys to protect against sandbox bypasses.
     - Threat modeling can identify the most likely privacy risks, focusing security efforts accordingly. Use static and dynamic security tools to uncover vulnerabilities like improper logging or accidental data leakage.
@@ -167,27 +169,26 @@ More information on _M8: Security Misconfiguration_ [here.](https://owasp.org/ww
 
 - **M9: Insecure Data Storage**: insecure data storage in mobile apps exposes sensitive information to various threat agents, including skilled attackers, malicious insiders, state-sponsored actors, cybercriminals, script kiddies, data brokers, competitors, and activists. These agents exploit vulnerabilities like weak encryption, insecure storage, and improper handling of credentials. To mitigate these risks, mobile app developers and organizations must implement strong security measures, including robust encryption, secure data storage practices, and mobile app security best practices.
 
- - **How to prevent it?**:
-    - **Use strong encryption**: Employ robust encryption algorithms to protect data at rest and in transit. Ensure proper key management.
-    - **Secure data transmission**: Use secure communication protocols like HTTPS or SSL/TLS to protect data during transmission.
-    - **Implement secure storage mechanisms**: Store sensitive data in secure locations, such as Keychain (iOS) or Keystore (Android), to prevent unauthorized access.
-    - **Employ proper access controls**: Use strong authentication, role-based access controls, and validate user permissions to limit access to sensitive data.
-    - **Validate input and sanitize data**: Prevent injection attacks by validating and sanitizing user input to ensure only valid data is stored.
-    - **Apply secure session management**: Use secure session tokens, set proper session timeouts, and securely store session data.
-    - **Regularly update and patch dependencies**: Keep all libraries and dependencies up to date and apply security patches promptly.
-    - **Stay informed**: Monitor security advisories and platform updates to address emerging threats and vulnerabilities.
+- **How to prevent it?**:
+  - **Use strong encryption**: Employ robust encryption algorithms to protect data at rest and in transit. Ensure proper key management.
+  - **Secure data transmission**: Use secure communication protocols like HTTPS or SSL/TLS to protect data during transmission.
+  - **Implement secure storage mechanisms**: Store sensitive data in secure locations, such as Keychain (iOS) or Keystore (Android), to prevent unauthorized access.
+  - **Employ proper access controls**: Use strong authentication, role-based access controls, and validate user permissions to limit access to sensitive data.
+  - **Validate input and sanitize data**: Prevent injection attacks by validating and sanitizing user input to ensure only valid data is stored.
+  - **Apply secure session management**: Use secure session tokens, set proper session timeouts, and securely store session data.
+  - **Regularly update and patch dependencies**: Keep all libraries and dependencies up to date and apply security patches promptly.
+  - **Stay informed**: Monitor security advisories and platform updates to address emerging threats and vulnerabilities.
 
 More information on _M9: Insecure Data Storage_ [here.](https://owasp.org/www-project-mobile-top-10/2023-risks/m9-insecure-data-storage.html)
 
 - **M10: Insufficient Cryptography**: Threat agents exploiting insecure cryptography in mobile apps aim to compromise the confidentiality, integrity, and authenticity of sensitive information. They include attackers targeting cryptographic algorithms or implementations to decrypt sensitive data, malicious insiders manipulating processes or exposing encryption keys, state-sponsored actors conducting cryptanalysis for intelligence gathering, cybercriminals exploiting weak encryption for data theft or financial fraud, and attackers leveraging vulnerabilities in cryptographic protocols or libraries. Mitigating these risks requires robust cryptographic practices and secure implementation.
 
-  - **How to prevent it?**: 
+  - **How to prevent it?**:
     To prevent vulnerabilities in mobile app cryptography, implement best practices like using strong and widely accepted encryption algorithms such as AES, RSA, or ECC, ensuring key lengths adhere to industry standards for strong cryptographic protection, and following secure key management practices by storing keys securely in key vaults or hardware security modules. Encryption and decryption processes should utilize established libraries to avoid errors associated with custom implementations. Encryption keys must be securely stored using operating system-provided mechanisms or hardware-based options and should not be stored in plain text.
     Use secure transport protocols like HTTPS with proper certificate validation to protect data in transit. Validate and authenticate the integrity and authenticity of encryption processes using certificates or digital signatures. Regular updates to cryptographic components are essential to mitigate vulnerabilities, supported by security testing such as vulnerability assessments and penetration testing. Follow industry standards and best practices from organizations like NIST and IETF.
     Adopt strong hash functions like SHA-256 or bcrypt, apply salting to hashed passwords to defend against precomputed attack tables, and use Key Derivation Functions like PBKDF2 or scrypt to strengthen password-based cryptography and resist brute-force attacks.
 
 More information on _M10: Insufficient Cryptography_ [here.](https://owasp.org/www-project-mobile-top-10/2023-risks/m10-insufficient-cryptography.html)
-
 
 ## Conclusion
 
