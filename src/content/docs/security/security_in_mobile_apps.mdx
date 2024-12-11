@@ -72,6 +72,17 @@ _Source_: [OWASP Mobile Top 10 2024](https://owasp.org/www-project-mobile-top-10
     - Use strong encryption and hashing algorithms during credential storage and transmission.
     - Avoid weak authentication mechanisms, such as weak passwords or insecure authentication flows.
 
+Dart-crypt is an interesting package to hashing passwords in Dart. You can find more information about Dart-crypt.
+
+- [Dart-crypt](https://github.com/hoylen/dart-crypt)
+
+- Use Firebase Authentication for a more secure authentication system. You can find more information in the official documentation.
+
+  - [Firebase Authentication](https://firebase.google.com/docs/auth)
+
+- Here you have another interesting article that talks about authentication in Flutter.
+  - [Flutter authentication with Auth0](https://developer.auth0.com/resources/guides/mobile/flutter/basic-authentication/)
+
 More information on _M1: Improper Credential Usage_ [here.](https://owasp.org/www-project-mobile-top-10/2023-risks/m1-improper-credential-usage.html)
 
 - **M2: Inadequate Supply Chain Security**: Attackers can exploit vulnerabilities in the mobile app supply chain, such as inserting malicious code during development or exploiting flaws in third-party libraries, SDKs, or hardcoded credentials. These actions can lead to data theft, user surveillance, unauthorized access to backend servers, denial of service, or full control over the app or device.
@@ -83,6 +94,14 @@ More information on _M1: Improper Credential Usage_ [here.](https://owasp.org/ww
     - Implement security controls for updates and patches to address
       vulnerabilities.
     - Monitor and detect supply chain incidents with testing and scanning for timely responses.
+
+You can check the **Software supply chain security for Flutter and its ecosystem** video from the Flutter Forward 2023 conference.
+
+- [Software supply chain security for Flutter and its ecosystem](https://www.youtube.com/watch?v=7LFftXcw1jA)
+
+Also, check it out the **SLSA** (Supply Chain Levels for Software Artifacts)security framework, which is a check-list of standards and controls to prevent supply chain attacks.
+
+- [SLSA](https://slsa.dev/)
 
 More information on _M2: Inadequate Supply Chain Security_ [here.](https://owasp.org/www-project-mobile-top-10/2023-risks/m2-inadequate-supply-chain-security.html)
 
@@ -98,6 +117,14 @@ More information on _M2: Inadequate Supply Chain Security_ [here.](https://owasp
     - Use biometrics (FaceID, TouchID) for secure access to sensitive data.
     - Perform local integrity checks if offline functionality is necessary.
 
+This is an interesting article that talks about encryption and decryption in Flutter.
+
+- [Encryption and Decryption in Flutter](https://medium.com/@laithalsahore19/explore-encrypt-decrypt-data-in-flutter-e1e64c86b0ee)
+
+Use **local auth** package to add biometrics to the app.
+
+- [Local Auth](https://pub.dev/packages/local_auth)
+
 More information on _M3: Insecure Authentication/Authorization_ [here.](https://owasp.org/www-project-mobile-top-10/2023-risks/m3-insecure-authentication-authorization.html)
 
 - **M4: Insufficient Input/Output Validation**: insufficient validation and sanitization of user inputs or network data in mobile apps can lead to critical vulnerabilities, including SQL injection, command injection, and XSS attacks. These flaws may enable unauthorized data access, app manipulation, system compromise, data corruption, or malicious code injection, posing significant security risks.
@@ -110,7 +137,15 @@ More information on _M3: Insecure Authentication/Authorization_ [here.](https://
     - **Secure Coding**: Use practices like parameterized queries to block SQL injection.
     - **Regular Testing**: Conduct penetration testing and code reviews to find and fix vulnerabilities.
 
-  More information on _M4: Insufficient Input/Output Validation_ [here.](https://owasp.org/www-project-mobile-top-10/2023-risks/m4-insufficient-input-output-validation.html)
+Use the **formz** package to validate forms in Flutter and prevent incorrect data to be sent to the backend.
+
+- [Formz](https://pub.dev/packages/formz)
+
+Use persist data with SQLite to prevent SQL Injection.
+
+- [Persist data with SQLite](https://docs.flutter.dev/cookbook/persistence/sqlite)
+
+More information on _M4: Insufficient Input/Output Validation_ [here.](https://owasp.org/www-project-mobile-top-10/2023-risks/m4-insufficient-input-output-validation.html)
 
 - **M5: Insecure Communication**: mobile apps often exchange data with remote servers, creating vulnerabilities if data is sent in plaintext or with outdated encryption. Threat agents can intercept or modify data, aiming for theft, espionage, or identity fraud. Key threats include:
 
@@ -130,6 +165,18 @@ More information on _M3: Insecure Authentication/Authorization_ [here.](https://
       - **Avoid Alternate Channels**: Never transmit sensitive data via SMS, MMS, or notifications.
       - **Development Practices**: Use local development CAs and avoid disabling SSL verification.
       - **Traffic Analysis**: During security testing, check for plaintext data transmission vulnerabilities.
+
+If you're using Firebase, you can implement App Check to protect your backend from unauthorized clients accessing it. Learn more in the official documentation.
+
+- [Firebase App Check](https://firebase.google.com/docs/app-check)
+
+This article explains how to add SSL certificate pinning to a Flutter app.
+
+- [SSL Certificate Pinning in Flutter](https://dwirandyh.medium.com/securing-your-flutter-app-by-adding-ssl-pinning-474722e38518)
+
+Also you can use a popular package called **http certificate pinning** to add certificate pinning to your app.
+
+- [http](https://pub.dev/packages/http_certificate_pinning)
 
 More information on _M5: Insecure Communication_ [here.](https://owasp.org/www-project-mobile-top-10/2023-risks/m5-insecure-communication.html)
 
@@ -151,6 +198,18 @@ More information on _M6: Inadequate Privacy Controls_ [here.](https://owasp.org/
     - **Defend against reverse engineering**: Use obfuscation tools to make binaries incomprehensible. Native compilation, interpreters, or nested virtual machines can further complicate reverse engineering, though this may impact compatibility. Test obfuscation quality using reverse-engineering tools.
     - **Strengthen security mechanisms**: Obfuscation makes skipping security checks harder. Reinforce local security checks through backend validation and implement integrity checks to detect code tampering, though attackers may still bypass local checks.
     - **Prevent malicious redistribution**: Integrity checks at app launch can detect unauthorized modifications and redistribution. Violations can be reported to remove fake apps from stores, and specialized services are available to support detection and removal efforts.
+
+To prevent reverse engineering, tampering, malware installation, etc., there is an interesting package called FreeRASP that can help you with that. You can find more information about FreeRASP.
+
+- [FreeRASP](https://pub.dev/packages/freerasp)
+
+Another important part is obfuscation, you can find more information in the official Flutter documentation.
+
+- [Obfuscating Dart Code](https://flutter.dev/docs/deployment/obfuscate)
+
+This is a great article that talks about how to secure your API Keys.
+
+- [Securing API Keys](https://nshipster.com/secrets/)
 
 More information on _M7: Insufficient Binary Protection_ [here.](https://owasp.org/www-project-mobile-top-10/2023-risks/m7-insufficient-binary-protection.html)
 
@@ -180,6 +239,14 @@ More information on _M8: Security Misconfiguration_ [here.](https://owasp.org/ww
   - **Regularly update and patch dependencies**: Keep all libraries and dependencies up to date and apply security patches promptly.
   - **Stay informed**: Monitor security advisories and platform updates to address emerging threats and vulnerabilities.
 
+If you are using Firestore to store your data, it would be interesting adding some security rules to prevent unauthorized access. You can find more information in the official documentation.
+
+- [Firestore Security Rules](https://firebase.google.com/docs/firestore/security/get-started)
+
+Use **secure storage** package to store sensitive data in Flutter.
+
+- [Secure Storage](https://pub.dev/packages/flutter_secure_storage)
+
 More information on _M9: Insecure Data Storage_ [here.](https://owasp.org/www-project-mobile-top-10/2023-risks/m9-insecure-data-storage.html)
 
 - **M10: Insufficient Cryptography**: Threat agents exploiting insecure cryptography in mobile apps aim to compromise the confidentiality, integrity, and authenticity of sensitive information. They include attackers targeting cryptographic algorithms or implementations to decrypt sensitive data, malicious insiders manipulating processes or exposing encryption keys, state-sponsored actors conducting cryptanalysis for intelligence gathering, cybercriminals exploiting weak encryption for data theft or financial fraud, and attackers leveraging vulnerabilities in cryptographic protocols or libraries. Mitigating these risks requires robust cryptographic practices and secure implementation.
@@ -188,6 +255,15 @@ More information on _M9: Insecure Data Storage_ [here.](https://owasp.org/www-pr
     To prevent vulnerabilities in mobile app cryptography, implement best practices like using strong and widely accepted encryption algorithms such as AES, RSA, or ECC, ensuring key lengths adhere to industry standards for strong cryptographic protection, and following secure key management practices by storing keys securely in key vaults or hardware security modules. Encryption and decryption processes should utilize established libraries to avoid errors associated with custom implementations. Encryption keys must be securely stored using operating system-provided mechanisms or hardware-based options and should not be stored in plain text.
     Use secure transport protocols like HTTPS with proper certificate validation to protect data in transit. Validate and authenticate the integrity and authenticity of encryption processes using certificates or digital signatures. Regular updates to cryptographic components are essential to mitigate vulnerabilities, supported by security testing such as vulnerability assessments and penetration testing. Follow industry standards and best practices from organizations like NIST and IETF.
     Adopt strong hash functions like SHA-256 or bcrypt, apply salting to hashed passwords to defend against precomputed attack tables, and use Key Derivation Functions like PBKDF2 or scrypt to strengthen password-based cryptography and resist brute-force attacks.
+
+This article talks about cryptography in Flutter and how to use it.
+
+- [Cryptography in Flutter](https://medium.com/flutterdevs/cryptography-in-flutter-7b3b1e3b3b3b)
+
+In this article, the author focused on using the **crypto** package to add more security to the application.
+
+- [Unlocking Secure Flutter Apps: A Guide to Building with Dart's Cryptography](https://30dayscoding.com/blog/building-flutter-apps-with-darts-cryptography)
+- [Crypto Package](https://pub.dev/packages/crypto)
 
 More information on _M10: Insufficient Cryptography_ [here.](https://owasp.org/www-project-mobile-top-10/2023-risks/m10-insufficient-cryptography.html)
 
