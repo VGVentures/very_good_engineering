@@ -1,8 +1,17 @@
 {
   "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
   "version": "0.2",
-  "ignorePaths": ["node_modules/**", ".**/"],
-  "files": ["**/*.md", "**/*.mdx", "**/*.tsx", "**/*.ts", "**/*.json"],
+  "ignorePaths": [
+    "node_modules/**",
+    ".**/"
+  ],
+  "files": [
+    "**/*.md",
+    "**/*.mdx",
+    "**/*.tsx",
+    "**/*.ts",
+    "**/*.json"
+  ],
   "words": [
     "ABAP",
     "Abuild",
@@ -35,6 +44,9 @@
     "Filebench",
     "Filterscript",
     "fontsource",
+    "Firestore",
+    "Formz",
+    "formz",
     "Frege",
     "gaugecomponent",
     "Genshi",
@@ -93,6 +105,7 @@
     "rxdart",
     "Scilab",
     "Shen",
+    "SLSA",
     "Smali",
     "SQLPL",
     "Stata",
