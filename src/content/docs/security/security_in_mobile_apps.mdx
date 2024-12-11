@@ -190,6 +190,10 @@ More information on _M5: Insecure Communication_ [here.](https://owasp.org/www-p
     - Store or transfer PII only when absolutely necessary, with strict authentication and authorization controls. Implement defense-in-depth for critical data, such as encrypting health information with device TPM keys to protect against sandbox bypasses.
     - Threat modeling can identify the most likely privacy risks, focusing security efforts accordingly. Use static and dynamic security tools to uncover vulnerabilities like improper logging or accidental data leakage.
 
+:::note
+In some cases, we don't pay much attention to the fact that the data we store could be used by an attacker to harm the user or even the company. It is important to always be aware of what data is stored and how it is used.
+:::
+
 More information on _M6: Inadequate Privacy Controls_ [here.](https://owasp.org/www-project-mobile-top-10/2023-risks/m6-inadequate-privacy-controls.html)
 
 - **M7: Insufficient Binary Protection**: Attackers target app binaries to extract valuable secrets like API keys or cryptographic secrets, access critical business logic or pre-trained AI models, or investigate weaknesses in backend systems. They may also manipulate binaries to access paid features for free, bypass security checks, or insert malicious code. Repackaging attacks can exploit unsuspecting users, such as modifying payment identifiers and redistributing compromised apps to divert payments to attackers. Protecting app binaries is crucial to prevent data theft, fraud, and malicious exploitation.
@@ -218,7 +222,7 @@ There are tools like AWS Secrets Manager and Google Cloud Secret Manager that he
 - [AWS Secrets Manager video](https://www.youtube.com/watch?v=-9nOyaM3kZk&t=26s)
 - [Google Cloud Secret Manager](https://cloud.google.com/secret-manager)
 
-:::tip[Take into account]
+:::note[Take into account]
 
 Tools like **FreeRASP** and **obfuscation** techniques improve application security, they can't guarantee complete protection against cyber attacks. API keys and secrets stored on the client side are always vulnerable to extraction through reverse engineering, among other techniques.
 
@@ -238,6 +242,10 @@ More information on _M7: Insufficient Binary Protection_ [here.](https://owasp.o
     - **Disable Debugging**: Turn off debugging features in production apps.
     - **Disable Backup Mode (Android)**: Prevent app data from being included in device backups.
     - **Limit Attack Surface**: Only export activities, content providers, and services that are required.
+
+:::caution
+Don't add permissions that are not neccesary for the app to work. It's easy for an attacker to exploit these permissions to gain access to sensitive data.
+:::
 
 More information on _M8: Security Misconfiguration_ [here.](https://owasp.org/www-project-mobile-top-10/2023-risks/m8-security-misconfiguration.html)
 
