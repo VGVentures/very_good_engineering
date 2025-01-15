@@ -125,6 +125,12 @@ export default defineConfig({
             directory: "widgets",
           },
         },
+         {
+          label: "🔐 Security",
+          autogenerate: {
+            directory: "security",
+          },
+        },
       ],
       components: {
         TwoColumnContent:
