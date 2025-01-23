@@ -46,7 +46,6 @@ By far, the most common security threat is **social engineering**. Be sure to ed
 - **Poorly Implemented Multi-Factor Authentication (MFA):** Inadequate implementation of MFA, allowing attackers to bypass additional authentication measures.
 - **Supply Chain Attacks:** Compromising the security of a mobile app or API through vulnerabilities in its supply chain, including third-party services or components.
 
-
 ## OWASP Guidelines
 
 The **Open Worldwide Application Security Project (OWASP)** is a globally recognized nonprofit organization dedicated to improving the security of software and web applications. Established in 2001, OWASP provides resources, tools, and best practices to help developers, organizations, and security professionals build secure applications and address vulnerabilities effectively.
@@ -60,7 +59,7 @@ The latest version, OWASP Mobile Top 10 2024, highlights the following risks:
 ![OWASP comparison 2016 vs 2024](./images/owasp_comparison.png)
 _Source_: [OWASP Mobile Top 10 2024](https://owasp.org/www-project-mobile-top-10/)
 
-#### Improper Credential Usage
+### Improper Credential Usage
 
 Threat agents can exploit hardcoded credentials or improper credential usage in mobile applications by using automated tools, either publicly available or custom-built.
 
@@ -86,7 +85,7 @@ There's also a [Flutter-specific guide to Auth0](https://developer.auth0.com/res
 
 For more information on _Improper Credential Usage_, [refer to the OWASP guide](https://owasp.org/www-project-mobile-top-10/2023-risks/m1-improper-credential-usage.html).
 
-#### Inadequate Supply Chain Security
+### Inadequate Supply Chain Security
 
 Attackers can exploit vulnerabilities in the mobile app supply chain, such as inserting malicious code during development or exploiting flaws in third-party libraries, SDKs, or hardcoded credentials.
 
@@ -105,7 +104,7 @@ The [**SLSA** (Supply Chain Levels for Software Artifacts) security framework](h
 
 For more information on _Inadequate Supply Chain Security_, [refer to the OWASP guide.](https://owasp.org/www-project-mobile-top-10/2023-risks/m2-inadequate-supply-chain-security.html)
 
-#### Insecure Authentication/Authorization
+### Insecure Authentication/Authorization
 
 Threat agents that exploit authentication and authorization vulnerabilities typically do so through automated attacks that use available or custom-built tools.
 
@@ -127,7 +126,7 @@ You can also use [Local Auth](https://pub.dev/packages/local_auth) to integrate 
 
 For more information on _Insecure Authentication/Authorization_, [refer to the OWASP guide](https://owasp.org/www-project-mobile-top-10/2023-risks/m3-insecure-authentication-authorization.html).
 
-#### Insufficient Input/Output Validation
+### Insufficient Input/Output Validation
 
 Insufficient validation and sanitization of user inputs or network data in mobile apps can lead to critical vulnerabilities, including SQL injection, command injection, and XSS attacks.
 
@@ -142,7 +141,7 @@ Use the [Formz](https://pub.dev/packages/formz) package to validate forms in Flu
 
 For more information on _Insufficient Input/Output Validation_, [refer to the OWASP guide](https://owasp.org/www-project-mobile-top-10/2023-risks/m4-insufficient-input-output-validation.html).
 
-#### Insecure Communication
+### Insecure Communication
 
 Threat agents can intercept or modify insecure communications transferred between an app and the server.
 
@@ -169,121 +168,122 @@ You may also use a package called [Http Certificate Pinning package](https://pub
 
 For more information on _Insecure Communication_, [refer to the OWASP guide](https://owasp.org/www-project-mobile-top-10/2023-risks/m5-insecure-communication.html).
 
-#### Inadequate Privacy Controls
+### Inadequate Privacy Controls
 
 Privacy controls are concerned with protecting personally identifiable information (PII), such as names and addresses, credit card information, email and IP addresses, health information, religion, sexuality, and political opinions.
 
 This information is valuable to attackers for a number of reasons. For example, an attacker could impersonate the victim to commit fraud, misuse the victim's payment details, blackmail the victim with sensitive information, or harm the victim by destroying or tampering with their critical data.
 
-  - **How to prevent it?**:
-    The best way to prevent privacy violations is to minimize the collection and processing of Personally Identifiable Information (PII). This requires a full understanding of the app's PII usage.
-    - Evaluate whether all personally identifiable information is necessary, whether less sensitive alternatives can be used, or whether personally identifiable information can be reduced, anonymized, or deleted after a certain period. Allow users to consent to the optional use of personally identifiable information with clear awareness of the associated risks.
-    - Store or transfer PII only when absolutely necessary, with strict authentication and authorization controls. Implement defense-in-depth for critical data, such as encrypting health information with device TPM keys to protect against sandbox bypasses.
-    - Threat modeling can identify the most likely privacy risks, focusing security efforts accordingly. Use static and dynamic security tools to uncover vulnerabilities like improper logging or accidental data leakage.
-
-:::note
-In some cases, we don't pay much attention to the fact that the data we store could be used by an attacker to harm the user or even the company. It is important to always be aware of what data is stored and how it is used.
+:::tip
+- The best way to prevent privacy violations is to minimize the collection and processing of Personally Identifiable Information (PII). This requires a full understanding of the app's PII usage.
+- Evaluate whether all personally identifiable information is necessary, whether less sensitive alternatives can be used, or whether personally identifiable information can be reduced, anonymized, or deleted after a certain period. Allow users to consent to the optional use of personally identifiable information with clear awareness of the associated risks.
+- Store or transfer PII only when absolutely necessary, with strict authentication and authorization controls. Secure personal data, such as encrypting health information with device TPM keys to protect against sandbox bypasses.
+- Threat modeling can identify the most likely privacy risks, focusing security efforts accordingly. Use static and dynamic security tools to uncover vulnerabilities like improper logging or accidental data leakage.
 :::
 
-More information on _M6: Inadequate Privacy Controls_ [here.](https://owasp.org/www-project-mobile-top-10/2023-risks/m6-inadequate-privacy-controls.html)
+For more information on _Inadequate Privacy Controls_, [refer to the OWASP guide.](https://owasp.org/www-project-mobile-top-10/2023-risks/m6-inadequate-privacy-controls.html)
 
-- **M7: Insufficient Binary Protection**: Attackers target app binaries to extract valuable secrets like API keys or cryptographic secrets, access critical business logic or pre-trained AI models, or investigate weaknesses in backend systems. They may also manipulate binaries to access paid features for free, bypass security checks, or insert malicious code. Repackaging attacks can exploit unsuspecting users, such as modifying payment identifiers and redistributing compromised apps to divert payments to attackers. Protecting app binaries is crucial to prevent data theft, fraud, and malicious exploitation.
+### Insufficient Binary Protection
 
-  - **How to prevent it?**:
-    - **Minimize risk exposure**: Apps should only access the minimal information needed to function, as all data in the binary is vulnerable to leaks or manipulation.
-    - **Defend against reverse engineering**: Use obfuscation tools to make binaries incomprehensible. Native compilation, interpreters, or nested virtual machines can further complicate reverse engineering, though this may impact compatibility. Test obfuscation quality using reverse-engineering tools.
-    - **Strengthen security mechanisms**: Obfuscation makes skipping security checks harder. Reinforce local security checks through backend validation and implement integrity checks to detect code tampering, though attackers may still bypass local checks.
-    - **Prevent malicious redistribution**: Integrity checks at app launch can detect unauthorized modifications and redistribution. Violations can be reported to remove fake apps from stores, and specialized services are available to support detection and removal efforts.
+Attackers target app binaries to extract valuable secrets like API keys or cryptographic secrets, access critical business logic or pre-trained AI models, or investigate weaknesses in backend systems. They may also manipulate binaries to access paid features for free, bypass security checks, or insert malicious code. Repackaging attacks can exploit unsuspecting users, such as modifying payment identifiers and redistributing compromised apps to divert payments to attackers. Protecting app binaries is crucial to prevent data theft, fraud, and malicious exploitation.
 
-To prevent reverse engineering, tampering, malware installation, etc., there is an interesting package called FreeRASP that can help you with that. You can find more information about FreeRASP.
+:::tip
+- Apps should only access the minimal information needed to function, as all data in the binary is vulnerable to leaks or manipulation.
+- Use obfuscation tools to make binaries incomprehensible. Native compilation, interpreters, or nested virtual machines can further complicate reverse engineering Test obfuscation quality using reverse-engineering tools.
+- Obfuscation makes skipping security checks harder. Reinforce local security checks through backend validation and implement integrity checks to detect code tampering, though attackers may still bypass local checks.
+- Integrity checks at app launch can detect unauthorized modifications and redistribution. Violations can be reported to remove fake apps from stores, and specialized services are available to support detection and removal efforts.
+:::
 
+Tools and services such as FreeRASP and Aproov can help mitigate the likelihood of a compromised app binary or repackaging attack.
+
+- [Approov](https://approov.io/docs/latest/approov-usage-documentation/)
 - [FreeRASP](https://pub.dev/packages/freerasp)
-
-Another important part is obfuscation, you can find more information in the official Flutter documentation.
-
-- [Obfuscating Dart Code](https://flutter.dev/docs/deployment/obfuscate)
 
 This is a great article that talks about how to secure your API Keys.
 
 - [Securing API Keys](https://nshipster.com/secrets/)
+- [Obfuscating Dart Code](https://flutter.dev/docs/deployment/obfuscate)
 
-There are tools like AWS Secrets Manager and Google Cloud Secret Manager that helps the user to secure the API keys and secrets.
+:::caution
+There is no such thing as perfect security against app repackaging attacks. API keys and secrets stored on the client side are always vulnerable to extraction through reverse engineering.
 
-- [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/)
-- [AWS Secrets Manager video](https://www.youtube.com/watch?v=-9nOyaM3kZk&t=26s)
-- [Google Cloud Secret Manager](https://cloud.google.com/secret-manager)
-
-:::note[Take into account]
-
-Tools like **FreeRASP** and **obfuscation** techniques improve application security, they can't guarantee complete protection against cyber attacks. API keys and secrets stored on the client side are always vulnerable to extraction through reverse engineering, among other techniques.
-
-One possible solution for increased security would be to implement a custom backend as it would protect these sensitive keys. This backend would handle API calls securely, keeping secrets hidden from the client.
+To protect sensitive API's, implement a custom-backend which acts as middleware between the app and the sensitive api's so that the API keys never reach the front-end.
 :::
 
-More information on _M7: Insufficient Binary Protection_ [here.](https://owasp.org/www-project-mobile-top-10/2023-risks/m7-insufficient-binary-protection.html)
+More information on _Insufficient Binary Protection_, [refer to the OWASP guide.](https://owasp.org/www-project-mobile-top-10/2023-risks/m7-insufficient-binary-protection.html)
 
-- **M8: Security Misconfiguration**: security misconfiguration occurs when mobile apps have improperly configured security settings, permissions, or controls, leading to vulnerabilities and unauthorized access. Threat agents, such as attackers with physical device access or malicious apps, exploit these weaknesses to access sensitive data or execute unauthorized actions within the vulnerable app's context. Proper configuration is crucial to mitigate these risks.
+### Security Misconfiguration
 
-  - **How to prevent it?**:
-    - **Secure Default Configurations**: Ensure default settings do not expose sensitive data or unnecessary permissions.
-    - **Avoid Default Credentials**: Do not use hardcoded default credentials.
-    - **Insecure Permissions**: Avoid overly permissive file permissions (for example, read or write).
-    - **Least Privilege Principle**: Request only necessary permissions for the app's functionality.
-    - **Secure Network Configuration**: Use encrypted traffic (avoid cleartext) and implement certificate pinning.
-    - **Disable Debugging**: Turn off debugging features in production apps.
-    - **Disable Backup Mode (Android)**: Prevent app data from being included in device backups.
-    - **Limit Attack Surface**: Only export activities, content providers, and services that are required.
+Security misconfiguration occurs when mobile apps have improperly configured security settings, permissions, or controls, leading to vulnerabilities and unauthorized access. Threat agents, such as attackers with physical device access or malicious apps, exploit these weaknesses to access sensitive data or execute unauthorized actions within the vulnerable app's context. Proper configuration is crucial to mitigate these risks.
+
+:::tip
+- Ensure default settings do not expose sensitive data or unnecessary permissions.
+- Do not use hardcoded credentials.
+- Request only necessary permissions for the app's functionality.
+- Encrypt app communications and implement certificate pinning.
+- Turn off debugging features in production apps.
+- Prevent app data from being included in device backups.
+- Only export activities, content providers, and services that are required.
+:::
 
 :::caution
 Don't add permissions that are not necessary for the app to work. It's easy for an attacker to exploit these permissions to gain access to sensitive data.
+
+In general, you want to respect the **principle of least privilege**: only request the permissions that are absolutely necessary for the app to function.
 :::
 
-More information on _M8: Security Misconfiguration_ [here.](https://owasp.org/www-project-mobile-top-10/2023-risks/m8-security-misconfiguration.html)
+For more information on _Security Misconfiguration_, [refer to the OWASP guide.](https://owasp.org/www-project-mobile-top-10/2023-risks/m8-security-misconfiguration.html)
 
-- **M9: Insecure Data Storage**: insecure data storage in mobile apps exposes sensitive information to various threat agents, including skilled attackers, malicious insiders, state-sponsored actors, cybercriminals, script kiddies, data brokers, competitors, and activists. These agents exploit vulnerabilities like weak encryption, insecure storage, and improper handling of credentials. To mitigate these risks, mobile app developers and organizations must implement strong security measures, including robust encryption, secure data storage practices, and mobile app security best practices.
+### Insecure Data Storage
 
-- **How to prevent it?**:
-  - **Use strong encryption**: Employ robust encryption algorithms to protect data at rest and in transit. Ensure proper key management.
-  - **Secure data transmission**: Use secure communication protocols like HTTPS or SSL/TLS to protect data during transmission.
-  - **Implement secure storage mechanisms**: Store sensitive data in secure locations, such as Keychain (iOS) or Keystore (Android), to prevent unauthorized access.
-  - **Employ proper access controls**: Use strong authentication, role-based access controls, and validate user permissions to limit access to sensitive data.
-  - **Validate input and sanitize data**: Prevent injection attacks by validating and sanitizing user input to ensure only valid data is stored.
-  - **Apply secure session management**: Use secure session tokens, set proper session timeouts, and securely store session data.
-  - **Regularly update and patch dependencies**: Keep all libraries and dependencies up to date and apply security patches promptly.
-  - **Stay informed**: Monitor security advisories and platform updates to address emerging threats and vulnerabilities.
+Insecure data storage in mobile apps exposes sensitive information to various threat agents, including skilled attackers, malicious insiders, state-sponsored actors, cybercriminals, script kiddies, data brokers, competitors, and activists. These agents exploit vulnerabilities like weak encryption, insecure storage, and improper handling of credentials.
 
-If you are using Firestore to store your data, it would be interesting adding some security rules to prevent unauthorized access. You can find more information in the official documentation.
+:::tip
+- Employ robust encryption algorithms to protect data at rest and in transit, such as AES-256.
+- Use secure communication protocols like HTTPS or SSL/TLS to protect data during transmission.
+- Store sensitive data generated on-device in secure locations, such as Keychain on iOS or Keystore on Android to prevent unauthorized access.
+- Use strong authentication, role-based access controls, and validate user permissions to limit access to sensitive data.
+- Prevent injection attacks by validating and sanitizing user input to ensure only valid data is stored.
+- Use secure session tokens, set proper session timeouts, and securely store session data.
+- Keep all libraries and dependencies up to date and apply security patches promptly.
+- Monitor security advisories and platform updates to address emerging threats and vulnerabilities.
+:::
+
+If you are using Firestore to store your data, be sure to configure the relevant Firestore security rules for your application.
 
 - [Firestore Security Rules](https://firebase.google.com/docs/firestore/security/get-started)
 
-Use **secure storage** package to store sensitive data in Flutter.
+For sensitive data generated on-device, use the **secure storage** package to store sensitive data in Flutter.
 
 - [Secure Storage](https://pub.dev/packages/flutter_secure_storage)
 
-More information on _M9: Insecure Data Storage_ [here.](https://owasp.org/www-project-mobile-top-10/2023-risks/m9-insecure-data-storage.html)
+For more information on _Insecure Data Storage_, [refer to the OWASP guide.](https://owasp.org/www-project-mobile-top-10/2023-risks/m9-insecure-data-storage.html)
 
-- **M10: Insufficient Cryptography**: Threat agents exploiting insecure cryptography in mobile apps aim to compromise the confidentiality, integrity, and authenticity of sensitive information. They include attackers targeting cryptographic algorithms or implementations to decrypt sensitive data, malicious insiders manipulating processes or exposing encryption keys, state-sponsored actors conducting cryptanalysis for intelligence gathering, cybercriminals exploiting weak encryption for data theft or financial fraud, and attackers leveraging vulnerabilities in cryptographic protocols or libraries. Mitigating these risks requires robust cryptographic practices and secure implementation.
+### Insufficient cryptography
 
-  - **How to prevent it?**:
-    To prevent vulnerabilities in mobile app cryptography, implement best practices like using strong and widely accepted encryption algorithms such as AES, RSA, or ECC, ensuring key lengths adhere to industry standards for strong cryptographic protection, and following secure key management practices by storing keys securely in key vaults or hardware security modules. Encryption and decryption processes should utilize established libraries to avoid errors associated with custom implementations. Encryption keys must be securely stored using operating system-provided mechanisms or hardware-based options and should not be stored in plain text.
-    Use secure transport protocols like HTTPS with proper certificate validation to protect data in transit. Validate and authenticate the integrity and authenticity of encryption processes using certificates or digital signatures. Regular updates to cryptographic components are essential to mitigate vulnerabilities, supported by security testing such as vulnerability assessments and penetration testing. Follow industry standards and best practices from organizations like NIST and IETF.
-    Adopt strong hash functions like SHA-256 or bcrypt, apply salting to hashed passwords to defend against precomputed attack tables, and use Key Derivation Functions like PBKDF2 or scrypt to strengthen password-based cryptography and resist brute-force attacks.
+Threat agents exploiting insecure cryptography in mobile apps aim to compromise the confidentiality, integrity, and authenticity of sensitive information. They include attackers targeting cryptographic algorithms or implementations to decrypt sensitive data, malicious insiders manipulating processes or exposing encryption keys, state-sponsored actors conducting cryptanalysis for intelligence gathering, cybercriminals exploiting weak encryption for data theft or financial fraud, and attackers leveraging vulnerabilities in cryptographic protocols or libraries. Mitigating these risks requires robust cryptographic practices and secure implementation.
 
-This article talks about cryptography in Flutter and how to use it.
+:::tip
+- Use strong and widely accepted encryption algorithms such as AES-256, RSA, or ECC, ensuring key lengths adhere to industry standards for strong cryptographic protection.
+- Follow secure key management practices by storing keys securely in key vaults and making use of hardware security modules for trusted access.
+- Encryption and decryption processes should utilize established, peer-reviewed libraries to avoid errors associated with custom implementations, as implementing cryptography correctly is incredibly difficult to do and new vulnerabilities are continually identified, even in major projects.
+- Encryption keys must be securely stored using operating system-provided mechanisms or hardware-based options and should not be stored in plain text.
+- Use secure transport protocols like HTTPS with proper certificate validation to protect data in transit.
+- Validate and authenticate the integrity and authenticity of encryption processes using certificates or digital signatures. Regular updates to cryptographic components are essential to mitigate vulnerabilities, supported by security testing such as vulnerability assessments and penetration testing. Follow industry standards and best practices from organizations like NIST and IETF.
+- Adopt strong hash functions like SHA-256 or bcrypt, apply salting to hashed passwords to defend against precomputed attack tables, and use _key derivation functions_ like _PBKDF2_ or _scrypt_ to strengthen password-based cryptography and harden your application against brute-force attacks.
+:::
+
+Check out the following guides for hardening your app's cryptography:
 
 - [Cryptography in Flutter](https://medium.com/flutterdevs/cryptography-in-flutter-7b3b1e3b3b3b)
-
-In this article, the author focused on using the **crypto** package to add more security to the application.
-
 - [Unlocking Secure Flutter Apps: A Guide to Building with Dart's Cryptography](https://30dayscoding.com/blog/building-flutter-apps-with-darts-cryptography)
 - [Crypto Package](https://pub.dev/packages/crypto)
 
-More information on _M10: Insufficient Cryptography_ [here.](https://owasp.org/www-project-mobile-top-10/2023-risks/m10-insufficient-cryptography.html)
+For more information on _Insufficient Cryptography_, [refer to the OWASP guide.](https://owasp.org/www-project-mobile-top-10/2023-risks/m10-insufficient-cryptography.html)
 
 ## OWASP MAS Checklist
 
-The **OWASP Mobile Application Security (MAS) Checklist** is a comprehensive guide to securing mobile apps against common security threats. The checklist will provide you with a detailed list of security best practices, including secure coding guidelines, secure data storage, secure communication, and secure authentication mechanisms, so if you are interested in increasing the security of the above points, this will be a good starting point.
-You can find the OWASP MAS checklist here [here.](https://mas.owasp.org/checklists/)
+The [**OWASP Mobile Application Security (MAS) Checklist**](https://mas.owasp.org/checklists/) is a comprehensive guide to securing mobile apps against common security threats. The checklist will provide you with a detailed list of security best practices, including secure coding guidelines, secure data storage, secure communication, and secure authentication mechanisms.
 
 ## Other OWASP Resources
 
