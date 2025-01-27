@@ -14,7 +14,7 @@ Among other things, the release of Dart 3.0 introduced [record types](https://da
 <Tabs>
   <TabItem label="Bad ❗️">
     ```dart
-    Future<(String, String)> getUserNameAndEmail() async => return _someApiFetchMethod();
+    Future<(String, String)> getUserNameAndEmail() async => _someApiFetchMethod();
 
     final userData = await getUserNameAndEmail();
 
@@ -33,7 +33,7 @@ The above example will compile, but it is not immediately obvious what value `us
 <Tabs>
   <TabItem label="Good ✅">
     ```dart
-    Future<(String, String)> getUserNameAndEmail() async => return _someApiFetchMethod();
+    Future<(String, String)> getUserNameAndEmail() async => _someApiFetchMethod();
 
     final (username, email) = await getUserNameAndEmail();
 
