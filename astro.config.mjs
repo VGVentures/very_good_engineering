@@ -102,6 +102,12 @@ export default defineConfig({
           },
         },
         {
+          label: "🔐 Security",
+          autogenerate: {
+            directory: "security",
+          },
+        },
+        {
           label: "🪄 State Management",
           autogenerate: {
             directory: "state_management",
@@ -123,12 +129,6 @@ export default defineConfig({
           label: "🧩 Widgets",
           autogenerate: {
             directory: "widgets",
-          },
-        },
-        {
-          label: "🔐 Security",
-          autogenerate: {
-            directory: "security",
           },
         },
       ],
