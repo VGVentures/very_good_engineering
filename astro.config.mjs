@@ -77,6 +77,12 @@ export default defineConfig({
           },
         },
         {
+          label: "📖 Documentation",
+          autogenerate: {
+            directory: "documentation",
+          },
+        },
+        {
           label: "❌ Error Handling",
           autogenerate: {
             directory: "error_handling",
