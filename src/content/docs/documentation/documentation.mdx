@@ -38,11 +38,12 @@ class BluetoothProcessor extends NetworkProcessor {
 ## Consider using asserts over inline comments
 
 [Dart asserts](https://dart.dev/language/error-handling#assert) with messages enforce conditions during development and
-provide immediate feedback if something goes wrong, while comments only document the code and don't prevent errors. 
+provide immediate feedback if something goes wrong, while comments only document the code and don't prevent errors.
 Assertions help catch issues early, making debugging easier and more reliable.
 
 <Tabs>
   <TabItem label="Good ✅">
+
 ```dart
 (double?, double?) solveQuadraticEquation(double a, double b, double c) {
   assert(
@@ -59,8 +60,10 @@ Assertions help catch issues early, making debugging easier and more reliable.
   };
 }
 ```
+
   </TabItem>
   <TabItem label="Bad ❗️">
+
 ```dart
 (double?, double?) solveQuadraticEquation(double a, double b, double c) {
   // The coefficient of the square term must not be zero otherwise is not a
@@ -74,7 +77,6 @@ Assertions help catch issues early, making debugging easier and more reliable.
   };
 }
 ```
+
   </TabItem>
 </Tabs>
-
-````
