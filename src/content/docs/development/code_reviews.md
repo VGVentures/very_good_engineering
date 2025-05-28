@@ -17,7 +17,7 @@ When writing code it is essential to consider the review process right from the 
 ## Preparing Code for Review
 
 As an author, preparing for code review doesn’t only mean writing clean and maintainable code, but also providing context for reviewers to quickly understand what your code is doing.
-Writing clear and comprehensive commit messages and adding relevant documentation and comments is particularly helpful when dealing with complex logic, as it gives reviewers additional insight and helps them follow your thought process.
+Writing clear and comprehensive commit messages, along with relevant documentation and comments, is especially valuable when working with complex logic. It provides reviewers with deeper insights and makes it easier for them to understand your thought process.
 
 ## Conducting Effective Code Reviews
 
