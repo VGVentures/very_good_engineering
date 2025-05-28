@@ -1,0 +1,156 @@
+---
+title: Glossary
+description: Very Good Ventures Essential Flutter Reference Terms List
+sidebar:
+  order: 2
+---
+
+import Diagram from "~/components/diagram.astro";
+import glossaryAppBar from "./diagrams/glossary_app_bar.png";
+import glossaryColumn from "./diagrams/glossary_column.png";
+import glossaryDrawer from "./diagrams/glossary_drawer.png";
+import glossaryGridView from "./diagrams/glossary_grid_view.png";
+import glossaryListView from "./diagrams/glossary_list_view.png";
+import glossaryRow from "./diagrams/glossary_row.png";
+
+## A
+
+- **Animation**: In Flutter, animations are used to enhance the user interface experience by providing visual feedback. Flutter provides built-in animation widgets and a powerful animation framework to create smooth transitions.
+- **[AppBar](https://api.flutter.dev/flutter/material/AppBar-class.html)**: A material design app bar that can include a title, icons, actions, and more. It's commonly used as the top bar in an app to provide navigation and actions.
+
+<Diagram
+  light={glossaryAppBar}
+  dark={glossaryAppBar}
+  alt="Example diagram showing the components of an app bar"
+/>
+
+## B
+
+- **BLoC**: Design pattern that helps the developer manage the app state and isolates the business logic from the UI layer with a clear separation of concerns, leading to a more maintainable app. The [flutter_bloc](https://pub.dev/packages/flutter_bloc) library facilitates to implementation of this pattern in Flutter with predefined components to easily manage events and states.
+- **BuildContext**: A handle to the location of a widget in the widget tree. It is used to obtain references to resources and widgets.
+- **Builder**: A widget that uses a callback to return a widget, useful for creating widgets based on changing state or conditions.
+
+## C
+
+- **[Column](https://api.flutter.dev/flutter/widgets/Column-class.html)**: A widget that displays its children in a vertical array. It is commonly used for stacking elements vertically.
+
+<Diagram
+  light={glossaryColumn}
+  dark={glossaryColumn}
+  alt="Example of a column in a simple Flutter view with a text and image widget"
+/>
+
+- **Cupertino**: A set of iOS-style widgets provided by Flutter that conform to Apple's Human Interface Guidelines.
+
+## D
+
+- **Dart**: The programming language used to write Flutter applications. Dart is optimized for fast apps on any platform.
+- **Debug Mode**: A mode in Flutter where the app runs with assertions enabled, helping developers identify errors and performance issues.
+- **Developer Experience**: A core Flutter value proposition, shown by using Dart, support for Hot Reload, the Flutter inspector, the plugin ecosystem, multi-platform capabilities, and more.
+- **Drawer**: A slide-in menu typically found on the left side of the screen, used for navigation in apps.
+
+<Diagram
+  light={glossaryDrawer}
+  dark={glossaryDrawer}
+  alt="A sample drawer view containing a title and three items"
+/>
+
+## F
+
+- **Flutter Engine**: It provides the low-level implementation of Flutter's core API, including graphics (through Impeller on iOS and coming to Android and macOS, and Skia on other platforms).
+- **FutureBuilder**: A widget that builds its UI based on the result of an asynchronous operation.
+
+## G
+
+- **GestureDetector**: A widget that detects gestures such as taps, drags, and swipes. It's used to capture user interactions.
+- **[GridView](https://api.flutter.dev/flutter/widgets/GridView-class.html)**: A widget that displays its children in a scrollable 2D array of rows and columns.
+
+<Diagram
+  light={glossaryGridView}
+  dark={glossaryGridView}
+  alt="An example of a grid view using brightly colored squares in a 3x3 grid"
+/>
+
+## H
+
+- **Hot Reload**: A feature in Flutter that allows developers to instantly see the changes made to the code without restarting the app. It helps in speeding up the development process by preserving the app state.
+
+## I
+
+- **InheritedWidget**: A widget that provides state or data to its descendants, which can be accessed through the BuildContext.
+
+## L
+
+- **[ListView](https://api.flutter.dev/flutter/widgets/ListView-class.html)**: A scrollable list of widgets arranged linearly. It's commonly used for displaying lists of data.
+
+<Diagram
+  light={glossaryListView}
+  dark={glossaryListView}
+  alt="A sample view of a list using brightly colored rectangles"
+/>
+
+- **LayoutBuilder**: A widget that builds itself based on the parent widget’s constraints. It allows developers to make layout decisions based on the size of the parent.
+
+## M
+
+- **MaterialApp**: A convenience widget that wraps several widgets commonly required for material design applications. It typically includes a navigator, theme, and home.
+- **Material Design**: A design system used by Flutter to create beautiful and consistent UIs.
+- **Mixin**: A way to reuse a class's code in multiple class hierarchies in Dart. Mixins are used to share a set of methods or properties across multiple classes.
+- **Multi-Platform**: The ability to write code once and run it on different platforms, such as Android, iOS, Web, Windows, Linux, macOS, and embedded systems.
+
+## N
+
+- **Navigator**: A widget used to manage navigation between screens.
+- **Null Safety**: A feature in Dart that helps prevent null errors by ensuring that variables are not null unless explicitly stated.
+
+## P
+
+- **Package**: A piece of code that can be reused and shared across apps. Flutter uses pub.dev to share packages with the community.
+- **Plugin**: A special kind of package that makes platform-specific functionality available to the app.
+- **Pubspec.yaml**: The configuration file for a Flutter project that specifies dependencies, assets, fonts, and other settings.
+- **Provider**: A popular state management solution for Flutter that uses the InheritedWidget mechanism to propagate state changes across the widget tree.
+
+## R
+
+- **Reactive Programming**: A broader paradigm used in development where the expectation is that the data will change over time and facilitate the propagation of those changes. Flutter uses Streams and StreamBuilders to apply in real-time those changes.
+- **[Row](https://api.flutter.dev/flutter/widgets/Row-class.html)**: A widget that displays its children in a horizontal array. It's commonly used for arranging elements side by side.
+
+<Diagram
+  light={glossaryRow}
+  dark={glossaryRow}
+  alt="Example of a row in a simple Flutter view with a text and image widget"
+/>
+
+- **Route**: A screen or page in a Flutter application that can be navigated using the Navigator.
+
+## S
+
+- **Scaffold**: A top-level container that provides a basic visual structure for a material design app, including an app bar, drawer, and floating action button.
+- **State**: An object that holds information about a widget that may change during its lifecycle. Stateful widgets use state to manage dynamic content.
+- **State Management**: It refers to the process used to share the application state across different screens.
+- **StatelessWidget**: A widget that cannot change its state: once built, it remains immutable, and if any internal property needs to be updated the widget itself can't do it.
+- **StatefulWidget**: A widget that can change its state over time. It can rebuild itself based on changes to its internal state or external data.
+- **Stream**: Asynchronous pipeline of data that can emit events allowing you to react in real-time to those.
+- **StreamBuilder**: A widget that builds its UI based on the latest value of a stream.
+
+## T
+
+- **Testing - Golden**: Used to compare the rendered UI of a widget with an image as a reference. In other words, this ensures that the UI does not change unexpectedly by capturing and comparing screenshots of widgets.
+- **Testing - Integration**: Code that tests the complete app or large parts of it. This includes UI and the interaction between multiple components in different layers.
+- **Testing - Unit**: Code that ensures that a piece of logic works as expected without dependencies on other parts of the app.
+- **Testing - Widget**: Code that verifies the behavior and appearance of UI widgets in different scenarios, ensuring they render and function correctly.
+- **Text**: A widget that displays a string of text with a single style.
+- **Theme**: A class that controls the visual appearance of the app. It allows for consistent styling across the app with colors, fonts, shapes, and more.
+
+## V
+
+- **ValueNotifier**: A class that extends ChangeNotifier and provides a way to notify listeners about changes to a simple value. It is commonly used for simple state management.
+
+## W
+
+- **Widget**: The fundamental building block of Flutter UI. Everything in Flutter is a widget, from layout structures to UI controls. Widgets are immutable and describe a part of the user interface.
+- **Widget Tree**: The hierarchy of widgets that defines the structure of the user interface. The widget tree is built from parent to child widgets.
+
+## Z
+
+- **Zero to One**: A phrase used to describe the rapid development process in Flutter, where developers can quickly build functioning prototypes from scratch.

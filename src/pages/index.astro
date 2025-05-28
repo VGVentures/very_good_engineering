@@ -40,7 +40,7 @@ const props = await generateStarlightPageRouteData({
         actions: [
           {
             text: "Read the Best Practices",
-            link: "/architecture",
+            link: "/engineering/philosophy",
             icon: "right-arrow",
             variant: "primary",
           },
@@ -103,7 +103,10 @@ const actions = props.entry.data.hero?.actions ?? [];
     </div>
   </VgvHeroFeature>
 
-  <VgvHeroBreakout>
+  <VgvHeroBreakout
+    firstUrl="https://cli.vgv.dev/"
+    secondUrl="https://dartfrog.vgv.dev/"
+  >
     <Fragment slot="heading">
       <VgvChip color="purple">SHIP FASTER</VgvChip>
       <VgvHeroSectionHeader>
@@ -133,20 +136,23 @@ const actions = props.entry.data.hero?.actions ?? [];
         &#128187; The Command-Line Interface to generate scalable templates and
         use helpful commands.
       </h3>
-      <p class="max-w-[100%] mt-4 text-balance text-center md:text-left">
-        Generate a <a href="https://cli.vgv.dev/docs/templates/core"
+      <p
+        class="max-w-[100%] mt-4 text-balance text-center md:text-left flex flex-row flex-wrap"
+      >
+        Generate a&nbsp;<a href="https://cli.vgv.dev/docs/templates/core"
           >Flutter app</a
-        >, <a href="https://cli.vgv.dev/docs/templates/flame_game"
+        >,&nbsp;<a href="https://cli.vgv.dev/docs/templates/flame_game"
           >Flame game
-        </a>,
+        </a>,&nbsp;
         <a href="https://cli.vgv.dev/docs/templates/flutter_pkg">
           Flutter package
-        </a>,
-        <a href="https://cli.vgv.dev/docs/templates/dart_pkg">Dart package</a>,
+        </a>,&nbsp;
+        <a href="https://cli.vgv.dev/docs/templates/dart_pkg">Dart package</a
+        >,&nbsp;
         <a href="https://cli.vgv.dev/docs/templates/federated_plugin">
           federated plugin
-        </a>, or
-        <a href="https://cli.vgv.dev/docs/templates/dart_cli">Dart CLI</a>
+        </a>, or&nbsp;
+        <a href="https://cli.vgv.dev/docs/templates/dart_cli">Dart CLI</a>&nbsp;
         with one command.
       </p>
       <ul class="pl-4 mt-6 text-center md:text-left">
@@ -192,7 +198,7 @@ const actions = props.entry.data.hero?.actions ?? [];
 
           <span class="text-sm">Hot Reload</span>
         </li>
-        <li class="flex gap-2">
+        <li class="flex gap-2 items-baseline">
           <Icon name="approve-check" color="green" class="size-6" />
 
           <span class="text-sm"
@@ -308,6 +314,23 @@ const actions = props.entry.data.hero?.actions ?? [];
                 <span> Music visualizer </span>
               </li>
             </ul>
+            <div class="mt-8 flex flex-row justify-center gap-4">
+              <CallToAction
+                attrs={{ class: "" }}
+                icon={{ type: "icon", name: "laptop" }}
+                variant="primary"
+                link="https://vgventures.github.io/airplane_entertainment_system/"
+              >
+                Online Demo
+              </CallToAction>
+              <CallToAction
+                attrs={{ class: "" }}
+                variant="secondary"
+                icon={{ type: "icon", name: "github" }}
+                link="https://github.com/VGVentures/airplane_entertainment_system"
+                >GitHub</CallToAction
+              >
+            </div>
           </span>
         </VgvCardHeader>
       </VgvCard>
@@ -346,6 +369,23 @@ const actions = props.entry.data.hero?.actions ?? [];
                 </span>
               </li>
             </ul>
+            <div class="mt-8 flex flex-row justify-center gap-4">
+              <CallToAction
+                attrs={{ class: "" }}
+                icon={{ type: "icon", name: "laptop" }}
+                variant="primary"
+                link="https://vgventures.github.io/financial_dashboard/"
+              >
+                Online Demo
+              </CallToAction>
+              <CallToAction
+                attrs={{ class: "" }}
+                variant="secondary"
+                icon={{ type: "icon", name: "github" }}
+                link="https://github.com/VGVentures/financial_dashboard"
+                >GitHub</CallToAction
+              >
+            </div>
           </span>
         </VgvCardHeader>
       </VgvCard>
@@ -369,10 +409,11 @@ const actions = props.entry.data.hero?.actions ?? [];
             <ul class="pl-4 mt-6 text-center md:text-left">
               <li class="flex gap-2">
                 <Icon name="approve-check" color="green" class="size-6" />
-                <span>
-                  Animated tachometer created with
-                  <a href="https://flame-engine.org/">Flame</a>
-                </span>
+                <div>
+                  Animated tachometer created with <a
+                    href="https://flame-engine.org/">Flame</a
+                  >
+                </div>
               </li>
               <li class="flex gap-2">
                 <Icon name="approve-check" color="green" class="size-6" />
@@ -383,6 +424,23 @@ const actions = props.entry.data.hero?.actions ?? [];
                 <span> Embedded game in a Flutter app </span>
               </li>
             </ul>
+            <div class="mt-8 flex flex-row justify-center gap-4">
+              <CallToAction
+                attrs={{ class: "" }}
+                icon={{ type: "icon", name: "laptop" }}
+                variant="primary"
+                link="https://vgventures.github.io/vehicle_cockpit/"
+              >
+                Online Demo
+              </CallToAction>
+              <CallToAction
+                attrs={{ class: "" }}
+                variant="secondary"
+                icon={{ type: "icon", name: "github" }}
+                link="https://github.com/VGVentures/vehicle_cockpit"
+                >GitHub</CallToAction
+              >
+            </div>
           </span>
         </VgvCardHeader>
       </VgvCard>
@@ -409,7 +467,7 @@ const actions = props.entry.data.hero?.actions ?? [];
         <GithubCard owner="flutter" repo="photobooth" />
         <GithubCard owner="flutter" repo="holobooth" />
         <GithubCard owner="VGVentures" repo="io_crossword" />
-        <GithubCard owner="VGVentures" repo="very_good_adventures" />
+        <GithubCard owner="VeryGoodOpenSource" repo="very_good_ranch" />
       </VgvHeroBreakoutVertical>
     </div>
   </div>

@@ -12,6 +12,7 @@ import Banner from "@astrojs/starlight/components/Banner.astro";
 import Head from "@astrojs/starlight/components/Head.astro";
 import SkipLink from "@astrojs/starlight/components/SkipLink.astro";
 import ThemeProvider from "@astrojs/starlight/components/ThemeProvider.astro";
+import { SEO } from "astro-seo";
 import VgvNav from "~/components/vgv_nav/vgv-nav.astro";
 import VgvPageFrame from "~/components/vgv_page/vgv-page-frame.astro";
 
@@ -21,6 +22,11 @@ import "node_modules/@astrojs/starlight/style/asides.css";
 // Important that this is the last import so it can override built-in styles.
 import "virtual:starlight/user-css";
 import VgvTwoColumnContent from "../vgv_two_column_content/vgv-two-column-content.astro";
+
+const title = "Very Good Engineering";
+const description =
+  "Very Good Venture's best practices, tips, tricks, and demos.";
+const thumbnail = "https://engineering.verygood.ventures/thumbnail.png";
 
 interface Props extends StarlightProps {
   htmlClasses?: string[];
@@ -45,6 +51,31 @@ const pagefindEnabled =
 >
   <head>
     <Head {...props} />
+    <SEO
+      title={title}
+      description={description}
+      openGraph={{
+        basic: {
+          title: title,
+          type: "website",
+          image: thumbnail,
+        },
+      }}
+      twitter={{
+        creator: "@VGVentures",
+      }}
+      extend={{
+        link: [{ rel: "icon", href: "/favicon.ico" }],
+        meta: [
+          {
+            name: "twitter:image",
+            content: thumbnail,
+          },
+          { name: "twitter:title", content: title },
+          { name: "twitter:description", content: description },
+        ],
+      }}
+    />
     <style>
       html:not([data-has-toc]) {
         --sl-mobile-toc-height: 0rem;

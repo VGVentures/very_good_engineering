@@ -1,17 +1,16 @@
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import starlight from "@astrojs/starlight";
-import { defineConfig } from "astro/config";
-
 import tailwind from "@astrojs/tailwind";
+import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://VGVentures.github.io",
+  site: "https://engineering.verygood.ventures",
   integrations: [
     starlight({
       favicon: "./public/favicon.png",
-      title: "Very Good Engineering",
+      title: "VGV Engineering",
       head: [
         {
           // Fix theme flickering on page load.
@@ -54,6 +53,12 @@ export default defineConfig({
       },
       sidebar: [
         {
+          label: "🦄 Very Good Engineering",
+          autogenerate: {
+            directory: "engineering",
+          },
+        },
+        {
           label: "🏛️ Architecture",
           autogenerate: {
             directory: "architecture",
@@ -72,9 +77,15 @@ export default defineConfig({
           },
         },
         {
-          label: "🦄 Development",
+          label: "📖 Documentation",
           autogenerate: {
-            directory: "development",
+            directory: "documentation",
+          },
+        },
+        {
+          label: "❌ Error Handling",
+          autogenerate: {
+            directory: "error_handling",
           },
         },
         {
@@ -94,6 +105,12 @@ export default defineConfig({
           label: "🗺️ Navigation",
           autogenerate: {
             directory: "navigation",
+          },
+        },
+        {
+          label: "🔐 Security",
+          autogenerate: {
+            directory: "security",
           },
         },
         {

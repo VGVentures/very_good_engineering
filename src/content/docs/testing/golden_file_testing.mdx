@@ -3,6 +3,8 @@ title: Golden File Testing
 description: Golden testing best practices.
 ---
 
+import { TabItem, Tabs } from "@astrojs/starlight/components";
+
 The term golden file refers to a master image that is considered the true rendering of a given widget, state, application, or other visual representation you have chosen to capture.
 
 :::note
@@ -13,35 +15,38 @@ To learn more about Golden file testing refer to [Testing Fundamentals video abo
 
 Golden tests should be tagged to make it easier to run them separately from other tests.
 
-Bad ❗️
+<Tabs>
+  <TabItem label="Good ✅">
+    ```dart
+    testWidgets(
+      'render matches golden file',
+      tags: TestTag.golden,
+      (WidgetTester tester) async {
+        await tester.pumpWidget(MyWidget());
 
-```dart
-testWidgets('render matches golden file', (WidgetTester tester) async {
-  await tester.pumpWidget(MyWidget());
+        await expectLater(
+          find.byType(MyWidget),
+          matchesGoldenFile('my_widget.png'),
+        );
+      },
+    );
+    ```
 
-  await expectLater(
-    find.byType(MyWidget),
-    matchesGoldenFile('my_widget.png'),
-  );
-});
-```
-
-Good ✅
-
-```dart
-  testWidgets(
-    'render matches golden file',
-    tags: TestTag.golden,
-    (WidgetTester tester) async {
+  </TabItem>
+  <TabItem label="Bad ❗️">
+    ```dart
+    testWidgets('render matches golden file', (WidgetTester tester) async {
       await tester.pumpWidget(MyWidget());
 
       await expectLater(
         find.byType(MyWidget),
         matchesGoldenFile('my_widget.png'),
       );
-    },
-  );
-```
+    });
+    ```
+
+  </TabItem>
+</Tabs>
 
 :::tip
 [You should avoid using magic strings to tag tests](../testing/#avoid-using-magic-strings-to-tag-test). Instead, use constants to tag tests. This helps to avoid typos and makes it easier to refactor.

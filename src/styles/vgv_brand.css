@@ -43,7 +43,8 @@
 :root[data-theme="light"] {
   --vgv-card-bg: #fafbfe;
   --vgv-card-bg-hover: var(--vgv-gray-10);
-  --vgv-card-fg: black;
+  --vgv-card-fg: var(--vgv-gray-80);
+  --vgv-card-fg-hover: var(--vgv-blue-80);
   --vgv-card-shadow: drop-shadow(0px 0px 8px var(--vgv-gray-30));
   --vgv-card-shadow-hover: drop-shadow(0px 0px 10px var(--vgv-gray-35));
 
@@ -64,15 +65,16 @@
   --vgv-card-bg: var(--vgv-gray-80);
   --vgv-card-bg-hover: var(--vgv-gray-70);
   --vgv-card-fg: white;
+  --vgv-card-fg-hover: var(--vgv-blue-60);
   --vgv-card-shadow: drop-shadow(0px 0px 8px var(--vgv-gray-80));
   --vgv-card-shadow-hover: drop-shadow(0px 0px 16px var(--vgv-gray-60));
 
   --vgv-footer-text: var(--vgv-gray-30);
   --vgv-footer-bg: var(--vgv-gray-80);
 
-  --vgv-nav-bg: transparent;
+  --vgv-nav-bg: black;
   --vgv-nav-glow: var(--vgv-gray-80);
-  --vgv-nav-opacity: 0;
+  --vgv-nav-opacity: 0.4;
 
   --vgv-home-bg: var(--sl-color-bg);
 
