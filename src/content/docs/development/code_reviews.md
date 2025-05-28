@@ -10,7 +10,7 @@ Writing clean and readable code, preparing code for review, conducting thorough 
 
 When writing code it is essential to consider the review process right from the start. Code that’s designed with the reviewer in mind results in more efficient and productive code reviews, ultimately speeding up the development lifecycle.
 
-- Prioritize Clean and Readable Code: Adopting consistent coding styles and best practices helps to ensure that everyone on the team can easily understand and maintain each other's code. It also streamlines onboarding for new team members and enhances collaboration across the board.
+- Prioritize clean and readable code: Adopting consistent coding styles and best practices helps to ensure that everyone on the team can easily understand and maintain each other's code. It also streamlines onboarding for new team members and enhances collaboration across the board.
 - Keep PRs small and focused: Small PRs reduce review complexity, allow for faster feedback, and prevent blockers from piling up in the review pipeline.
 - Incorporate review time in planning: The time it takes for your code to be reviewed, feedback to be incorporated, and any revisions to be made can have a huge impact on a task's overall timeline. Accurately accounting for this in your task estimations ensures more realistic deadlines and helps prevent bottlenecks.
 
