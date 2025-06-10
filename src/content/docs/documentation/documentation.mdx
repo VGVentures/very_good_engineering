@@ -17,30 +17,22 @@ Here’s what that looks like in practice:
 - **README as the Single Source of Truth**
   Every repository should have a README that answers key questions:
 
-
     - How do I run this project? (Ideally in one command.)
-
 
     - Where can I learn about architecture?
 
-
     - What state management strategy is used, and why?
-
 
     - Are there any debugging tips (e.g., Sentry, session replay)?
 
 - **Docs Folder for Extended Guides**
   Use a /docs folder to centralize everything that doesn’t belong in the README but is still critical:
 
-
     - State management conventions
-
 
     - Dependency injection setup
 
-
     - Feature/module boundaries
-
 
     - ADRs (Architecture Decision Records)
 
@@ -53,15 +45,11 @@ Here’s what that looks like in practice:
 - **Self-Contained README**
   Each package should include its own README that:
 
-
     - Describes the package’s purpose and what problem it solves
-
 
     - Explains how to use the package
 
-
     - Lists its own dependencies, peer packages, or environment requirements
-
 
 - **Self explained and Balance Repetition**
   Avoid assuming readers will reference the root-level README. Package-level documentation should be understandable in isolation, especially when packages are reused or shared across projects.
@@ -70,8 +58,7 @@ Here’s what that looks like in practice:
 
 Many Flutter apps rely on external tools for internationalization, code generation, or DevOps workflows. When these tools are part of the development workflow, they should be explicitly documented to reduce onboarding friction and prevent misuse.
 - Add Dedicated Sections for Critical Tools
-If your project depends on tools like build_runner, custom_lint, or flutter gen-l10n, document their purpose and usage directly in the README or linked documentation. (cite or link example like io Project)
-
+If your project depends on tools like build_runner, custom_lint, or flutter gen-l10n, document their purpose and usage directly in the README or linked documentation.
 
 - **Include actionable Commands**
 Copy-pasteable CLI commands, expected file locations, and regeneration steps are essential. Avoid vague notes like "run codegen", be precise.
@@ -79,12 +66,9 @@ Copy-pasteable CLI commands, expected file locations, and regeneration steps are
 Include context on why the tool is present and when it should or shouldn’t be used:
     - Where the config lives (e.g., l10n.yaml, .dart_tool/, pubspec.yaml)
 
-
     - How and When the tool should be run
 
-
     - Any common pitfalls or edge cases developers should watch for
-
 
 - **Define Standards, Not Just Steps**
 If a tool supports flexibility, define the conventions your team adopts, this avoids ambiguity and prevents fragmentation over time.
@@ -96,14 +80,11 @@ Here’s what to focus on:
 - **State Management Patterns**
 Document not just what is used (e.g., Riverpod), but how. Define preferred patterns, common pitfalls, and where shared logic should live.
 
-
 - **Dependency Injection**
 Don’t just rely on DI tools—explain the philosophy behind their usage. Clarify lifecycle expectations, testability benefits, and error boundaries.
 
-
 - **Feature-Driven Folder Structures**
 If you adopt a modular or feature-driven architecture, enforce it. Consistency helps reduce cognitive load and onboarding time.
-
 
 - **Naming Conventions & Lint Rules**
 Use a consistent naming scheme, and automate enforcement with tools like very_good_analysis. Fewer surprises = faster development.
@@ -115,23 +96,17 @@ To improve discoverability and reduce developer friction:
 - **Document All Public Widgets and APIs**
 Use the public_member_api_docs rule to enforce this automatically. If it’s public, it should be documented.
 
-
 - **Adopt a Consistent Format**
   Each widget should include:
 
-
     - A clear description of its purpose
-
 
     - Required vs. optional parameters
 
-
     - Expected usage or constraints
-
 
 - **Go Beyond Visuals**
 Visual reference is helpful, but developers still need to understand when and why to use a widget. Written docs fill that gap.
-
 
 ## Why This Matters
 
