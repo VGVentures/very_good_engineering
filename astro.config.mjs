@@ -77,6 +77,12 @@ export default defineConfig({
           },
         },
         {
+          label: "📝 Code Review",
+          autogenerate: {
+            directory: "code_review",
+          },
+        },
+        {
           label: "📖 Documentation",
           autogenerate: {
             directory: "documentation",
