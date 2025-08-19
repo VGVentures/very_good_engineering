@@ -17,6 +17,8 @@ Here’s what that looks like in practice:
 - **README as the Single Source of Truth**
   Every repository should have a README that answers key questions:
 
+      - What are the requirements to run the project?
+
       - How do I run this project? (Ideally in one command.)
 
       - Where can I learn about architecture?
@@ -24,6 +26,8 @@ Here’s what that looks like in practice:
       - What state management strategy is used, and why?
 
       - Are there any debugging tips (e.g., Sentry, session replay)?
+
+      - Localization and internationalization setup
 
 - **Docs Folder for Extended Guides**
   Use a /docs folder to centralize everything that doesn’t belong in the README but is still critical:
@@ -35,6 +39,10 @@ Here’s what that looks like in practice:
       - Feature/module boundaries
 
       - ADRs (Architecture Decision Records)
+
+      - Accessibility guide
+
+ ***Note***: Keeping these documents up to date is crucial. If they become stale, they lose their value. Regularly review and update them as part of your development cycle.
 
 - **Architecture Decision Records**
   ADRs help capture why certain decisions were made. Hosting them in version control keeps the context accessible to the whole team, not just the people who were around at the time.
@@ -84,7 +92,7 @@ Here’s what to focus on:
 - **Dependency Injection**
   Don’t just rely on DI tools—explain the philosophy behind their usage. Clarify lifecycle expectations, testability benefits, and error boundaries.
 
-- **Feature-Driven Folder Structures**
+- **Folder Structures**
   If you adopt a modular or feature-driven architecture, enforce it. Consistency helps reduce cognitive load and onboarding time.
 
 - **Naming Conventions & Lint Rules**
@@ -96,7 +104,7 @@ Reusable UI components are only as effective as their documentation. While some 
 To improve discoverability and reduce developer friction:
 
 - **Document All Public Widgets and APIs**
-  Use the public_member_api_docs rule to enforce this automatically. If it’s public, it should be documented.
+  Use the public_member_api_docs rule, from the [https://pub.dev/packages/very_good_analysis](very_good_analysis package), to enforce this automatically. If it’s public, it should be documented.
 
 - **Adopt a Consistent Format**
   Each widget should include:
