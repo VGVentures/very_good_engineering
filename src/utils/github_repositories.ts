@@ -129,7 +129,7 @@ async function fetchRepository(
 function mapRepository(raw: { [key: string]: any }): GithubRepository {
   const language = raw["language"];
   const languageColor =
-    language != null ? (languageColors[language] ?? null) : null;
+    language != null ? languageColors[language] ?? null : null;
   return {
     name: raw["name"],
     organization: organizationName,
