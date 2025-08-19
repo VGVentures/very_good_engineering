@@ -9,6 +9,8 @@ jobs:
       - uses: actions/checkout@v5
       - uses: tcort/github-action-markdown-link-check@v1
         with:
+          base-branch: 'main'
+          folder-path: 'src/'
           use-quiet-mode: 'yes'
           use-verbose-mode: 'yes'
-          folder-path: src/
+          check-modified-files-only: 'yes'
