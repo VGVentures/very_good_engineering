@@ -34,3 +34,49 @@ class BluetoothProcessor extends NetworkProcessor {
     ```
   </TabItem>
 </Tabs>
+
+## Consider using asserts over inline comments
+
+[Dart asserts](https://dart.dev/language/error-handling#assert) with messages enforce conditions during development and
+provide immediate feedback if something goes wrong, while an inline comment only document the code and don't immediately prevent errors.
+Assertions help catch issues early, making debugging easier and more reliable.
+
+<Tabs>
+  <TabItem label="Good ✅">
+
+```dart
+(double?, double?) solveQuadraticEquation(double a, double b, double c) {
+  assert(
+    a != 0,
+    'The coefficient of the square term must not be zero, otherwise is not a '
+    'quadratic equation.',
+  );
+
+  final discriminant = b * b - 4 * a * c;
+  return switch (discriminant) {
+    final d when d > 0 => ((-b + sqrt(d)) / (2 * a), (-b - sqrt(d)) / (2 * a)),
+    final d when d == 0 => (-b / (2 * a), null),
+    _ => (null, null),
+  };
+}
+```
+
+  </TabItem>
+  <TabItem label="Bad ❗️">
+
+```dart
+(double?, double?) solveQuadraticEquation(double a, double b, double c) {
+  // The coefficient of the square term must not be zero otherwise is not a
+  // quadratic equation.
+
+  final discriminant = b * b - 4 * a * c;
+  return switch (discriminant) {
+    final d when d > 0 => ((-b + sqrt(d)) / (2 * a), (-b - sqrt(d)) / (2 * a)),
+    final d when d == 0 => (-b / (2 * a), null),
+    _ => (null, null),
+  };
+}
+```
+
+  </TabItem>
+</Tabs>
