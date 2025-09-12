@@ -32,6 +32,16 @@ const shouldShowLinks = Astro.url.pathname === "/";
               </a>
             )
           }
+          {
+            shouldShowLinks && (
+              <a
+                href={"/changelog"}
+                class="sm:ml-4 md:ml-8 mx-4 mt-[1px] flex text-lg no-underline hover:underline visited:text-inherit active:text-inherit"
+              >
+                Changelog
+              </a>
+            )
+          }
         </nav>
       </div>
       <div class="sl-hidden md:sl-flex right-group">
