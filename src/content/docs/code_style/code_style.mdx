@@ -52,3 +52,41 @@ Now, we are expressly naming the values that we are getting from our record type
 :::tip
 While this is our recommended practice for dealing with record types, you might want to consider whether you actually need a record type. Particularly in larger projects where you are using values across multiple files, dedicated data models may be easier to read and maintain.
 :::
+
+## Prefer Widgets to Methods
+
+We prefer creating widgets over creating methods that return `Widget`.
+
+
+<Tabs>
+    <TabItem label="Bad ❗️">
+      ```dart
+      Widget _buildChildWidget(BuildContext context) {
+        return const Text('Hello World!');
+      }
+      ```
+    </TabItem>
+    <TabItem label="Good ✅">
+      ```dart
+      class MyWidget extends StatelessWidget {
+        const MyWidget({super.key});
+
+        @override
+        Widget build(BuildContext context) {
+          return const Text('Hello World!');
+        }
+      }
+      ```
+    </TabItem>
+</Tabs>
+
+We prefer this for a few reasons:
+
+1. It avoids coding errors caused by passing around the wrong `BuildContext`. Flutter manages the `BuildContext` via the widget tree, which is more reliable.
+
+2. The widgets are added to the widget tree, which allows for more potentially efficient rendering and enables inspecting them in the debug tools.
+
+
+For more details, check out the following video:
+
+<iframe style="width: 100%; height: 480px;" src="https://www.youtube.com/embed/IOyq-eTRhvo?si=pr_2yp_tr94EJztF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
