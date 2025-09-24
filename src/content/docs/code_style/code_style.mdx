@@ -1,9 +1,3 @@
----
-title: Code Style
-description: Best practices for general code styling that goes beyond linter rules.
----
-
-import { TabItem, Tabs } from "@astrojs/starlight/components";
 
 In general, the best guides for code style are the [Effective Dart](https://dart.dev/effective-dart) guidelines and the linter rules set up in [very_good_analysis](https://pub.dev/packages/very_good_analysis). However, there are certain practices we've learned outside of these two places that will make code more maintainable.
 
@@ -103,6 +97,8 @@ We prefer this for a few reasons:
 1. It avoids coding errors caused by passing around the wrong `BuildContext`. Flutter manages the `BuildContext` via the widget tree, which is more reliable.
 
 2. The widgets are added to the widget tree, which allows for more potentially efficient rendering and enables inspecting them in the debug tools.
+
+3. Widgets are easier to test as they can be tested in isolation.
 
 For more details, check out the following video:
 
