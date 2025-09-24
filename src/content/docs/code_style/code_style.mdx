@@ -60,15 +60,33 @@ We prefer creating widgets over creating methods that return `Widget`.
 <Tabs>
     <TabItem label="Bad ❗️">
       ```dart
-      Widget _buildChildWidget(BuildContext context) {
-        return const Text('Hello World!');
+      class ParentWidget extends StatelessWidget {
+        const ParentWidget({super.key});
+
+        @override
+        Widget build(BuildContext context) {
+          return _buildChildWidget(context);
+        }
+      
+        Widget _buildChildWidget(BuildContext context) {
+          return const Text('Hello World!');
+        }
       }
       ```
     </TabItem>
     <TabItem label="Good ✅">
       ```dart
-      class MyWidget extends StatelessWidget {
-        const MyWidget({super.key});
+      class ParentWidget extends StatelessWidget {
+        const ParentWidget({super.key});
+
+        @override
+        Widget build(BuildContext context) {
+          return ChildWidget();
+        }
+      }
+
+      class ChildWidget extends StatelessWidget {
+        const ChildWidget({super.key});
 
         @override
         Widget build(BuildContext context) {
