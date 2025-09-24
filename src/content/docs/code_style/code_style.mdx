@@ -1,4 +1,3 @@
-
 In general, the best guides for code style are the [Effective Dart](https://dart.dev/effective-dart) guidelines and the linter rules set up in [very_good_analysis](https://pub.dev/packages/very_good_analysis). However, there are certain practices we've learned outside of these two places that will make code more maintainable.
 
 ## Record Types
@@ -61,7 +60,7 @@ We prefer creating widgets over creating methods that return `Widget`.
         Widget build(BuildContext context) {
           return _buildChildWidget(context);
         }
-      
+
         Widget _buildChildWidget(BuildContext context) {
           return const Text('Hello World!');
         }
